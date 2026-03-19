@@ -32,7 +32,7 @@ img{max-width:100%;display:block}
 .topbar{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:stretch}
 .brand{padding:20px;display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:center;min-height:170px;overflow:hidden}
 .brandLogo{background:#0b0f0c;border:1px solid var(--line);border-radius:26px;padding:10px;display:flex;align-items:center;justify-content:center;min-height:128px}
-.brandLogo img{width:100%;max-width:320px;height:auto;object-fit:contain}
+.brandLogo img{width:100%;height:auto;object-fit:contain}
 .brand h1{margin:0 0 8px;font-size:30px;letter-spacing:.02em}
 .brand p{margin:0;color:var(--muted);max-width:900px}
 .pillRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
@@ -83,8 +83,8 @@ h3{margin:0 0 10px;font-size:16px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
 .chip input{accent-color:var(--lime)}
 .mini{font-size:11px;color:var(--muted)}
-.filterBar{display:grid;grid-template-columns:minmax(0,1.35fr) 260px 240px 180px;gap:10px;margin-bottom:12px;padding:12px;border:1px solid rgba(199,245,93,.18);background:linear-gradient(180deg,#111914,#0b100d);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
-.filterBar input,.filterBar select{width:100%;min-width:0;background:#f6f7f2;color:#151915;border:1px solid rgba(0,0,0,.1);border-radius:14px;padding:12px 14px;outline:none;font-weight:500}
+.filterBar{display:grid;grid-template-columns:minmax(0,1.35fr) 260px 240px 180px;gap:10px;margin-bottom:12px;padding:12px;border:1px solid rgba(199,245,93,.12);background:linear-gradient(180deg,rgba(199,245,93,.06),rgba(255,255,255,.015));border-radius:20px}
+.filterBar input,.filterBar select{width:100%;min-width:0;background:#0d120f;color:var(--text);border:1px solid rgba(199,245,93,.14);border-radius:14px;padding:12px 14px;outline:none}
 .library{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .item{border:1px solid var(--line);background:#0c110d;border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .itemTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
@@ -106,7 +106,7 @@ td input,td select{width:100%;background:#0b100d;color:var(--text);border:1px so
 .empty{padding:28px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);text-align:center}
 .docPreview{background:#f7f8f5;color:#111;border-radius:24px;padding:28px;min-height:420px}
 .docHead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}
-.docLogo{width:260px}.docKpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}
+.docLogo{width:210px}.docKpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}
 .docTable{width:100%;border-collapse:collapse;min-width:0}.docTable th,.docTable td{border:1px solid #dce3d1;padding:9px 8px;font-size:12px}.docTable th{background:#eef2e5;color:#283124;position:static}
 .footerActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
@@ -116,8 +116,6 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
 @media (max-width:1080px){.hero,.summaryGrid,.docKpis,.legend,.helpGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.half,.card.third,.card.quarter{grid-column:span 12}.filterBar{grid-template-columns:1fr 1fr}.brand{grid-template-columns:1fr}}
 @media (max-width:760px){.app{padding:10px}.hero,.summaryGrid,.docKpis,.row2,.row3,.row4,.legend,.helpGrid{grid-template-columns:1fr}.filterBar{grid-template-columns:1fr}.library{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.brandLogo{min-height:100px}}
 </style>
-
-<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
 </head>
 <body>
 <div class="app">
@@ -131,7 +129,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
           <span class="pill">GitHub Pages · HTML-only</span>
           <span class="pill">Проект → зоны → автоподбор → смета</span>
           <span class="pill">Ручная корректировка позиций</span>
-          <span class="pill">HTML / XLSX / PDF</span>
+          <span class="pill">HTML / Excel / PDF</span>
         </div>
       </div>
     </section>
@@ -145,7 +143,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
 
   <div class="layout">
     <aside class="panel sidebar">
-      <div class="sectionTitle"><h2>Паспорт проекта</h2><span class="badge lime">v5</span></div>
+      <div class="sectionTitle"><h2>Паспорт проекта</h2><span class="badge lime">v4</span></div>
       <div class="field"><label>Название проекта</label><input id="projectName" value="Новый пресейл / объект"></div>
       <div class="field"><label>Заказчик</label><input id="customerName" value="Новый заказчик"></div>
       <div class="row2">
@@ -317,7 +315,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
         <div class="footerActions" style="margin-bottom:12px;">
           <button class="btn primary" id="printBtn">Печать / PDF</button>
           <button class="btn ghost" id="downloadHtmlBtn">Скачать HTML-смету</button>
-          <button class="btn ghost" id="exportExcelBtn">Скачать Excel (.xlsx)</button>
+          <button class="btn ghost" id="exportExcelBtn">Скачать Excel-смету</button>
         </div>
         <div class="docPreview" id="proposalPreview"></div>
       </section>
@@ -326,7 +324,6 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
 </div>
 
 <script>
-const VIZHU_LOGO = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAogAAADWCAYAAABSUnMUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAEPUSURBVHhe7d13WFVX1gbwV3oTFURABBSlGEvsBXsXS7ChSayZFI2maCbdJM5MmpPJWDKJiYlJbNGIvWKUYkFsiAWUJiooCCKISFPa90dkRvYnAvesc+85567f88wzMy+olAt33bX3XruBq6trJRhjjDHGGHvIRAwYY4wxxphx4wKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWDReIjDHGGGOsGi4QGWOMMcZYNVwgMsYYY4yxarhAZIwxxhhj1XCByBhjjDHGquECkTHGGGOMVcMFImOMMcYYq4YLRMYYY4wxVg0XiIwxxhhjrBouEBljjDHGWDVcIDLGGGOMsWq4QGSMMcYYY9VwgcgYY4wxxqrhApExxhhjjFXDBSJjjDHGGKuGC0TGGGOMMVYNF4iMMcYYY6waLhAZY4wxxlg1XCAyxhhjjLFquEBkjDHGGGPVcIHIGGOMMcaq4QKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWzf8BbBpEMs4AeLYAAAAASUVORK5CYII=";
 const PROJECT_TYPES = [
   {id:'museum', name:'Музей / выставка / visitor center'},
   {id:'education', name:'Образовательный / карьерный центр'},
@@ -382,126 +379,128 @@ const GLOBAL_FLAGS = [
 ];
 
 const ITEMS = [
-  {id:"led_u1_eco_p25", name:"LED экран внутренний P2.5", brand:"Unilumin", model:"Uslim S2 P2.5", category:"LED экраны", segment:"Indoor LED", unit:"м²", scenario:"budget", price:89000, types:["museum", "education", "conference", "retail", "event", "public", "corporate"], note:"Бюджетный indoor LED-ориентир для холлов и презентаций."},
-  {id:"led_absen_pl27", name:"LED экран внутренний P2.5–2.7", brand:"Absen", model:"PL V2 Series", category:"LED экраны", segment:"Indoor LED", unit:"м²", scenario:"budget", price:98000, types:["museum", "conference", "retail", "event", "public", "corporate"], note:"Indoor LED для общественных пространств и сценических задач."},
-  {id:"led_infiled_db18", name:"LED экран внутренний P1.8", brand:"INFiLED", model:"DB Series P1.8", category:"LED экраны", segment:"Fine Pitch LED", unit:"м²", scenario:"base", price:152000, types:["museum", "conference", "retail", "public", "corporate", "control"], note:"Базовый fine pitch для близкой дистанции просмотра."},
-  {id:"led_leyard_mg2_15", name:"LED экран внутренний P1.5", brand:"Leyard / Planar", model:"MG-2 / MGP Complete", category:"LED экраны", segment:"Fine Pitch LED", unit:"м²", scenario:"premium", price:238000, types:["museum", "conference", "retail", "public", "corporate", "control"], note:"Премиальный fine pitch / control room класс."},
-  {id:"led_samsung_iac13", name:"LED All-in-One 130\"", brand:"Samsung", model:"IAC 130", category:"LED AIO", segment:"All-in-One LED", unit:"шт.", scenario:"premium", price:3980000, types:["corporate", "conference", "public", "education"], note:"All-in-one LED для переговорных и конференц-залов."},
-  {id:"led_viewsonic_lds138", name:"LED All-in-One 138\"", brand:"ViewSonic", model:"LDS138-151", category:"LED AIO", segment:"All-in-One LED", unit:"шт.", scenario:"premium", price:3280000, types:["corporate", "conference", "public", "education"], note:"Альтернатива Samsung AIO LED для залов."},
-  {id:"led_outdoor_unilumin39", name:"LED экран наружный P3.9", brand:"Unilumin", model:"Uslim O / Outdoor 3.9", category:"LED экраны", segment:"Outdoor LED", unit:"м²", scenario:"base", price:138000, types:["retail", "event", "public", "museum"], note:"Стандартный outdoor LED для уличных фасадов и событий."},
-  {id:"led_outdoor_absen48", name:"LED экран наружный P4.8", brand:"Absen", model:"A Series Outdoor", category:"LED экраны", segment:"Outdoor LED", unit:"м²", scenario:"budget", price:118000, types:["retail", "event", "public"], note:"Более бюджетный outdoor LED-сегмент."},
-  {id:"led_outdoor_leyard29", name:"LED экран наружный P2.9", brand:"Leyard / Planar", model:"Outdoor Fine Pitch", category:"LED экраны", segment:"Outdoor LED", unit:"м²", scenario:"premium", price:198000, types:["retail", "event", "public"], note:"Премиальный outdoor LED для близкой дистанции просмотра."},
-  {id:"led_controller_vx600", name:"LED контроллер", brand:"NovaStar", model:"VX600", category:"Управление и коммутация", segment:"LED процессоры", unit:"шт.", scenario:"budget", price:98000, types:["museum", "education", "conference", "retail", "event", "public"], note:"Контроллер для компактных LED-инсталляций."},
-  {id:"led_controller_vx1000", name:"LED контроллер", brand:"NovaStar", model:"VX1000", category:"Управление и коммутация", segment:"LED процессоры", unit:"шт.", scenario:"base", price:158000, types:["museum", "education", "conference", "retail", "event", "public"], note:"Основной LED-контроллер среднего класса."},
-  {id:"led_controller_vx2000pro", name:"LED контроллер", brand:"NovaStar", model:"VX2000 Pro", category:"Управление и коммутация", segment:"LED процессоры", unit:"шт.", scenario:"premium", price:268000, types:["museum", "conference", "retail", "event", "public", "corporate"], note:"Процессор для крупных LED-сборок и более тяжёлых сценариев."},
-  {id:"led_controller_h2", name:"LED видеопроцессор", brand:"NovaStar", model:"H2", category:"Управление и коммутация", segment:"LED процессоры", unit:"шт.", scenario:"premium", price:498000, types:["museum", "conference", "retail", "event", "public", "corporate"], note:"Премиальный масштабируемый контроллер."},
-  {id:"lcd_samsung_qm43c", name:"Проф. дисплей 43\"", brand:"Samsung", model:"QM43C", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"budget", price:79000, types:["museum", "education", "retail", "public", "corporate", "conference"], note:"Коммерческий дисплей 43\" 24/7 класса."},
-  {id:"lcd_samsung_qm50c", name:"Проф. дисплей 50\"", brand:"Samsung", model:"QM50C", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"budget", price:66000, types:["museum", "education", "retail", "public", "corporate", "conference"], note:"Ориентир на публичную цену B&H, переведён в рубли."},
-  {id:"lcd_samsung_qm55c", name:"Проф. дисплей 55\"", brand:"Samsung", model:"QM55C", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"budget", price:94000, types:["museum", "education", "retail", "public", "corporate", "conference"], note:"Базовая коммерческая панель 55\"."},
-  {id:"lcd_samsung_qm65c", name:"Проф. дисплей 65\"", brand:"Samsung", model:"QM65C", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"base", price:148000, types:["museum", "education", "retail", "public", "corporate", "conference"], note:"Основной 65\" сегмент для переговорных и public areas."},
-  {id:"lcd_samsung_qm75c", name:"Проф. дисплей 75\"", brand:"Samsung", model:"QM75C", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"base", price:193000, types:["museum", "education", "retail", "public", "corporate", "conference"], note:"Ориентир на публичную цену B&H, переведён в рубли."},
-  {id:"lcd_samsung_qm98c", name:"Проф. дисплей 98\"", brand:"Samsung", model:"QM98C", category:"Панели и LCD", segment:"Large Format Display", unit:"шт.", scenario:"premium", price:698000, types:["museum", "conference", "retail", "public", "corporate"], note:"Большой формат для холлов и крупных залов."},
-  {id:"lcd_lg_55uh5n", name:"Проф. дисплей 55\"", brand:"LG", model:"55UH5N-E", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"budget", price:112000, types:["museum", "education", "retail", "public", "corporate"], note:"Профессиональная signage-панель LG."},
-  {id:"lcd_lg_75uh5j", name:"Проф. дисплей 75\"", brand:"LG", model:"75UH5J-H", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"base", price:214000, types:["museum", "education", "retail", "public", "corporate", "conference"], note:"Рабочий 75\" signage-вариант."},
-  {id:"lcd_lg_86uh5j", name:"Проф. дисплей 86\"", brand:"LG", model:"86UH5J-H", category:"Панели и LCD", segment:"Large Format Display", unit:"шт.", scenario:"base", price:295000, types:["museum", "education", "retail", "public", "corporate", "conference"], note:"Универсальный 86\" формат для залов и холлов."},
-  {id:"lcd_sony_55ez20l", name:"Проф. дисплей 55\"", brand:"Sony", model:"FW-55EZ20L", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"premium", price:156000, types:["museum", "corporate", "conference", "retail", "public"], note:"Премиальный signage-дисплей Sony."},
-  {id:"lcd_sony_65bz40l", name:"Проф. дисплей 65\"", brand:"Sony", model:"FW-65BZ40L", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"premium", price:244000, types:["museum", "corporate", "conference", "retail", "public"], note:"Премиальный корпоративный дисплей Sony."},
-  {id:"lcd_sony_75bz40l", name:"Проф. дисплей 75\"", brand:"Sony", model:"FW-75BZ40L", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"premium", price:338000, types:["museum", "corporate", "conference", "retail", "public"], note:"Премиальный 75\" signage/meeting дисплей."},
-  {id:"lcd_hisense_55gm50d", name:"Проф. дисплей 55\"", brand:"Hisense", model:"55GM50D", category:"Панели и LCD", segment:"Digital Signage", unit:"шт.", scenario:"budget", price:98000, types:["education", "retail", "public", "corporate"], note:"Доступный signage-сегмент для стандартных задач."},
-  {id:"lcd_iiyama_105uw", name:"Ультраширокий дисплей 105\"", brand:"iiyama", model:"LH10551UWS", category:"Панели и LCD", segment:"UltraWide / Front Row", unit:"шт.", scenario:"premium", price:948000, types:["corporate", "conference", "control"], note:"Для Teams Front Row и диспетчерских."},
-  {id:"interactive_benq_re6504", name:"Интерактивная панель 65\"", brand:"BenQ", model:"RE6504", category:"Интерактив", segment:"Интерактивные панели", unit:"шт.", scenario:"budget", price:166000, types:["education", "corporate", "conference", "public"], note:"Базовый touch-дисплей 65\"."},
-  {id:"interactive_benq_re7504", name:"Интерактивная панель 75\"", brand:"BenQ", model:"RE7504", category:"Интерактив", segment:"Интерактивные панели", unit:"шт.", scenario:"base", price:242000, types:["education", "corporate", "conference", "public"], note:"Широко применимый 75\" формат."},
-  {id:"interactive_benq_rp6504", name:"Интерактивная панель 65\"", brand:"BenQ", model:"RP6504", category:"Интерактив", segment:"Интерактивные панели", unit:"шт.", scenario:"premium", price:212800, types:["education", "corporate", "conference"], note:"Панель для более требовательных интерактивных сценариев."},
-  {id:"interactive_samsung_flip65", name:"Интерактивная панель 65\"", brand:"Samsung", model:"Flip Pro 65", category:"Интерактив", segment:"Интерактивные панели", unit:"шт.", scenario:"base", price:224000, types:["education", "corporate", "conference"], note:"Популярная интерактивная панель Samsung."},
-  {id:"interactive_viewsonic_65", name:"Интерактивная панель 65\"", brand:"ViewSonic", model:"ViewBoard IFP6552-1C", category:"Интерактив", segment:"Интерактивные панели", unit:"шт.", scenario:"budget", price:189000, types:["education", "corporate", "conference", "public"], note:"Альтернатива BenQ/Samsung в бюджете."},
-  {id:"interactive_newline_75", name:"Интерактивная панель 75\"", brand:"Newline", model:"Q Series 75", category:"Интерактив", segment:"Интерактивные панели", unit:"шт.", scenario:"base", price:268000, types:["education", "corporate", "conference", "public"], note:"Стабильный mid-range сегмент."},
-  {id:"interactive_smart_gx65", name:"Интерактивная панель 65\"", brand:"SMART", model:"Board GX165", category:"Интерактив", segment:"Интерактивные панели", unit:"шт.", scenario:"premium", price:298000, types:["education", "corporate", "conference"], note:"Премиальная интерактивная экосистема SMART."},
-  {id:"meetingboard_yealink_65", name:"Интерактивная VC-панель 65\"", brand:"Yealink", model:"MeetingBoard Pro 65", category:"Интерактив", segment:"MeetingBoard", unit:"шт.", scenario:"premium", price:439920, types:["corporate", "conference", "education"], note:"All-in-one touch + камера + мики + спикеры."},
-  {id:"meetingboard_neat_65", name:"Интерактивная VC-панель 65\"", brand:"Neat", model:"Board 65", category:"Интерактив", segment:"MeetingBoard", unit:"шт.", scenario:"premium", price:498000, types:["corporate", "conference"], note:"Премиальная VC-доска для гибридных переговорных."},
-  {id:"kiosk_43_touch", name:"Интерактивный киоск 43\"", brand:"NexTouch / OEM", model:"Touch Kiosk 43", category:"Интерактив", segment:"Киоски и терминалы", unit:"шт.", scenario:"budget", price:132000, types:["museum", "education", "retail", "public"], note:"Бюджетный сенсорный киоск."},
-  {id:"kiosk_55_touch", name:"Интерактивный киоск 55\"", brand:"NexTouch / OEM", model:"Touch Kiosk 55", category:"Интерактив", segment:"Киоски и терминалы", unit:"шт.", scenario:"base", price:189000, types:["museum", "education", "retail", "public"], note:"Универсальный киоск для экспозиций и навигации."},
-  {id:"kiosk_55_premium", name:"Интерактивный киоск 55\"", brand:"Peerless-AV / custom", model:"Premium Touch Kiosk 55", category:"Интерактив", segment:"Киоски и терминалы", unit:"шт.", scenario:"premium", price:328000, types:["museum", "retail", "public"], note:"Премиальный корпус и более аккуратная инсталляция."},
-  {id:"proj_epson_775f", name:"Лазерный проектор 4100 lm", brand:"Epson", model:"PowerLite 775F", category:"Проекция", segment:"Laser projector", unit:"шт.", scenario:"budget", price:187440, types:["museum", "education", "conference", "public"], note:"Бюджетный лазерный проектор."},
-  {id:"proj_epson_l530u", name:"Лазерный проектор WUXGA", brand:"Epson", model:"PowerLite L530U", category:"Проекция", segment:"Laser projector", unit:"шт.", scenario:"budget", price:235440, types:["museum", "education", "conference", "public"], note:"Ориентир на MSRP Epson, переведён в рубли."},
-  {id:"proj_panasonic_vmz51", name:"Лазерный проектор 5200 lm", brand:"Panasonic", model:"PT-VMZ51", category:"Проекция", segment:"Laser projector", unit:"шт.", scenario:"base", price:236000, types:["museum", "education", "conference", "event"], note:"Инсталляционный проектор Panasonic."},
-  {id:"proj_panasonic_vmz71", name:"Лазерный проектор 7000 lm", brand:"Panasonic", model:"PT-VMZ71", category:"Проекция", segment:"Laser projector", unit:"шт.", scenario:"base", price:338000, types:["museum", "education", "conference", "event"], note:"Более яркий проектор среднего класса."},
-  {id:"proj_epson_l690u", name:"Лазерный проектор 6500 lm", brand:"Epson", model:"PowerLite L690U", category:"Проекция", segment:"Laser projector", unit:"шт.", scenario:"base", price:282000, types:["museum", "education", "conference", "event"], note:"Рабочий проектор для средних залов."},
-  {id:"proj_epson_810e", name:"UST лазерный проектор", brand:"Epson", model:"PowerLite 810E", category:"Проекция", segment:"Ultra Short Throw", unit:"шт.", scenario:"premium", price:292960, types:["education", "museum", "corporate"], note:"Короткофокусный лазер под плотные помещения."},
-  {id:"proj_epson_815e", name:"UST лазерный проектор", brand:"Epson", model:"PowerLite 815E", category:"Проекция", segment:"Ultra Short Throw", unit:"шт.", scenario:"premium", price:292960, types:["education", "museum", "corporate"], note:"Альтернатива 810E."},
-  {id:"proj_optoma_zh450st", name:"Короткофокусный лазерный проектор", brand:"Optoma", model:"ZH450ST", category:"Проекция", segment:"Short Throw", unit:"шт.", scenario:"budget", price:168000, types:["education", "museum", "public"], note:"Доступный short throw проектор."},
-  {id:"proj_screen_120", name:"Проекционный экран 120\"", brand:"Lumien / Projecta", model:"120 inch", category:"Проекция", segment:"Projection screen", unit:"шт.", scenario:"budget", price:42000, types:["education", "conference", "public"], note:"Базовый экран для проекторов."},
-  {id:"proj_screen_150", name:"Проекционный экран 150\"", brand:"Projecta / Draper / Lumien", model:"150 inch", category:"Проекция", segment:"Projection screen", unit:"шт.", scenario:"base", price:68000, types:["education", "conference", "museum", "public"], note:"Экран для средних залов."},
-  {id:"proj_screen_200", name:"Проекционный экран 200\"", brand:"Draper / Projecta", model:"200 inch", category:"Проекция", segment:"Projection screen", unit:"шт.", scenario:"premium", price:128000, types:["conference", "event", "public"], note:"Крупный формат для аудиторий."},
-  {id:"audio_bose_dm3se", name:"Акустика настенная, пара", brand:"Bose Professional", model:"DesignMax DM3SE", category:"Аудио", segment:"Распределённая акустика", unit:"пара", scenario:"budget", price:29520, types:["museum", "conference", "retail", "public", "corporate", "education"], note:"Ориентир на публичную цену B&H."},
-  {id:"audio_bose_dm5se", name:"Акустика настенная, пара", brand:"Bose Professional", model:"DesignMax DM5SE", category:"Аудио", segment:"Распределённая акустика", unit:"пара", scenario:"base", price:55920, types:["museum", "conference", "retail", "public", "corporate", "education"], note:"Более мощная распределённая акустика."},
-  {id:"audio_qsc_acs6t", name:"Потолочная акустика, пара", brand:"QSC", model:"AC-S6T", category:"Аудио", segment:"Распределённая акустика", unit:"пара", scenario:"base", price:64800, types:["conference", "corporate", "education", "public"], note:"Потолочная акустика для переговорных и классов."},
-  {id:"audio_jbl_control26", name:"Акустика настенная, пара", brand:"JBL Professional", model:"Control 26CT", category:"Аудио", segment:"Распределённая акустика", unit:"пара", scenario:"budget", price:43800, types:["museum", "retail", "public", "education"], note:"Доступная install-акустика."},
-  {id:"audio_qsc_ad_s82", name:"Акустика настенная, пара", brand:"QSC", model:"AD-S82", category:"Аудио", segment:"Локальная акустика", unit:"пара", scenario:"premium", price:118000, types:["conference", "event", "public", "retail"], note:"Более мощная акустика для залов."},
-  {id:"audio_shure_ulxd4q", name:"Беспроводная микрофонная система 4ch", brand:"Shure", model:"ULXD4Q", category:"Аудио", segment:"Микрофонные системы", unit:"компл.", scenario:"premium", price:426000, types:["conference", "event", "public"], note:"Премиальная беспроводная система."},
-  {id:"audio_shure_slxd_dual", name:"Беспроводная микрофонная система 2ch", brand:"Shure", model:"SLXD24D", category:"Аудио", segment:"Микрофонные системы", unit:"компл.", scenario:"base", price:188000, types:["conference", "event", "education"], note:"Рабочий комплект для залов и сцен."},
-  {id:"audio_sennheiser_ewd_dual", name:"Беспроводная микрофонная система 2ch", brand:"Sennheiser", model:"EW-D dual", category:"Аудио", segment:"Микрофонные системы", unit:"компл.", scenario:"base", price:165000, types:["conference", "event", "education"], note:"Цифровой беспроводной сегмент."},
-  {id:"audio_shure_mxa920", name:"Потолочный микрофон массив", brand:"Shure", model:"MXA920", category:"Аудио", segment:"Конференц-аудио", unit:"шт.", scenario:"premium", price:378560, types:["corporate", "conference", "education"], note:"Ориентир на публичную цену B&H."},
-  {id:"audio_sennheiser_tcc2", name:"Потолочный микрофон массив", brand:"Sennheiser", model:"TeamConnect Ceiling 2", category:"Аудио", segment:"Конференц-аудио", unit:"шт.", scenario:"premium", price:298000, types:["corporate", "conference"], note:"Альтернатива Shure для premium VC."},
-  {id:"audio_yamaha_rmcg", name:"Потолочный микрофон массив", brand:"Yamaha", model:"RM-CG", category:"Аудио", segment:"Конференц-аудио", unit:"шт.", scenario:"base", price:182000, types:["corporate", "conference", "education"], note:"Средний сегмент для комнат и классов."},
-  {id:"audio_biamp_tesira", name:"DSP / аудиопроцессор", brand:"Biamp", model:"TesiraFORTÉ", category:"Аудио", segment:"DSP и управление звуком", unit:"шт.", scenario:"premium", price:348000, types:["conference", "corporate", "museum", "event"], note:"Премиальный DSP-сегмент."},
-  {id:"audio_yamaha_rmcr", name:"Конференц-DSP", brand:"Yamaha", model:"RM-CR", category:"Аудио", segment:"DSP и управление звуком", unit:"шт.", scenario:"base", price:154000, types:["corporate", "conference", "education"], note:"Конференц-процессор для room audio."},
-  {id:"audio_qsys_core_nano", name:"AV/DSP процессор", brand:"Q-SYS", model:"Core Nano", category:"Аудио", segment:"DSP и управление звуком", unit:"шт.", scenario:"premium", price:296000, types:["conference", "corporate", "museum", "control"], note:"DSP/управление для сложных AV-систем."},
-  {id:"audio_amp_qsc", name:"Усилитель", brand:"QSC", model:"Install Amp", category:"Аудио", segment:"Усиление", unit:"шт.", scenario:"base", price:78000, types:["museum", "conference", "retail", "public", "corporate"], note:"Усилитель для распределённых систем."},
-  {id:"vc_logi_huddle", name:"Видеобар для малой переговорной", brand:"Logitech", model:"Rally Bar Huddle", category:"Конференц-связь", segment:"VC", unit:"шт.", scenario:"budget", price:159920, types:["corporate", "conference", "public"], note:"Компактный видеобар для huddle room."},
-  {id:"vc_logi_mini", name:"Видеобар для переговорной", brand:"Logitech", model:"Rally Bar Mini", category:"Конференц-связь", segment:"VC", unit:"шт.", scenario:"base", price:239920, types:["corporate", "conference", "public"], note:"Ориентир на официальную цену Logitech."},
-  {id:"vc_logi_bar", name:"Видеобар для средней/большой комнаты", brand:"Logitech", model:"Rally Bar", category:"Конференц-связь", segment:"VC", unit:"шт.", scenario:"premium", price:319920, types:["corporate", "conference", "public"], note:"Ориентир на официальную цену Logitech."},
-  {id:"vc_yealink_a20", name:"Видеобар", brand:"Yealink", model:"MeetingBar A20", category:"Конференц-связь", segment:"VC", unit:"шт.", scenario:"budget", price:156000, types:["corporate", "conference", "public"], note:"Бюджетный all-in-one VC-сегмент."},
-  {id:"vc_yealink_a30", name:"Видеобар", brand:"Yealink", model:"MeetingBar A30", category:"Конференц-связь", segment:"VC", unit:"шт.", scenario:"base", price:208000, types:["corporate", "conference", "public"], note:"Средний сегмент all-in-one видеобара."},
-  {id:"vc_poly_x52", name:"Видеобар", brand:"HP Poly", model:"Studio X52", category:"Конференц-связь", segment:"VC", unit:"шт.", scenario:"premium", price:276000, types:["corporate", "conference"], note:"Премиальная альтернатива Logitech / Yealink."},
-  {id:"vc_poly_x32", name:"Видеобар", brand:"HP Poly", model:"Studio X32", category:"Конференц-связь", segment:"VC", unit:"шт.", scenario:"base", price:206000, types:["corporate", "conference"], note:"Средний сегмент Poly."},
-  {id:"vc_aver_cam520", name:"PTZ-камера", brand:"AVer", model:"CAM520 Pro3", category:"Конференц-связь", segment:"PTZ", unit:"шт.", scenario:"base", price:158000, types:["conference", "corporate", "education"], note:"PTZ-камера для залов и трансляций."},
-  {id:"vc_logi_ptzpro2", name:"PTZ-камера", brand:"Logitech", model:"PTZ Pro 2", category:"Конференц-связь", segment:"PTZ", unit:"шт.", scenario:"budget", price:76000, types:["conference", "corporate", "education"], note:"Бюджетная PTZ-камера."},
-  {id:"vc_yealink_uvc84", name:"PTZ-камера", brand:"Yealink", model:"UVC84", category:"Конференц-связь", segment:"PTZ", unit:"шт.", scenario:"base", price:118000, types:["conference", "corporate", "education"], note:"Рабочая PTZ-камера для meeting rooms."},
-  {id:"vc_birddog_x1", name:"PTZ-камера", brand:"BirdDog", model:"X1", category:"Конференц-связь", segment:"PTZ", unit:"шт.", scenario:"premium", price:188000, types:["conference", "corporate", "event"], note:"Премиальная PTZ/NDI альтернатива."},
-  {id:"vc_logi_sight", name:"Камера обзора стола", brand:"Logitech", model:"Sight", category:"Конференц-связь", segment:"AI camera", unit:"шт.", scenario:"premium", price:183000, types:["corporate", "conference"], note:"Дополнительная AI-камера для больших столов."},
-  {id:"vc_room_pc", name:"Мини-ПК для ВКС", brand:"Intel NUC / Lenovo Tiny", model:"Room PC", category:"Конференц-связь", segment:"VC infra", unit:"шт.", scenario:"base", price:98000, types:["corporate", "conference", "education"], note:"Выделенный room PC для Teams/Zoom."},
-  {id:"vc_compute_core", name:"Вычислительный модуль room system", brand:"Logitech / Lenovo / Dell", model:"Room Compute", category:"Конференц-связь", segment:"VC infra", unit:"шт.", scenario:"premium", price:168000, types:["corporate", "conference"], note:"Компьютерная часть для premium room systems."},
-  {id:"media_pc_basic", name:"Контентный ПК / graphics", brand:"VIZHU build", model:"Media PC Basic", category:"ПК и медиасерверы", segment:"Playback PC", unit:"шт.", scenario:"budget", price:168000, types:["museum", "education", "conference", "retail", "event", "public", "corporate"], note:"Контентный ПК начального уровня."},
-  {id:"media_pc_core", name:"Контентный ПК / graphics", brand:"VIZHU build", model:"Media PC Core RTX", category:"ПК и медиасерверы", segment:"Playback PC", unit:"шт.", scenario:"base", price:235000, types:["museum", "education", "conference", "retail", "event", "public", "corporate", "vr"], note:"Рабочий уровень для 4K playback."},
-  {id:"media_pc_premium", name:"Контентный ПК / graphics", brand:"VIZHU build", model:"Media PC Studio RTX", category:"ПК и медиасерверы", segment:"Playback PC", unit:"шт.", scenario:"premium", price:398000, types:["museum", "conference", "retail", "event", "public", "corporate", "vr"], note:"Тяжёлый контент / sync / многовыходные задачи."},
-  {id:"media_brightsign_hd", name:"Signage-плеер", brand:"BrightSign", model:"HD225", category:"ПК и медиасерверы", segment:"Signage player", unit:"шт.", scenario:"budget", price:42000, types:["museum", "retail", "public", "corporate"], note:"Надёжный signage-player."},
-  {id:"media_brightsign_xt", name:"Signage-плеер", brand:"BrightSign", model:"XT1145", category:"ПК и медиасерверы", segment:"Signage player", unit:"шт.", scenario:"base", price:78000, types:["museum", "retail", "public", "corporate"], note:"Более мощный signage-player."},
-  {id:"media_resolume_arena", name:"Лицензия медиасервера", brand:"Resolume", model:"Arena", category:"ПО и лицензии", segment:"Media server software", unit:"шт.", scenario:"base", price:63920, types:["museum", "conference", "retail", "event", "public"], note:"Ориентир на официальную цену €799."},
-  {id:"media_watchout", name:"Лицензия медиасервера", brand:"Dataton", model:"WATCHOUT", category:"ПО и лицензии", segment:"Media server software", unit:"шт.", scenario:"premium", price:286000, types:["museum", "event", "public"], note:"Премиальный медиа-серверный софт."},
-  {id:"media_unity_license", name:"Лицензия интерактива / runtime", brand:"Unity / custom", model:"Interactive runtime", category:"ПО и лицензии", segment:"Interactive software", unit:"шт.", scenario:"base", price:78000, types:["museum", "education", "retail", "vr"], note:"Ориентир для интерактивных сценариев."},
-  {id:"media_show_control", name:"Система шоу-контроля", brand:"Medialon / Q-SYS / custom", model:"Show Control", category:"ПО и лицензии", segment:"Control software", unit:"шт.", scenario:"premium", price:218000, types:["museum", "event", "public"], note:"Для мультимедийных сценариев с управлением."},
-  {id:"switch_atem_mini_g2", name:"Видеомикшер / стриминг", brand:"Blackmagic Design", model:"ATEM Mini Extreme ISO G2", category:"Управление и коммутация", segment:"Switcher / streaming", unit:"шт.", scenario:"premium", price:175600, types:["event", "conference", "corporate", "education"], note:"Ориентир на публичную цену B&H."},
-  {id:"switch_atem_hd8", name:"Видеомикшер", brand:"Blackmagic Design", model:"ATEM Television Studio HD8", category:"Управление и коммутация", segment:"Switcher / streaming", unit:"шт.", scenario:"premium", price:286000, types:["event", "conference", "corporate"], note:"Live-production сегмент."},
-  {id:"switch_matrix_4x4", name:"AV матрица 4x4", brand:"Kramer / Extron / Atlona", model:"4x4 Matrix", category:"Управление и коммутация", segment:"Switcher", unit:"шт.", scenario:"base", price:146000, types:["conference", "corporate", "education", "museum"], note:"Базовая матричная коммутация."},
-  {id:"switch_matrix_8x8", name:"AV матрица 8x8", brand:"Kramer / Extron / Atlona", model:"8x8 Matrix", category:"Управление и коммутация", segment:"Switcher", unit:"шт.", scenario:"premium", price:268000, types:["conference", "corporate", "education", "museum", "event"], note:"Расширенная матричная коммутация."},
-  {id:"switch_presentation", name:"Презентационный свитчер", brand:"Kramer / Extron / Atlona", model:"Presentation Switcher", category:"Управление и коммутация", segment:"Switcher", unit:"шт.", scenario:"base", price:128000, types:["conference", "corporate", "education", "museum"], note:"Коммутация в залах и переговорных."},
-  {id:"control_crestron_touch", name:"Сенсорная панель управления", brand:"Crestron", model:"TSW series", category:"Управление и коммутация", segment:"Control", unit:"шт.", scenario:"premium", price:168000, types:["conference", "corporate", "museum", "control"], note:"Премиальная система управления."},
-  {id:"control_qsys_touch", name:"Сенсорная панель управления", brand:"Q-SYS", model:"TSC series", category:"Управление и коммутация", segment:"Control", unit:"шт.", scenario:"premium", price:154000, types:["conference", "corporate", "museum", "control"], note:"Control UI для Q-SYS."},
-  {id:"control_custom_ipad", name:"Планшет управления", brand:"Apple / custom", model:"iPad + kiosk", category:"Управление и коммутация", segment:"Control", unit:"компл.", scenario:"base", price:92000, types:["conference", "corporate", "museum", "retail"], note:"Более гибкий и бюджетный control UI."},
-  {id:"avoverip_encoder", name:"AV-over-IP encoder", brand:"Kramer / Visionary / ZeeVee", model:"Encoder", category:"Управление и коммутация", segment:"AV over IP", unit:"шт.", scenario:"premium", price:126000, types:["conference", "corporate", "control", "museum"], note:"Для распределённых систем AV over IP."},
-  {id:"avoverip_decoder", name:"AV-over-IP decoder", brand:"Kramer / Visionary / ZeeVee", model:"Decoder", category:"Управление и коммутация", segment:"AV over IP", unit:"шт.", scenario:"premium", price:118000, types:["conference", "corporate", "control", "museum"], note:"Декодер для AV over IP."},
-  {id:"infra_signal_cabling", name:"Коммутация / кабельный комплект", brand:"Mixed", model:"Signal + Power", category:"Инфраструктура", segment:"Кабели и расходники", unit:"компл.", scenario:"base", price:38000, types:["museum", "education", "conference", "retail", "event", "public", "corporate", "vr"], note:"Ориентир для HDMI/SDI/CAT/силовой части."},
-  {id:"infra_hdmi_aoc", name:"Оптический HDMI комплект", brand:"Kramer / PureLink / Aten", model:"AOC / extender set", category:"Инфраструктура", segment:"Коммутация", unit:"компл.", scenario:"base", price:28000, types:["museum", "conference", "corporate", "event", "public"], note:"Для длинных трасс."},
-  {id:"infra_hdbaset", name:"HDBaseT комплект", brand:"Kramer / Extron / Aten", model:"Tx/Rx set", category:"Инфраструктура", segment:"Коммутация", unit:"компл.", scenario:"base", price:54000, types:["conference", "corporate", "education", "museum", "public"], note:"Передача сигнала по витой паре."},
-  {id:"infra_floorbox", name:"Напольный AV-люк", brand:"Legrand / OBO / custom", model:"Floor box AV", category:"Инфраструктура", segment:"Инженерия", unit:"шт.", scenario:"base", price:18000, types:["conference", "corporate", "education", "public"], note:"Для столов и залов."},
-  {id:"infra_cart_86", name:"Мобильная стойка 75–86\"", brand:"Chief / Vogel’s / Wize", model:"Mobile cart", category:"Инфраструктура", segment:"Крепления", unit:"шт.", scenario:"base", price:52000, types:["education", "corporate", "conference", "public"], note:"Мобильное размещение панелей."},
-  {id:"infra_wallmount_lfd", name:"Настенное крепление LFD", brand:"Chief / Vogel’s / Wize", model:"Wall mount LFD", category:"Инфраструктура", segment:"Крепления", unit:"шт.", scenario:"budget", price:12000, types:["museum", "education", "conference", "retail", "public", "corporate"], note:"Базовое крепление для панелей."},
-  {id:"infra_custom_metal", name:"Металлоконструкция / крепёжный контур", brand:"Local fabrication", model:"Custom", category:"Инфраструктура", segment:"Конструкции", unit:"м²", scenario:"base", price:27000, types:["museum", "education", "conference", "retail", "event", "public", "corporate"], note:"Под экраны и нестандартные инсталляции."},
-  {id:"infra_rigging", name:"Риггинг / подвес", brand:"Global Truss / custom", model:"Rigging set", category:"Инфраструктура", segment:"Конструкции", unit:"компл.", scenario:"premium", price:186000, types:["event", "stage", "conference"], note:"Для подвесов, временных сцен и эвентов."},
-  {id:"infra_rack_18u", name:"AV-стойка 18U", brand:"Middle Atlantic / custom", model:"Rack 18U", category:"Инфраструктура", segment:"Racks", unit:"шт.", scenario:"budget", price:68000, types:["conference", "corporate", "museum", "control"], note:"Компактная AV-стойка."},
-  {id:"infra_rack_42u", name:"AV-стойка 42U", brand:"Middle Atlantic / custom", model:"Rack 42U", category:"Инфраструктура", segment:"Racks", unit:"шт.", scenario:"base", price:92000, types:["conference", "corporate", "museum", "control", "event"], note:"Стойка для более насыщенных систем."},
-  {id:"infra_network_switch_basic", name:"Сетевой коммутатор", brand:"MikroTik / Ubiquiti", model:"Switch / access", category:"Инфраструктура", segment:"Сеть", unit:"шт.", scenario:"base", price:46000, types:["museum", "education", "conference", "retail", "public", "corporate", "vr", "control"], note:"Сеть под signage, control, VC, VR."},
-  {id:"infra_network_switch_poe", name:"PoE-коммутатор", brand:"Ubiquiti / Cisco / HPE Aruba", model:"PoE switch", category:"Инфраструктура", segment:"Сеть", unit:"шт.", scenario:"premium", price:128000, types:["museum", "conference", "corporate", "control"], note:"Для PoE-панелей, камер и AV-over-IP."},
-  {id:"infra_ups_3kva", name:"ИБП 3 kVA", brand:"APC / Eaton", model:"3 kVA", category:"Инфраструктура", segment:"Питание", unit:"шт.", scenario:"base", price:98000, types:["conference", "corporate", "museum", "control", "vr"], note:"Резерв питания для AV-ядра."},
-  {id:"infra_ups_6kva", name:"ИБП 6 kVA", brand:"APC / Eaton", model:"6 kVA", category:"Инфраструктура", segment:"Питание", unit:"шт.", scenario:"premium", price:186000, types:["conference", "corporate", "museum", "control"], note:"Для более тяжёлых систем."},
-  {id:"infra_pdu", name:"PDU / силовая инфраструктура", brand:"APC / Aten", model:"Metered PDU", category:"Инфраструктура", segment:"Питание", unit:"шт.", scenario:"base", price:34000, types:["conference", "corporate", "museum", "control", "vr", "event"], note:"Силовая часть rack/AV-систем."},
-  {id:"infra_touch_overlay_55", name:"Touch-рамка 55\"", brand:"PQ Labs / IKUSI / custom", model:"IR Overlay 55", category:"Инфраструктура", segment:"Touch accessories", unit:"шт.", scenario:"base", price:58000, types:["museum", "retail", "public"], note:"Для превращения панели в touch."},
-  {id:"vr_meta_quest3", name:"VR/MR гарнитура", brand:"Meta", model:"Quest 3 512GB", category:"VR / AR", segment:"VR гарнитуры", unit:"шт.", scenario:"budget", price:56000, types:["vr", "education", "museum"], note:"Ориентир на публичную цену рынка."},
-  {id:"vr_pico4e", name:"VR/MR гарнитура", brand:"PICO", model:"4 Ultra Enterprise", category:"VR / AR", segment:"VR гарнитуры", unit:"шт.", scenario:"base", price:55920, types:["vr", "education", "museum"], note:"Ориентир на официальный MSRP $699."},
-  {id:"vr_htc_focus", name:"VR/MR гарнитура", brand:"HTC", model:"Vive Focus 3", category:"VR / AR", segment:"VR гарнитуры", unit:"шт.", scenario:"premium", price:118000, types:["vr", "education", "museum"], note:"Премиальный standalone VR."},
-  {id:"vr_pc_core", name:"ПК для VR станции", brand:"VIZHU build", model:"VR RTX", category:"VR / AR", segment:"VR компьютеры", unit:"шт.", scenario:"base", price:225000, types:["vr", "education", "museum"], note:"ПК под тяжёлые VR-сценарии."},
-  {id:"vr_pc_premium", name:"ПК для VR станции", brand:"VIZHU build", model:"VR RTX Studio", category:"VR / AR", segment:"VR компьютеры", unit:"шт.", scenario:"premium", price:348000, types:["vr", "education", "museum"], note:"Повышенная производительность и запас."},
-  {id:"vr_accessory_pack", name:"Трекеры / аксессуары VR", brand:"Mixed", model:"Sensor Pack", category:"VR / AR", segment:"VR аксессуары", unit:"компл.", scenario:"base", price:48000, types:["vr", "education", "museum"], note:"Набор аксессуаров и трекинга."}
+  // LED
+  {id:'led_indoor_p25_oem', name:'LED экран внутренний P2.5', brand:'OEM / Unilumin class', model:'Indoor P2.5', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'budget', price:72000, types:['museum','education','conference','retail','event','public','corporate'], note:'Стартовый indoor LED для холлов и рабочих презентаций.'},
+  {id:'led_indoor_p19_core', name:'LED экран внутренний P1.9', brand:'Absen / Leyard / AOTO class', model:'Fine Pitch P1.9', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'base', price:128000, types:['museum','education','conference','retail','event','public','corporate'], note:'Базовый fine-pitch для близкой дистанции просмотра.'},
+  {id:'led_indoor_p15_premium', name:'LED экран внутренний P1.5', brand:'Absen / Leyard premium', model:'Fine Pitch P1.5', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'premium', price:186000, types:['museum','conference','retail','corporate','public','event'], note:'Премиальный fine-pitch для топовых клиентских зон.'},
+  {id:'led_outdoor_p4', name:'LED экран уличный P4', brand:'OEM / Unilumin class', model:'Outdoor P4', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'budget', price:68000, types:['museum','education','retail','event','public'], note:'Наружный LED для фасадов и входных групп.'},
+  {id:'led_outdoor_p39', name:'LED экран уличный P3.9', brand:'Unilumin / Absen class', model:'Outdoor P3.9', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'base', price:108000, types:['museum','retail','event','public'], note:'Основной outdoor сегмент с лучшей картинкой.'},
+  {id:'led_outdoor_p29', name:'LED экран уличный P2.9', brand:'Premium outdoor', model:'Outdoor P2.9', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'premium', price:158000, types:['retail','event','public'], note:'Премиальный outdoor для ярких рекламных и сценических задач.'},
+
+  // Controllers / playback
+  {id:'novastar_vx600', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX600', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'budget', price:98000, types:['museum','education','conference','retail','event','public'], note:'Компактный LED-контроллер для небольших стен.'},
+  {id:'novastar_vx1000', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX1000', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'base', price:158000, types:['museum','education','conference','retail','event','public'], note:'Базовый контроллер для большинства средних LED-инсталляций.'},
+  {id:'novastar_vx2000', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX2000 Pro', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'premium', price:258000, types:['museum','education','conference','retail','event','public'], note:'Для крупных стен и более сложных конфигураций.'},
+  {id:'novastar_h2', name:'Сплайсер / видеопроцессор', brand:'NovaStar', model:'H2', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'premium', price:465000, types:['museum','conference','event','control'], note:'Для сложных многослойных и больших LED-сценариев.'},
+  {id:'mediaserver_basic', name:'Контентный ПК / playback', brand:'Visuals build', model:'Basic Playback', category:'ПК и медиасерверы', segment:'Playback PC', unit:'шт.', scenario:'budget', price:135000, types:['museum','education','conference','retail','event','public','vr','corporate'], note:'ПК для signage, playback и несложных интерактивов.'},
+  {id:'mediaserver_core', name:'Контентный ПК / graphics', brand:'Visuals build', model:'Core RTX', category:'ПК и медиасерверы', segment:'Playback PC', unit:'шт.', scenario:'base', price:235000, types:['museum','education','conference','retail','event','public','vr','corporate'], note:'Рабочий уровень для 4K playback и средних мультимедиа-задач.'},
+  {id:'mediaserver_premium', name:'Медиасервер', brand:'disguise / custom RTX', model:'Media Server Pro', category:'ПК и медиасерверы', segment:'Media Server', unit:'шт.', scenario:'premium', price:520000, types:['museum','conference','retail','event','vr'], note:'Премиум-сегмент для realtime, сложного мэппинга и синхронизации.'},
+  {id:'resolume_arena', name:'Лицензия медиасервера', brand:'Resolume', model:'Arena', category:'ПО и лицензии', segment:'Медиасервер ПО', unit:'шт.', scenario:'base', price:64000, types:['museum','conference','retail','event'], note:'Playback и live-компоновка сцен.'},
+  {id:'brightsign_hd', name:'Signage-плеер', brand:'BrightSign', model:'HD / LS series', category:'ПО и лицензии', segment:'Signage players', unit:'шт.', scenario:'budget', price:52000, types:['museum','retail','public','corporate','education'], note:'Надёжный digital signage player.'},
+
+  // LCD / displays
+  {id:'samsung_qm43c', name:'Проф. дисплей 43"', brand:'Samsung', model:'QM43C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:69000, types:['museum','education','retail','public','corporate'], note:'24/7 signage для навигации и стендов.'},
+  {id:'samsung_qm55c', name:'Проф. дисплей 55"', brand:'Samsung', model:'QM55C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:102000, types:['museum','education','retail','public','corporate','conference'], note:'Стартовый крупный signage-дисплей.'},
+  {id:'samsung_qm75c', name:'Проф. дисплей 75"', brand:'Samsung', model:'QM75C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'base', price:256000, types:['museum','education','retail','public','corporate','conference'], note:'Базовый 75-дюймовый pro display.'},
+  {id:'samsung_qm98c', name:'Проф. дисплей 98"', brand:'Samsung', model:'QM98C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'premium', price:485000, types:['museum','corporate','conference','retail','public'], note:'Большой формат без перехода в LED.'},
+  {id:'lg_86uh5j', name:'Проф. дисплей 86"', brand:'LG', model:'86UH5J', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'base', price:295000, types:['museum','education','retail','public','corporate','conference'], note:'Универсальный формат под презентации и signage.'},
+
+  // Interactive
+  {id:'benq_re6504', name:'Интерактивная панель 65"', brand:'BenQ', model:'RE6504', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'budget', price:151000, types:['education','corporate','public'], note:'Бюджетная интерактивная панель под учебные и рабочие зоны.'},
+  {id:'benq_re7504', name:'Интерактивная панель 75"', brand:'BenQ', model:'RE7504', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'base', price:166000, types:['education','corporate','public'], note:'Базовый рабочий вариант 75".'},
+  {id:'benq_re8604', name:'Интерактивная панель 86"', brand:'BenQ', model:'RE8604', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:230000, types:['education','corporate','public'], note:'Крупная интерактивная панель для premium-сценариев.'},
+  {id:'newline_65', name:'Интерактивная панель 65"', brand:'Newline', model:'LYRA / Q', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'budget', price:175000, types:['education','corporate'], note:'Альтернатива BenQ в бюджете.'},
+  {id:'maxhub_86', name:'Интерактивная панель 86"', brand:'MAXHUB', model:'86"', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:315000, types:['education','corporate','conference'], note:'Премиальный 86" touch-сегмент.'},
+  {id:'kiosk43', name:'Интерактивный киоск 43"', brand:'OEM / Digital Signage', model:'Touch Kiosk 43', category:'Интерактив', segment:'Киоски и терминалы', unit:'шт.', scenario:'budget', price:118000, types:['museum','education','retail','public'], note:'Стартовый киоск для навигации и self-service.'},
+  {id:'kiosk55', name:'Интерактивный киоск 55"', brand:'OEM / Digital Signage', model:'Touch Kiosk 55', category:'Интерактив', segment:'Киоски и терминалы', unit:'шт.', scenario:'base', price:169000, types:['museum','education','retail','public'], note:'Универсальный формат для интерактива.'},
+  {id:'touch_table_55', name:'Интерактивный стол 55"', brand:'OEM / custom', model:'Touch Table 55', category:'Интерактив', segment:'Интерактивные столы', unit:'шт.', scenario:'premium', price:295000, types:['museum','education','public'], note:'Для музейных и образовательных сценариев.'},
+
+  // Projection
+  {id:'epson_l530u', name:'Лазерный проектор 5200 lm', brand:'Epson', model:'PowerLite L530U', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'budget', price:188000, types:['museum','education','conference','event'], note:'Базовый проектор для рабочих мультимедийных задач.'},
+  {id:'epson_l690u', name:'Лазерный проектор 6500 lm', brand:'Epson', model:'PowerLite L690U', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:282000, types:['museum','education','conference','event'], note:'Основной инсталляционный уровень для залов.'},
+  {id:'panasonic_vmz71', name:'Лазерный проектор 7000 lm', brand:'Panasonic', model:'PT-VMZ71', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:338000, types:['museum','education','conference','event'], note:'Надёжный mid-range проектор.'},
+  {id:'christie_13k', name:'Лазерный проектор 13000 lm', brand:'Christie', model:'13K class', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'premium', price:890000, types:['museum','conference','event'], note:'Для крупных инсталляций и ярких сцен.'},
+  {id:'ultra_short_throw', name:'Ультракороткофокусный проектор', brand:'Epson / Optoma', model:'UST Laser', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:255000, types:['education','museum','public'], note:'Для зон, где нельзя глубоко уводить проектор.'},
+
+  // Audio
+  {id:'bose_dm3se', name:'Пара настенной акустики', brand:'Bose Professional', model:'DesignMax DM3SE', category:'Аудио', segment:'Локальная акустика', unit:'пара', scenario:'base', price:30000, types:['museum','education','retail','public','corporate','conference'], note:'Компактная install-акустика.'},
+  {id:'jbl_control', name:'Пара настенной акустики', brand:'JBL', model:'Control 25/28', category:'Аудио', segment:'Локальная акустика', unit:'пара', scenario:'budget', price:22000, types:['museum','education','retail','public','corporate','conference'], note:'Бюджетный install-сегмент.'},
+  {id:'qsc_pair', name:'Пара настенной акустики', brand:'QSC', model:'AD-S / AcousticDesign', category:'Аудио', segment:'Локальная акустика', unit:'пара', scenario:'premium', price:69000, types:['museum','education','retail','public','corporate','conference'], note:'Премиальная локальная акустика.'},
+  {id:'shure_ulxd_dual', name:'Комплект радиомикрофонов', brand:'Shure', model:'ULXD dual', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'premium', price:285000, types:['conference','education','event','museum'], note:'Премиальный беспроводной комплект для залов и сцен.'},
+  {id:'wireless_mic_dual', name:'Комплект радиомикрофонов', brand:'Shure / Sennheiser', model:'Dual wireless', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'base', price:145000, types:['conference','education','event','museum'], note:'Базовый рабочий комплект беспроводных микрофонов.'},
+  {id:'sennheiser_ewd', name:'Комплект радиомикрофонов', brand:'Sennheiser', model:'EW-D dual', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'base', price:165000, types:['conference','event','education'], note:'Цифровой беспроводной сегмент.'},
+  {id:'shure_mxa920', name:'Потолочный микрофон массив', brand:'Shure', model:'MXA920', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'premium', price:378000, types:['corporate','conference'], note:'Премиальный потолочный массив для ВКС и залов.'},
+  {id:'yealink_vcm', name:'Настольный/потолочный микрофон', brand:'Yealink', model:'VCM / CPW series', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'budget', price:48000, types:['corporate','conference'], note:'Бюджетное конференц-аудио.'},
+  {id:'qsc_core_nano', name:'DSP / аудиопроцессор', brand:'QSC', model:'Core Nano / 8 Flex', category:'Аудио', segment:'DSP и управление звуком', unit:'шт.', scenario:'premium', price:248000, types:['conference','corporate','museum','event'], note:'Премиальный DSP для гибридных залов.'},
+  {id:'dsp_basic', name:'DSP / аудиопроцессор', brand:'Biamp / QSC / Yamaha', model:'DSP Core', category:'Аудио', segment:'DSP и управление звуком', unit:'шт.', scenario:'base', price:148000, types:['conference','corporate','museum','event'], note:'Базовый DSP для звуковых сценариев.'},
+  {id:'audio_amp', name:'Усилитель / power amp', brand:'QSC / Bose / Yamaha', model:'Install amp', category:'Аудио', segment:'Усиление', unit:'шт.', scenario:'base', price:78000, types:['museum','conference','retail','public','corporate'], note:'Усиление для распределённых аудиосистем.'},
+
+  // VC / conferencing
+  {id:'rally_bar_mini', name:'Видеобар для переговорной', brand:'Logitech', model:'Rally Bar Mini', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:264000, types:['corporate','conference','public'], note:'All-in-one видеобар для small/medium room.'},
+  {id:'rally_bar', name:'Видеобар для переговорной', brand:'Logitech', model:'Rally Bar', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'premium', price:388000, types:['corporate','conference'], note:'Более мощный видеобар под larger rooms.'},
+  {id:'aver_ptz', name:'PTZ-камера', brand:'AVer', model:'20x/30x PTZ', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:168000, types:['conference','corporate','education'], note:'PTZ для залов и трансляций.'},
+  {id:'yealink_roomkit', name:'Room kit', brand:'Yealink', model:'MVC / MeetingBar', category:'Конференц-связь', segment:'VC', unit:'компл.', scenario:'budget', price:225000, types:['corporate','conference'], note:'Бюджетная альтернатива видеобару + room control.'},
+  {id:'logi_tap', name:'Панель управления переговорной', brand:'Logitech', model:'Tap IP', category:'Конференц-связь', segment:'VC control', unit:'шт.', scenario:'premium', price:132000, types:['corporate','conference'], note:'Touch controller для meeting room.'},
+
+  // VR
+  {id:'pico4e', name:'VR/MR гарнитура', brand:'PICO', model:'4 Ultra Enterprise', category:'VR / AR', segment:'VR гарнитуры', unit:'шт.', scenario:'base', price:55900, types:['vr','education','museum'], note:'B2B гарнитура для тренажёров и MR.'},
+  {id:'quest3_512', name:'VR/MR гарнитура', brand:'Meta', model:'Quest 3 512GB', category:'VR / AR', segment:'VR гарнитуры', unit:'шт.', scenario:'budget', price:39900, types:['vr','education','museum'], note:'Более доступный standalone MR/VR-сегмент.'},
+  {id:'htc_vive_focus', name:'VR/MR гарнитура', brand:'HTC', model:'VIVE Focus', category:'VR / AR', segment:'VR гарнитуры', unit:'шт.', scenario:'premium', price:128000, types:['vr','education','museum'], note:'Премиальный enterprise VR-сегмент.'},
+  {id:'vr_pc', name:'ПК для VR станции', brand:'Visuals build', model:'VR RTX', category:'VR / AR', segment:'VR компьютеры', unit:'шт.', scenario:'base', price:225000, types:['vr','education','museum'], note:'ПК для визуально тяжёлых VR-сценариев.'},
+  {id:'vr_sensor_pack', name:'Трекеры / аксессуары VR', brand:'Mixed', model:'Sensor Pack', category:'VR / AR', segment:'VR аксессуары', unit:'компл.', scenario:'base', price:48000, types:['vr','education','museum'], note:'Базовый набор аксессуаров и трекинга.'},
+
+  // Infra / control
+  {id:'signal_cabling', name:'Коммутация / кабельный комплект', brand:'Mixed', model:'Signal + Power', category:'Инфраструктура', segment:'Коммутация', unit:'компл.', scenario:'base', price:38000, types:['museum','education','conference','retail','event','public','corporate','vr'], note:'HDMI/SDI/CAT/силовая часть; ориентир для пресейла.'},
+  {id:'mounting_struct', name:'Металлоконструкция / крепёжный контур', brand:'Local fabrication', model:'Custom', category:'Инфраструктура', segment:'Конструкции', unit:'м²', scenario:'base', price:27000, types:['museum','education','conference','retail','event','public','corporate'], note:'Под экраны и нестандартные инсталляции.'},
+  {id:'rack_infra', name:'Стойка / шкаф AV', brand:'Middle Atlantic / custom', model:'Rack 18–42U', category:'Инфраструктура', segment:'Racks', unit:'шт.', scenario:'base', price:92000, types:['conference','corporate','museum','control','event'], note:'Racks и базовая rack-инфраструктура.'},
+  {id:'network_switch', name:'Сетевой коммутатор', brand:'MikroTik / Ubiquiti', model:'Switch / access', category:'Инфраструктура', segment:'Сеть', unit:'шт.', scenario:'base', price:46000, types:['museum','education','conference','retail','public','corporate','vr','control'], note:'Сеть под AV-over-IP, signage, VR и сервисы.'},
+  {id:'ubnt_switch_pro', name:'Сетевой коммутатор', brand:'Ubiquiti', model:'Switch Pro', category:'Инфраструктура', segment:'Сеть', unit:'шт.', scenario:'premium', price:84000, types:['conference','corporate','control','vr'], note:'Более высокий сегмент сетевой инфраструктуры.'},
+  {id:'ups_3kva', name:'ИБП', brand:'APC / Eaton', model:'3 kVA', category:'Инфраструктура', segment:'Питание', unit:'шт.', scenario:'base', price:98000, types:['conference','corporate','museum','control','vr'], note:'Резерв питания для AV-ядра.'},
+  {id:'crestron_control', name:'Система управления', brand:'Crestron / Extron / Kramer', model:'Control processor + touch', category:'Управление и коммутация', segment:'Control systems', unit:'компл.', scenario:'premium', price:340000, types:['conference','corporate','museum','control'], note:'Система централизованного управления.'},
+  {id:'kramer_switcher', name:'Коммутатор / презентационный свитчер', brand:'Kramer / Extron / Atlona', model:'Presentation switcher', category:'Управление и коммутация', segment:'Switcher', unit:'шт.', scenario:'base', price:128000, types:['conference','corporate','education','museum'], note:'Коммутация в переговорных и залах.'},
+  {id:'nvr_camera', name:'Сервисная камера / NVR', brand:'Hikvision / Dahua', model:'NVR + camera', category:'Инфраструктура', segment:'Видео-наблюдение', unit:'компл.', scenario:'budget', price:65000, types:['public','retail','museum','event'], note:'Если проект включает сервисное видеонаблюдение.'}
+  ,{id:'samsung_qm50c', name:'Проф. дисплей 50"', brand:'Samsung', model:'QM50C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:66000, types:['museum','education','retail','public','corporate','conference'], note:'Реальная серия Samsung QMC, компактный signage-формат.'}
+  ,{id:'samsung_qm65c', name:'Проф. дисплей 65"', brand:'Samsung', model:'QM65C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'base', price:148000, types:['museum','education','retail','public','corporate','conference'], note:'Средний коммерческий формат для переговорных и общественных зон.'}
+  ,{id:'sony_fw65ez20l', name:'Проф. дисплей 65"', brand:'Sony', model:'FW-65EZ20L', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:73200, types:['museum','education','retail','public','corporate','conference'], note:'Коммерческий 4K-дисплей Sony для базовых инсталляций.'}
+  ,{id:'hisense_65gm50d', name:'Проф. дисплей 65"', brand:'Hisense', model:'65GM50D', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:79600, types:['museum','education','retail','public','corporate'], note:'Доступный коммерческий 65" signage-дисплей.'}
+  ,{id:'sony_bz40l_75', name:'Проф. дисплей 75"', brand:'Sony', model:'BZ40L 75', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'premium', price:318000, types:['museum','corporate','conference','retail','public'], note:'Премиальный signage/meeting display сегмент.'}
+
+  ,{id:'yealink_meetingboard_65', name:'Интерактивная панель 65"', brand:'Yealink', model:'MeetingBoard Pro 65', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:439920, types:['education','corporate','conference','public'], note:'All-in-one meetingboard: touch, камера, микрофоны, спикеры.'}
+  ,{id:'samsung_flip_pro_65', name:'Интерактивная панель 65"', brand:'Samsung', model:'Flip Pro 65', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'base', price:224000, types:['education','corporate','conference'], note:'Популярный интерактивный формат для переговорных и учебных классов.'}
+  ,{id:'neat_board_65', name:'Интерактивная VC-панель 65"', brand:'Neat', model:'Board 65', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:498000, types:['corporate','conference'], note:'Премиальная all-in-one доска для видеосвязи.'}
+
+  ,{id:'epson_775f', name:'Лазерный проектор 4100 lm', brand:'Epson', model:'PowerLite 775F', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'budget', price:179760, types:['museum','education','conference','event','public'], note:'Экономичный лазерный проектор для классов и небольших залов.'}
+  ,{id:'epson_810e', name:'UST лазерный проектор', brand:'Epson', model:'PowerLite 810E', category:'Проекция', segment:'Ultra Short Throw', unit:'шт.', scenario:'premium', price:292960, types:['education','corporate','museum','public'], note:'UST-решение для учебных и интерактивных пространств.'}
+  ,{id:'epson_815e', name:'UST лазерный проектор', brand:'Epson', model:'PowerLite 815E', category:'Проекция', segment:'Ultra Short Throw', unit:'шт.', scenario:'premium', price:292960, types:['education','corporate','museum','public'], note:'Короткофокусная альтернатива для плотных помещений.'}
+  ,{id:'panasonic_vmz51', name:'Лазерный проектор 5200 lm', brand:'Panasonic', model:'PT-VMZ51', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:236000, types:['museum','education','conference','event'], note:'Популярный инсталляционный Panasonic для AV-проектов.'}
+  ,{id:'projector_screen_150', name:'Проекционный экран 150"', brand:'Projecta / Draper / Lumien', model:'150 inch', category:'Проекция', segment:'Экраны', unit:'шт.', scenario:'base', price:68000, types:['education','conference','museum','public'], note:'Отдельная позиция для залов, где нужен экран, а не проекция на стену.'}
+
+  ,{id:'bose_dm3se_real', name:'Акустика настенная, пара', brand:'Bose Professional', model:'DesignMax DM3SE', category:'Аудио', segment:'Распределённая акустика', unit:'пара', scenario:'budget', price:29520, types:['museum','conference','retail','public','corporate','education'], note:'Компактная распределённая акустика для фонового и речевого звука.'}
+  ,{id:'bose_dm5se', name:'Акустика настенная, пара', brand:'Bose Professional', model:'DesignMax DM5SE', category:'Аудио', segment:'Распределённая акустика', unit:'пара', scenario:'base', price:55920, types:['museum','conference','retail','public','corporate','education'], note:'Более мощный Bose-сегмент под залы и retail.'}
+  ,{id:'qsc_ac_s6t', name:'Потолочная акустика, пара', brand:'QSC', model:'AC-S6T', category:'Аудио', segment:'Распределённая акустика', unit:'пара', scenario:'base', price:64800, types:['conference','corporate','education','public'], note:'Потолочная акустика для переговорных и учебных зон.'}
+  ,{id:'shure_mxa920_sq', name:'Потолочный микрофон массив', brand:'Shure', model:'MXA920-S', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'premium', price:472000, types:['corporate','conference','education'], note:'Потолочный массив под гибридные залы и премиальные переговорные.'}
+  ,{id:'shure_ulxd4q', name:'Беспроводная микрофонная система 4ch', brand:'Shure', model:'ULXD4Q', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'premium', price:426000, types:['conference','event','public'], note:'Премиум-система для залов, сцен и важных мероприятий.'}
+  ,{id:'sennheiser_tcc2', name:'Потолочный микрофон массив', brand:'Sennheiser', model:'TeamConnect Ceiling 2', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'premium', price:298000, types:['corporate','conference'], note:'Альтернатива Shure для premium VC-проектов.'}
+  ,{id:'yamaha_rm_cr', name:'Конференц-DSP', brand:'Yamaha', model:'RM-CR', category:'Аудио', segment:'DSP и управление звуком', unit:'шт.', scenario:'base', price:154000, types:['corporate','conference','education'], note:'Конференц-процессор для room audio.'}
+
+  ,{id:'rally_bar_huddle', name:'Видеобар для малой переговорной', brand:'Logitech', model:'Rally Bar Huddle', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'budget', price:135920, types:['corporate','conference','public'], note:'Компактный videobar для huddle rooms и маленьких переговорных.'}
+  ,{id:'logitech_sight', name:'Камера обзора стола', brand:'Logitech', model:'Sight', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'premium', price:183000, types:['corporate','conference'], note:'Дополнительная AI-камера для крупных переговорных.'}
+  ,{id:'yealink_a30', name:'Видеобар', brand:'Yealink', model:'MeetingBar A30', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:208000, types:['corporate','conference','public'], note:'Средний сегмент all-in-one видеобара.'}
+  ,{id:'poly_studio_x52', name:'Видеобар', brand:'HP Poly', model:'Studio X52', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'premium', price:276000, types:['corporate','conference'], note:'Премиальная альтернатива Logitech / Yealink.'}
+  ,{id:'ptzoptics_move4k', name:'PTZ-камера 4K', brand:'PTZOptics', model:'Move 4K', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:172000, types:['conference','corporate','education','event'], note:'PTZ-камера для трансляций и залов.'}
+  ,{id:'conference_pc', name:'Мини-ПК для ВКС', brand:'Intel NUC / Lenovo Tiny', model:'Room PC', category:'Конференц-связь', segment:'VC infra', unit:'шт.', scenario:'base', price:98000, types:['corporate','conference','education'], note:'Выделенный room PC для Teams/Zoom-решений.'}
+
+  ,{id:'atem_mini_extreme_iso_g2', name:'Видеомикшер / стриминг', brand:'Blackmagic Design', model:'ATEM Mini Extreme ISO G2', category:'Управление и коммутация', segment:'Switcher / streaming', unit:'шт.', scenario:'premium', price:175600, types:['event','conference','corporate','education'], note:'Компактный продакшн-свитчер для стриминга и записи.'}
+  ,{id:'atem_television_hd8', name:'Видеомикшер', brand:'Blackmagic Design', model:'ATEM Television Studio HD8', category:'Управление и коммутация', segment:'Switcher / streaming', unit:'шт.', scenario:'premium', price:286000, types:['event','conference','corporate'], note:'Более серьёзный live-production сегмент.'}
+  ,{id:'presentation_matrix_4x4', name:'HDMI / AV матрица 4x4', brand:'Kramer / Extron / Atlona', model:'4x4 Matrix', category:'Управление и коммутация', segment:'Switcher', unit:'шт.', scenario:'base', price:146000, types:['conference','corporate','education','museum'], note:'Базовая матричная коммутация для залов и переговорных.'}
+  ,{id:'presentation_matrix_8x8', name:'HDMI / AV матрица 8x8', brand:'Kramer / Extron / Atlona', model:'8x8 Matrix', category:'Управление и коммутация', segment:'Switcher', unit:'шт.', scenario:'premium', price:268000, types:['conference','corporate','education','museum','event'], note:'Расширенная матричная коммутация.'}
+
+  ,{id:'pdu_metered', name:'PDU / силовая инфраструктура', brand:'APC / Aten', model:'Metered PDU', category:'Инфраструктура', segment:'Питание', unit:'шт.', scenario:'base', price:34000, types:['conference','corporate','museum','control','vr','event'], note:'Силовая часть rack/AV-систем.'}
+  ,{id:'fiber_hdmi_set', name:'Оптический HDMI комплект', brand:'Kramer / PureLink / Aten', model:'AOC / extender set', category:'Инфраструктура', segment:'Коммутация', unit:'компл.', scenario:'base', price:28000, types:['museum','conference','corporate','event','public'], note:'Для длинных трасс и презентационных линий.'}
+  ,{id:'cat_extender_set', name:'HDBaseT комплект', brand:'Kramer / Extron / Aten', model:'Tx/Rx set', category:'Инфраструктура', segment:'Коммутация', unit:'компл.', scenario:'base', price:54000, types:['conference','corporate','education','museum','public'], note:'Передача HDMI/USB/управления по витой паре.'}
+  ,{id:'floorbox_av', name:'Напольный AV-люк', brand:'Legrand / OBO / custom', model:'Floor box AV', category:'Инфраструктура', segment:'Инженерия', unit:'шт.', scenario:'base', price:18000, types:['conference','corporate','education','public'], note:'Для столов, залов и переговорных.'}
+  ,{id:'mount_cart_86', name:'Мобильная стойка для панели 75-86"', brand:'Chief / Vogel\'s / Wize', model:'Mobile cart', category:'Инфраструктура', segment:'Крепления', unit:'шт.', scenario:'base', price:52000, types:['education','corporate','conference','public'], note:'Мобильное размещение интерактивных панелей.'}
+
 ];
 
 const state = {
@@ -690,22 +689,14 @@ function renderLibrary(){
   const scenarioFilter = el('libraryScenarioFilter').value;
   const zoneFilter = el('zoneFilter').value;
   const zone = zoneFilter==='all' ? null : state.zones.find(z=>z.id===zoneFilter);
-  const preferredScenario = zone ? (zone.scenario || currentScenario()) : currentScenario();
-  const list = ITEMS
-    .filter(item => {
-      if(!itemMatchesProject(item)) return false;
-      if(zone && !itemMatchesZone(item, zone)) return false;
-      if(cat !== 'all' && item.category !== cat) return false;
-      if(scenarioFilter !== 'all' && item.scenario !== scenarioFilter) return false;
-      const hay = [item.name,item.brand,item.model,item.category,item.segment,item.note].join(' ').toLowerCase();
-      return !q || hay.includes(q);
-    })
-    .sort((a,b)=>{
-      const sA = a.scenario===preferredScenario ? 0 : (a.scenario==='base'?1:a.scenario==='budget'?2:3);
-      const sB = b.scenario===preferredScenario ? 0 : (b.scenario==='base'?1:b.scenario==='budget'?2:3);
-      if(sA!==sB) return sA-sB;
-      return a.category.localeCompare(b.category,'ru') || a.name.localeCompare(b.name,'ru');
-    });
+  const list = ITEMS.filter(item => {
+    if(!itemMatchesProject(item)) return false;
+    if(zone && !itemMatchesZone(item, zone)) return false;
+    if(cat !== 'all' && item.category !== cat) return false;
+    if(scenarioFilter !== 'all' && item.scenario !== scenarioFilter) return false;
+    const hay = [item.name,item.brand,item.model,item.category,item.segment,item.note].join(' ').toLowerCase();
+    return !q || hay.includes(q);
+  });
   el('libraryList').innerHTML = list.map(item => `
     <div class="item">
       <div class="itemTop">
@@ -713,7 +704,7 @@ function renderLibrary(){
           <h4>${item.name}</h4>
           <div class="small" style="color:var(--muted)">${item.brand} · ${item.model}</div>
         </div>
-        <span class="badge ${item.scenario===preferredScenario?'lime':'ok'}">${scenarioName(item.scenario)}</span>
+        <span class="badge ${item.scenario===currentScenario()?'lime':'ok'}">${scenarioName(item.scenario)}</span>
       </div>
       <div class="tags">
         <span class="tag">${item.category}</span>
@@ -724,10 +715,10 @@ function renderLibrary(){
       <div class="small" style="color:var(--muted)">${item.note}</div>
       <div class="itemFooter">
         <button class="btn primary" onclick="addItem('${item.id}',1)">Добавить</button>
-        <button class="btn ghost" onclick="addItem('${item.id}',2)">Добавить 2 шт.</button>
+        <button class="btn ghost" onclick="addItem('${item.id}',2)">Добавить ×2</button>
       </div>
     </div>
-  `).join('') || `<div class="empty">Ничего не найдено. Попробуй снять часть фильтров или выбери другую категорию/зону.</div>`;
+  `).join('') || `<div class="empty">Ничего не найдено. Сними фильтр или поменяй тип проекта.</div>`;
 }
 
 function cloneItemAsLine(item, qty=1, zoneRef=''){
@@ -766,126 +757,88 @@ window.addItem = (itemId, qty=1) => {
   renderEstimate(); switchTab('estimate'); saveState();
 };
 
-function bestScenarioForZone(zone){
-  return zone?.scenario || currentScenario();
-}
-function pickFirstAvailable(candidates, preferredScenario){
-  const exact = candidates.find(id => ITEMS.find(x => x.id===id && x.scenario===preferredScenario));
-  if(exact) return exact;
-  const byOrder = ['budget','base','premium'];
-  const prefIndex = byOrder.indexOf(preferredScenario);
-  const order = [preferredScenario, ...byOrder.filter(x=>x!==preferredScenario)];
-  for(const scenario of order){
-    for(const id of candidates){
-      const item = ITEMS.find(x => x.id===id && x.scenario===scenario);
-      if(item) return id;
-    }
-  }
-  return candidates.find(id => ITEMS.some(x=>x.id===id)) || null;
-}
 function zoneLines(zone){
-  const s = bestScenarioForZone(zone);
+  const s = zone.scenario || currentScenario();
   const lines = [];
-  const add = (id, qty) => { if(id && qty>0) lines.push([id, qty]); };
-  const choose = (ids) => pickFirstAvailable(ids, s);
+  const add = (id, qty) => { if(qty>0) lines.push([id, qty]); };
   const a = num(zone.area); const cap = num(zone.capacity);
   const isBig = a >= 120 || cap >= 80;
   const isMid = a >= 50 || cap >= 20;
 
   switch(zone.purpose){
     case 'entrance':
-      add(choose(['lcd_samsung_qm50c','lcd_samsung_qm65c','lcd_sony_65bz40l']), isBig?2:1);
-      if(zone.primaryTask==='wow') add(choose(['led_u1_eco_p25','led_infiled_db18','led_leyard_mg2_15']), Math.max(4, Math.ceil(a*0.12)));
-      if(zone.primaryTask==='interactive') add(choose(['kiosk_43_touch','kiosk_55_touch','kiosk_55_premium']), 1);
-      if(zone.primaryTask==='audio') add(choose(['audio_jbl_control26','audio_bose_dm3se','audio_qsc_ad_s82']), Math.max(1, Math.ceil(a/50)));
+      add(s==='budget'?'samsung_qm55c':'samsung_qm75c', isBig?2:1);
+      if(zone.primaryTask==='wow') add(s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core', Math.max(4, Math.ceil(a*0.12)));
+      if(zone.primaryTask==='interactive') add(s==='budget'?'kiosk43':'kiosk55', 1);
       break;
     case 'hall':
-      add(choose(['lcd_samsung_qm55c','lcd_samsung_qm75c','lcd_samsung_qm98c']), isBig?2:1);
-      if(zone.primaryTask==='audio') add(choose(['audio_jbl_control26','audio_bose_dm5se','audio_qsc_ad_s82']), Math.max(1, Math.ceil(a/45)));
-      if(zone.primaryTask==='interactive') add(choose(['kiosk_43_touch','kiosk_55_touch','kiosk_55_premium']), 1);
-      if(zone.primaryTask==='wow') add(choose(['led_absen_pl27','led_infiled_db18','led_leyard_mg2_15']), Math.max(4, Math.ceil(a*0.10)));
+      add(s==='premium'?'samsung_qm98c':'samsung_qm75c', isBig?2:1);
+      if(zone.primaryTask==='audio') add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(1, Math.ceil(a/45)));
+      if(zone.primaryTask==='interactive') add('kiosk55', 1);
       break;
     case 'conference':
-      if(zone.primaryTask==='content') add(choose(['lcd_samsung_qm75c','led_infiled_db18','led_samsung_iac13']), isBig? (s==='budget'?2:Math.max(8,Math.ceil(a*0.14))) : 1);
-      if(zone.primaryTask==='vc') add(choose(['vc_yealink_a20','vc_logi_mini','vc_logi_bar']), 1);
-      if(zone.primaryTask==='audio' || zone.primaryTask==='content' || zone.primaryTask==='vc'){
-        add(choose(['audio_shure_slxd_dual','audio_shure_slxd_dual','audio_shure_ulxd4q']), cap>=120?2:1);
-        add(choose(['audio_qsc_acs6t','audio_bose_dm5se','audio_qsc_ad_s82']), Math.max(2, Math.ceil(cap/24)));
-        add(choose(['audio_yamaha_rmcr','audio_biamp_tesira','audio_qsys_core_nano']), 1);
-      }
-      if(zone.primaryTask==='vc'){
-        add(choose(['vc_logi_ptzpro2','vc_aver_cam520','vc_birddog_x1']), cap>=80?2:1);
-        add(choose(['vc_room_pc','vc_room_pc','vc_compute_core']), 1);
-      }
-      add(choose(['switch_presentation','switch_matrix_4x4','switch_matrix_8x8']), 1);
+      if(zone.primaryTask==='content') add(s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core', Math.max(8, Math.ceil(a*0.16)));
+      else add(s==='premium'?'christie_13k':'epson_l690u', isBig?2:1);
+      add(s==='premium'?'shure_ulxd_dual':'wireless_mic_dual', 1);
+      add(s==='premium'?'qsc_core_nano':'dsp_basic', 1);
+      add(s==='premium'?'rally_bar':'rally_bar_mini', 1);
+      add('aver_ptz', isBig?2:1);
+      add('audio_amp', 1);
+      add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(2, Math.ceil(a/60)));
       break;
     case 'meeting':
-      add(choose(['lcd_samsung_qm65c','lcd_lg_75uh5j','led_samsung_iac13']), isBig?2:1);
-      if(zone.primaryTask==='vc'){
-        add(choose(['vc_logi_huddle','vc_logi_mini','vc_poly_x52']), 1);
-        if(cap>=10) add(choose(['vc_logi_ptzpro2','vc_yealink_uvc84','vc_birddog_x1']), 1);
-        if(cap>=8) add(choose(['vc_room_pc','vc_room_pc','vc_compute_core']), 1);
-        if(s==='premium') add(choose(['audio_yamaha_rmcg','audio_shure_mxa920','audio_sennheiser_tcc2']), 1);
-      }
-      if(zone.primaryTask==='interactive') add(choose(['interactive_benq_re6504','interactive_benq_re7504','meetingboard_yealink_65']), 1);
-      if(zone.primaryTask==='content' && s==='premium') add('control_custom_ipad',1);
+      add(s==='premium'?'samsung_qm98c':'samsung_qm75c', 1);
+      add(zone.primaryTask==='vc' ? (s==='premium'?'rally_bar':'rally_bar_mini') : 'yealink_roomkit', 1);
+      add(s==='premium'?'shure_mxa920':'yealink_vcm', 1);
+      if(s==='premium') add('logi_tap',1);
       break;
     case 'museum':
-      if(zone.primaryTask==='content') add(choose(['lcd_samsung_qm55c','lcd_sony_65bz40l','lcd_samsung_qm98c']), Math.max(1, Math.ceil(a/70)));
-      if(zone.primaryTask==='interactive') add(choose(['kiosk_43_touch','kiosk_55_touch','kiosk_55_premium']), Math.max(1, Math.ceil(a/90)));
-      if(zone.primaryTask==='wow') {
-        add(choose(['led_absen_pl27','led_infiled_db18','led_leyard_mg2_15']), Math.max(4, Math.ceil(a*0.08)));
-        add(choose(['media_pc_basic','media_pc_core','media_pc_premium']), 1);
-      }
-      if(zone.flags.content) {
-        add(choose(['media_brightsign_hd','media_brightsign_xt','media_resolume_arena']), Math.max(1, Math.ceil(a/120)));
-        if(s!=='budget') add(choose(['media_resolume_arena','media_resolume_arena','media_watchout']), 1);
-      }
-      if(zone.primaryTask==='audio') add(choose(['audio_jbl_control26','audio_bose_dm3se','audio_bose_dm5se']), Math.max(1, Math.ceil(a/55)));
+      if(zone.primaryTask==='interactive') add(s==='premium'?'touch_table_55':'kiosk55', Math.max(1, Math.ceil(a/50)));
+      if(zone.primaryTask==='wow') add(s==='premium'?'led_indoor_p15_premium':'epson_l690u', s==='premium'?Math.max(6,Math.ceil(a*0.12)):Math.max(1,Math.ceil(a/70)));
+      add(s==='premium'?'mediaserver_premium':'mediaserver_core', 1);
+      if(zone.flags.content) add('resolume_arena', 1);
+      add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(1,Math.ceil(a/45)));
       break;
     case 'classroom':
-      if(zone.primaryTask==='content' || zone.primaryTask==='interactive') add(choose(['interactive_benq_re6504','interactive_benq_re7504','interactive_smart_gx65']), 1);
-      if(zone.primaryTask==='vc') add(choose(['vc_yealink_a20','vc_logi_huddle','meetingboard_yealink_65']), 1);
-      if(zone.primaryTask==='audio') add(choose(['audio_jbl_control26','audio_qsc_acs6t','audio_bose_dm5se']), Math.max(1, Math.ceil(a/60)));
-      if(zone.flags.content) add(choose(['media_brightsign_hd','media_brightsign_xt','media_resolume_arena']), 1);
+      add(s==='premium'?'benq_re8604':'benq_re7504', 1);
+      if(zone.primaryTask==='vc') add('rally_bar_mini', 1);
+      if(zone.primaryTask==='interactive') add('yealink_vcm', 1);
+      if(zone.primaryTask==='content' && a>60) add('epson_l530u', 1);
       break;
     case 'retail':
-      add(choose(['lcd_samsung_qm55c','lcd_lg_75uh5j','lcd_samsung_qm98c']), Math.max(1, Math.ceil(a/80)));
-      if(zone.primaryTask==='wow') add(choose(['led_absen_pl27','led_infiled_db18','led_leyard_mg2_15']), Math.max(4, Math.ceil(a*0.10)));
-      if(zone.primaryTask==='interactive') add(choose(['kiosk_43_touch','kiosk_55_touch','kiosk_55_premium']), Math.max(1, Math.ceil(a/120)));
-      if(zone.flags.content) add(choose(['media_brightsign_hd','media_brightsign_xt','media_resolume_arena']), Math.max(1, Math.ceil(a/120)));
-      if(zone.primaryTask==='audio') add(choose(['audio_jbl_control26','audio_bose_dm3se','audio_bose_dm5se']), Math.max(1, Math.ceil(a/60)));
+      add(zone.primaryTask==='wow' ? (s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core') : 'samsung_qm75c', zone.primaryTask==='wow'?Math.max(5,Math.ceil(a*0.1)):Math.max(1,Math.ceil(a/60)));
+      add(s==='budget'?'kiosk43':'kiosk55', Math.max(1,Math.ceil(a/80)));
+      add(s==='premium'?'mediaserver_premium':'brightsign_hd', Math.max(1,Math.ceil(a/120)));
       break;
     case 'control':
-      add(choose(['lcd_samsung_qm75c','lcd_iiyama_105uw','led_leyard_mg2_15']), isBig?2:1);
-      add(choose(['switch_matrix_4x4','switch_matrix_8x8','avoverip_encoder']), 1);
-      add(choose(['infra_network_switch_basic','infra_network_switch_poe','infra_network_switch_poe']), 1);
-      add(choose(['infra_rack_18u','infra_rack_42u','infra_rack_42u']), 1);
-      if(zone.primaryTask==='control') add(choose(['control_custom_ipad','control_qsys_touch','control_crestron_touch']), 1);
+      add('samsung_qm43c', Math.max(2, Math.ceil(a/12)));
+      add(s==='premium'?'crestron_control':'kramer_switcher',1);
+      add(s==='premium'?'ubnt_switch_pro':'network_switch',1);
+      add('rack_infra',1);
+      add('ups_3kva',1);
       break;
     case 'vr':
-      add(choose(['vr_meta_quest3','vr_pico4e','vr_htc_focus']), Math.max(1,Math.ceil(a/18)));
-      add(choose(['vr_pc_core','vr_pc_core','vr_pc_premium']), Math.max(1,Math.ceil(a/20)));
-      add('vr_accessory_pack', Math.max(1,Math.ceil(a/35)));
-      add(choose(['lcd_samsung_qm55c','lcd_samsung_qm65c','lcd_sony_65bz40l']), 1);
+      add(s==='premium'?'htc_vive_focus':(s==='budget'?'quest3_512':'pico4e'), Math.max(1,Math.ceil(a/18)));
+      add('vr_pc', Math.max(1,Math.ceil(a/20)));
+      add('vr_sensor_pack', Math.max(1,Math.ceil(a/35)));
+      add('samsung_qm55c', 1);
       break;
     case 'outdoor':
-      add(choose(['led_outdoor_absen48','led_outdoor_unilumin39','led_outdoor_leyard29']), Math.max(4,Math.ceil(a*0.12)));
-      add(choose(['led_controller_vx600','led_controller_vx1000','led_controller_vx2000pro']),1);
+      add(s==='premium'?'led_outdoor_p29':(s==='base'?'led_outdoor_p39':'led_outdoor_p4'), Math.max(4,Math.ceil(a*0.12)));
+      add(s==='premium'?'novastar_vx2000':'novastar_vx1000',1);
       break;
     case 'stage':
-      add(choose(['led_absen_pl27','led_infiled_db18','led_leyard_mg2_15']), Math.max(10,Math.ceil(a*0.18)));
-      add(choose(['led_controller_vx1000','led_controller_vx2000pro','led_controller_h2']),1);
-      add(choose(['media_pc_core','media_pc_premium','media_pc_premium']),1);
-      if(zone.flags.content) add(choose(['media_resolume_arena','media_resolume_arena','media_watchout']),1);
-      add(choose(['audio_shure_slxd_dual','audio_shure_slxd_dual','audio_shure_ulxd4q']), cap>=150?2:1);
-      add(choose(['audio_bose_dm5se','audio_qsc_ad_s82','audio_qsc_ad_s82']), Math.max(2,Math.ceil(a/60)));
-      add(choose(['switch_atem_mini_g2','switch_atem_hd8','switch_atem_hd8']),1);
+      add(s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core', Math.max(10,Math.ceil(a*0.18)));
+      add(s==='premium'?'novastar_h2':'novastar_vx2000',1);
+      add(s==='premium'?'mediaserver_premium':'mediaserver_core',1);
+      if(zone.flags.content) add('resolume_arena',1);
+      add(s==='premium'?'shure_ulxd_dual':'wireless_mic_dual',1);
+      add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(2,Math.ceil(a/60)));
       break;
   }
-  add('infra_signal_cabling', Math.max(1, Math.ceil(a/80) || 1));
-  if(zone.flags.metal && ['outdoor','stage','museum','retail','entrance','conference'].includes(zone.purpose)) add('infra_custom_metal', Math.max(1, Math.ceil(a*0.12)));
-  if(zone.flags.delivery && ['outdoor','stage'].includes(zone.purpose)) add('infra_rigging',1);
+  add('signal_cabling', Math.max(1, Math.ceil(a/80)));
+  if(zone.flags.metal && ['outdoor','stage','museum','retail','entrance','conference'].includes(zone.purpose)) add('mounting_struct', Math.max(1, Math.ceil(a*0.12)));
+  if(zone.flags.delivery) add('network_switch', zone.purpose==='control'?0:0); // no-op placeholder
   return lines;
 }
 
@@ -1039,7 +992,7 @@ function proposalHtml(){
   return `
     <div class="docHead">
       <div>
-        <div class="docLogo"><img alt="VIZHU" src="${VIZHU_LOGO}" style="max-width:260px;height:auto;"></div>
+        <div class="docLogo"><img alt="VIZHU" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAogAAADWCAYAAABSUnMUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAEPUSURBVHhe7d13WFVX1gbwV3oTFURABBSlGEvsBXsXS7ChSayZFI2maCbdJM5MmpPJWDKJiYlJbNGIvWKUYkFsiAWUJiooCCKISFPa90dkRvYnAvesc+85567f88wzMy+olAt33bX3XruBq6trJRhjjDHGGHvIRAwYY4wxxphx4wKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWDReIjDHGGGOsGi4QGWOMMcZYNVwgMsYYY4yxarhAZIwxxhhj1XCByBhjjDHGquECkTHGGGOMVcMFImOMMcYYq4YLRMYYY4wxVg0XiIwxxhhjrBouEBljjDHGWDVcIDLGGGOMsWq4QGSMMcYYY9VwgcgYY4wxxqrhApExxhhjjFXDBSJjjDHGGKuGC0TGGGOMMVYNF4iMMcYYY6waLhAZY4wxxlg1XCAyxhhjjLFquEBkjDHGGGPVcIHIGGOMMcaq4QKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWzf8BbBpEMs4AeLYAAAAASUVORK5CYII="></div>
         <div style="margin-top:12px;font-size:24px;font-weight:800;">Предварительная смета / пресейл</div>
         <div style="font-size:12px;color:#546153;margin-top:4px;">${escapeHtml(el('projectName').value)} · ${escapeHtml(el('customerName').value)}</div>
       </div>
@@ -1085,7 +1038,7 @@ function proposalHtml(){
 function renderProposal(){ el('proposalPreview').innerHTML = proposalHtml(); }
 
 function saveState(){
-  localStorage.setItem('vizhu-presale-v5', JSON.stringify({
+  localStorage.setItem('vizhu-presale-v4', JSON.stringify({
     fields: {
       projectName: el('projectName').value, customerName: el('customerName').value, projectType: el('projectType').value, scenario: el('scenario').value,
       cityTier: el('cityTier').value, urgency: el('urgency').value, usdRate: el('usdRate').value, projectArea: el('projectArea').value,
@@ -1098,7 +1051,7 @@ function saveState(){
   }));
 }
 function restoreState(){
-  const raw = localStorage.getItem('vizhu-presale-v5');
+  const raw = localStorage.getItem('vizhu-presale-v4');
   if(!raw) return;
   try{
     const data = JSON.parse(raw);
@@ -1114,170 +1067,73 @@ function restoreState(){
 function download(filename, content, type='text/plain'){
   const blob = new Blob([content], {type}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download=filename; a.click(); setTimeout(()=>URL.revokeObjectURL(url),500);
 }
-function exportJSON(){ saveState(); download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.json', localStorage.getItem('vizhu-presale-v5'), 'application/json'); }
+function exportJSON(){ saveState(); download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.json', localStorage.getItem('vizhu-presale-v4'), 'application/json'); }
 
 function excelXmlCell(value, type='String', style=''){
   const styleAttr = style ? ` ss:StyleID="${style}"` : '';
   if(type==='Number') return `<Cell${styleAttr}><Data ss:Type="Number">${Number(value)||0}</Data></Cell>`;
   return `<Cell${styleAttr}><Data ss:Type="String">${escapeHtml(value ?? '')}</Data></Cell>`;
 }
-async function exportExcelProposal(){
-  const safeName = (el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_') || 'vizhu_presale';
-  if(typeof ExcelJS === 'undefined'){
-    alert('ExcelJS не загрузился. Попробуй обновить страницу или используй HTML/PDF.');
-    return;
-  }
+function exportExcelProposal(){
   const t = totals();
-  const wb = new ExcelJS.Workbook();
-  wb.creator = 'ChatGPT';
-  wb.created = new Date();
-  wb.modified = new Date();
-  wb.properties.date1904 = true;
-
-  const summary = wb.addWorksheet('Смета', {views:[{state:'frozen', ySplit:8}]});
-  summary.columns = [
-    {width:8},{width:24},{width:38},{width:20},{width:12},{width:10},{width:16},{width:18},{width:18},{width:16}
-  ];
-
-  const logoId = wb.addImage({base64: VIZHU_LOGO, extension:'png'});
-  summary.addImage(logoId, {tl:{col:0.2,row:0.2}, ext:{width:220,height:52}});
-
-  summary.mergeCells('C1:J2');
-  summary.getCell('C1').value = 'VIZHU — предварительная смета / пресейл';
-  summary.getCell('C1').font = {size:18,bold:true,color:{argb:'FF111111'}};
-  summary.getCell('C1').alignment = {vertical:'middle'};
-
-  summary.mergeCells('A4:B4'); summary.getCell('A4').value='Проект';
-  summary.mergeCells('C4:E4'); summary.getCell('C4').value=el('projectName').value;
-  summary.mergeCells('F4:G4'); summary.getCell('F4').value='Заказчик';
-  summary.mergeCells('H4:J4'); summary.getCell('H4').value=el('customerName').value;
-
-  summary.mergeCells('A5:B5'); summary.getCell('A5').value='Тип проекта';
-  summary.mergeCells('C5:E5'); summary.getCell('C5').value=PROJECT_TYPES.find(x=>x.id===currentType())?.name || '';
-  summary.mergeCells('F5:G5'); summary.getCell('F5').value='Сценарий';
-  summary.mergeCells('H5:J5'); summary.getCell('H5').value=scenarioName(currentScenario());
-
-  summary.mergeCells('A6:B6'); summary.getCell('A6').value='Дата';
-  summary.mergeCells('C6:E6'); summary.getCell('C6').value=new Date().toLocaleDateString('ru-RU');
-  summary.mergeCells('F6:G6'); summary.getCell('F6').value='Зон';
-  summary.mergeCells('H6:J6'); summary.getCell('H6').value=state.zones.length;
-
-  const headFill = {type:'pattern',pattern:'solid',fgColor:{argb:'FFD7FF7F'}};
-  const softFill = {type:'pattern',pattern:'solid',fgColor:{argb:'FFEEF2E5'}};
-  const border = {top:{style:'thin',color:{argb:'FFD9DFD0'}},left:{style:'thin',color:{argb:'FFD9DFD0'}},bottom:{style:'thin',color:{argb:'FFD9DFD0'}},right:{style:'thin',color:{argb:'FFD9DFD0'}}};
-
-  ['A4','A5','A6','F4','F5','F6'].forEach(c=>{ summary.getCell(c).font={bold:true}; summary.getCell(c).fill=softFill; });
-  ['C4','C5','C6','H4','H5','H6'].forEach(c=>{ summary.getCell(c).border=border; });
-  ['A4','A5','A6','F4','F5','F6'].forEach(c=>{ summary.getCell(c).border=border; });
-
-  const kpiRow = 8;
-  const kpis = [
-    ['Себестоимость', t.cost],
-    ['Маржа', t.margin],
-    ['Цена без НДС', t.net],
-    ['Цена с НДС', t.gross]
-  ];
-  kpis.forEach((kpi,idx)=>{
-    const startCol = 1 + idx*2;
-    summary.mergeCells(kpiRow, startCol, kpiRow, startCol+1);
-    summary.mergeCells(kpiRow+1, startCol, kpiRow+1, startCol+1);
-    const titleCell = summary.getCell(kpiRow,startCol);
-    const valueCell = summary.getCell(kpiRow+1,startCol);
-    titleCell.value = kpi[0];
-    valueCell.value = kpi[1];
-    titleCell.fill = softFill;
-    titleCell.font = {bold:true};
-    valueCell.fill = {type:'pattern',pattern:'solid',fgColor:{argb:'FFF7F8F5'}};
-    valueCell.font = {size:15,bold:true};
-    [titleCell,valueCell,summary.getCell(kpiRow,startCol+1),summary.getCell(kpiRow+1,startCol+1)].forEach(c=>c.border=border);
-    valueCell.numFmt = '#,##0 [$₽-419]';
-  });
-
-  const headerRowIndex = 11;
-  const headers = ['№','Зона','Позиция','Категория','Сценарий','Ед.','Кол-во','Цена/ед.','Сумма закупки','Комментарий'];
-  summary.getRow(headerRowIndex).values = headers;
-  summary.getRow(headerRowIndex).font = {bold:true};
-  summary.getRow(headerRowIndex).fill = headFill;
-  summary.getRow(headerRowIndex).eachCell(c=>{ c.border = border; c.alignment={vertical:'middle',wrapText:true}; });
-
-  state.estimate.forEach((l,i)=>{
-    const r = summary.addRow([
-      i+1,
-      l.zoneName || '—',
-      l.name,
-      l.category,
-      scenarioName(l.scenario),
-      l.unit,
-      num(l.qty),
-      num(l.price),
-      Math.round(num(l.qty)*num(l.price)*(num(l.logistics)||1)),
-      l.note || ''
-    ]);
-    r.eachCell(c=>{ c.border=border; c.alignment={vertical:'top',wrapText:true}; });
-    r.getCell(8).numFmt = '#,##0 [$₽-419]';
-    r.getCell(9).numFmt = '#,##0 [$₽-419]';
-  });
-
-  const totalStart = summary.lastRow.number + 2;
-  [
-    ['Оборудование', t.equipment],
-    ['Монтаж', t.install],
-    ['ПНР', t.pnr],
-    ['Контент / ПО', t.content],
-    ['Логистика / расходники', t.consumables],
-    ['Себестоимость', t.cost],
-    [`Маржа (${num(el('marginPct').value)}%)`, t.margin],
-    ['Цена без НДС', t.net],
-    [`Цена с НДС (${num(el('vatPct').value)}%)`, t.gross]
-  ].forEach((row,idx)=>{
-    const r = summary.getRow(totalStart+idx);
-    r.getCell(1).value = row[0];
-    r.getCell(1).font = {bold:true};
-    r.getCell(1).fill = softFill;
-    r.getCell(1).border = border;
-    r.getCell(2).value = row[1];
-    r.getCell(2).numFmt = '#,##0 [$₽-419]';
-    r.getCell(2).border = border;
-  });
-
-  const zonesSheet = wb.addWorksheet('Зоны');
-  zonesSheet.columns = [{width:8},{width:26},{width:24},{width:22},{width:10},{width:12},{width:14},{width:30},{width:14},{width:14}];
-  zonesSheet.addImage(logoId, {tl:{col:0.2,row:0.2}, ext:{width:180,height:40}});
-  zonesSheet.mergeCells('C1:J2');
-  zonesSheet.getCell('C1').value='Параметры зон проекта';
-  zonesSheet.getCell('C1').font={size:16,bold:true};
-  zonesSheet.getRow(4).values=['№','Зона','Назначение','Ключевая задача','Площадь, м²','Вместимость','Сценарий','Сервисы','Коэф. сложн.','Коэф. логист.'];
-  zonesSheet.getRow(4).font={bold:true}; zonesSheet.getRow(4).fill=headFill; zonesSheet.getRow(4).eachCell(c=>{c.border=border; c.alignment={wrapText:true};});
-  state.zones.forEach((z,i)=>{
-    const impacts = zoneImpact({zoneRef:z.id});
-    const r = zonesSheet.addRow([
-      i+1, z.name, purposeName(z.purpose), TASKS.find(t=>t.id===z.primaryTask)?.name || z.primaryTask,
-      num(z.area), num(z.capacity), scenarioName(z.scenario),
-      [z.flags.install?'Монтаж':'',z.flags.pnr?'ПНР':'',z.flags.content?'Контент':'',z.flags.metal?'Металл':'',z.flags.delivery?'Доставка':''].filter(Boolean).join(', '),
-      impacts.install.toFixed(2), (num(el('logistics').value)||1).toFixed(2)
-    ]);
-    r.eachCell(c=>{ c.border=border; c.alignment={vertical:'top',wrapText:true}; });
-  });
-
-  const libSheet = wb.addWorksheet('Библиотека');
-  libSheet.columns = [{width:18},{width:24},{width:24},{width:24},{width:20},{width:12},{width:12},{width:18},{width:40}];
-  libSheet.getRow(1).values=['ID','Категория','Сегмент','Позиция','Бренд / модель','Сценарий','Ед.','Цена, ₽','Комментарий'];
-  libSheet.getRow(1).font={bold:true}; libSheet.getRow(1).fill=headFill; libSheet.getRow(1).eachCell(c=>{c.border=border; c.alignment={wrapText:true};});
-  ITEMS.forEach(item=>{
-    const r = libSheet.addRow([item.id,item.category,item.segment,item.name,`${item.brand} ${item.model}`,scenarioName(item.scenario),item.unit,item.price,item.note]);
-    r.eachCell(c=>{ c.border=border; c.alignment={vertical:'top',wrapText:true}; });
-    r.getCell(8).numFmt = '#,##0 [$₽-419]';
-  });
-
-  const buf = await wb.xlsx.writeBuffer();
-  download(safeName + '.xlsx', buf, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  const rows = state.estimate.map((l,i)=>[
+    i+1,
+    l.zoneName || '—',
+    l.name,
+    l.category,
+    l.unit,
+    num(l.qty),
+    num(l.price),
+    Math.round(num(l.qty)*num(l.price)*(num(l.logistics)||1)),
+    l.note || ''
+  ]);
+  const zoneRows = state.zones.map((z,i)=>[
+    i+1, z.name, purposeName(z.purpose), TASKS.find(t=>t.id===z.primaryTask)?.name || z.primaryTask,
+    num(z.area), num(z.capacity), scenarioName(z.scenario),
+    [z.flags.install?'Монтаж':'', z.flags.pnr?'ПНР':'', z.flags.content?'Контент':'', z.flags.metal?'Металл':'', z.flags.delivery?'Доставка':''].filter(Boolean).join(', ')
+  ]);
+  const xml = `<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+<Styles>
+<Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Center"/></Style>
+<Style ss:ID="head"><Font ss:Bold="1" ss:Size="14"/><Interior ss:Color="#D7FF7F" ss:Pattern="Solid"/></Style>
+<Style ss:ID="sub"><Font ss:Bold="1"/><Interior ss:Color="#EEF2E5" ss:Pattern="Solid"/></Style>
+<Style ss:ID="money"><NumberFormat ss:Format="# ##0"/></Style>
+</Styles>
+<Worksheet ss:Name="Смета">
+<Table>
+<Row>${excelXmlCell('VIZHU — предварительная смета / пресейл','String','head')}</Row>
+<Row>${excelXmlCell('Проект')} ${excelXmlCell(el('projectName').value)} ${excelXmlCell('Заказчик')} ${excelXmlCell(el('customerName').value)}</Row>
+<Row>${excelXmlCell('Тип проекта')} ${excelXmlCell(PROJECT_TYPES.find(x=>x.id===currentType())?.name || '')} ${excelXmlCell('Сценарий')} ${excelXmlCell(scenarioName(currentScenario()))}</Row>
+<Row>${excelXmlCell('Зон')} ${excelXmlCell(state.zones.length,'Number')} ${excelXmlCell('Дата')} ${excelXmlCell(new Date().toLocaleDateString('ru-RU'))}</Row>
+<Row/>
+<Row>${excelXmlCell('№','String','sub')}${excelXmlCell('Зона','String','sub')}${excelXmlCell('Позиция','String','sub')}${excelXmlCell('Категория','String','sub')}${excelXmlCell('Ед.','String','sub')}${excelXmlCell('Кол-во','String','sub')}${excelXmlCell('Цена/ед.','String','sub')}${excelXmlCell('Сумма','String','sub')}${excelXmlCell('Комментарий','String','sub')}</Row>
+${rows.map(r=>`<Row>${excelXmlCell(r[0],'Number')}${excelXmlCell(r[1])}${excelXmlCell(r[2])}${excelXmlCell(r[3])}${excelXmlCell(r[4])}${excelXmlCell(r[5],'Number')}${excelXmlCell(r[6],'Number','money')}${excelXmlCell(r[7],'Number','money')}${excelXmlCell(r[8])}</Row>`).join('')}
+<Row/>
+<Row>${excelXmlCell('Оборудование','String','sub')}${excelXmlCell(Math.round(t.equipment),'Number','money')}</Row>
+<Row>${excelXmlCell('Монтаж','String','sub')}${excelXmlCell(Math.round(t.install),'Number','money')}</Row>
+<Row>${excelXmlCell('ПНР','String','sub')}${excelXmlCell(Math.round(t.pnr),'Number','money')}</Row>
+<Row>${excelXmlCell('Контент / ПО','String','sub')}${excelXmlCell(Math.round(t.content),'Number','money')}</Row>
+<Row>${excelXmlCell('Логистика / расходники','String','sub')}${excelXmlCell(Math.round(t.consumables),'Number','money')}</Row>
+<Row>${excelXmlCell('Себестоимость','String','sub')}${excelXmlCell(Math.round(t.cost),'Number','money')}</Row>
+<Row>${excelXmlCell('Маржа','String','sub')}${excelXmlCell(Math.round(t.margin),'Number','money')}</Row>
+<Row>${excelXmlCell('Цена без НДС','String','sub')}${excelXmlCell(Math.round(t.net),'Number','money')}</Row>
+<Row>${excelXmlCell('Цена с НДС','String','sub')}${excelXmlCell(Math.round(t.gross),'Number','money')}</Row>
+</Table>
+</Worksheet>
+<Worksheet ss:Name="Зоны">
+<Table>
+<Row>${excelXmlCell('№','String','sub')}${excelXmlCell('Зона','String','sub')}${excelXmlCell('Назначение','String','sub')}${excelXmlCell('Ключевая задача','String','sub')}${excelXmlCell('Площадь, м²','String','sub')}${excelXmlCell('Вместимость','String','sub')}${excelXmlCell('Сценарий','String','sub')}${excelXmlCell('Сервисы','String','sub')}</Row>
+${zoneRows.map(r=>`<Row>${excelXmlCell(r[0],'Number')}${excelXmlCell(r[1])}${excelXmlCell(r[2])}${excelXmlCell(r[3])}${excelXmlCell(r[4],'Number')}${excelXmlCell(r[5],'Number')}${excelXmlCell(r[6])}${excelXmlCell(r[7])}</Row>`).join('')}
+</Table>
+</Worksheet>
+</Workbook>`;
+  const filename = (el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_') + '.xls';
+  download(filename, xml, 'application/vnd.ms-excel');
 }
-function downloadHtmlProposal(){ const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${escapeHtml(el('projectName').value)}</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style>
-<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
-</head><body><div class="docPreview">${proposalHtml()}</div></body></html>`; download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.html', html, 'text/html;charset=utf-8'); }
-function printProposal(){ const w = window.open('', '_blank'); w.document.write(`<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Печать сметы</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style>
-<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
-</head><body><div class="docPreview">${proposalHtml()}</div><script>window.onload=()=>window.print();<\/script></body></html>`); w.document.close(); }
+function downloadHtmlProposal(){ const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${escapeHtml(el('projectName').value)}</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style></head><body><div class="docPreview">${proposalHtml()}</div></body></html>`; download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.html', html, 'text/html;charset=utf-8'); }
+function printProposal(){ const w = window.open('', '_blank'); w.document.write(`<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Печать сметы</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style></head><body><div class="docPreview">${proposalHtml()}</div><script>window.onload=()=>window.print();<\/script></body></html>`); w.document.close(); }
 
 function switchTab(name){ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name)); document.querySelectorAll('.tabPane').forEach(p=>p.classList.toggle('active',p.id==='tab-'+name)); }
 
@@ -1296,7 +1152,7 @@ function bindEvents(){
   el('downloadHtmlBtn').addEventListener('click',downloadHtmlProposal);
   el('exportExcelBtn').addEventListener('click',exportExcelProposal);
   el('printBtn').addEventListener('click',printProposal);
-  el('resetBtn').addEventListener('click',()=>{ if(confirm('Сбросить всё состояние?')) { localStorage.removeItem('vizhu-presale-v5'); location.reload(); } });
+  el('resetBtn').addEventListener('click',()=>{ if(confirm('Сбросить всё состояние?')) { localStorage.removeItem('vizhu-presale-v4'); location.reload(); } });
   document.getElementById('globalFlags').addEventListener('change',e=>{ if(e.target.dataset.flag){ state.flags[e.target.dataset.flag] = e.target.checked; state.zones.forEach(z=>{ if(z.flags[e.target.dataset.flag]===undefined) z.flags[e.target.dataset.flag]=e.target.checked; }); renderZones(); updateAutoCoefficients(); saveState(); }});
 }
 
