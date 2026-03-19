@@ -1,179 +1,140 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>VIZHU Presale Configurator Pro</title>
+<title>VIZHU Presale Configurator</title>
 <style>
 :root{
-  --bg:#090c0a;
-  --bg2:#0d120f;
-  --panel:#101612;
-  --panel2:#121a15;
+  --bg:#070b08;
+  --bg2:#0e1511;
+  --panel:#101712;
+  --panel2:#121c16;
   --line:rgba(255,255,255,.08);
-  --line2:rgba(198,245,93,.18);
-  --text:#f2f6f2;
-  --muted:#98a69b;
+  --line2:rgba(199,245,93,.2);
+  --text:#f3f7f3;
+  --muted:#95a497;
   --lime:#c7f55d;
-  --lime-2:#ddff8d;
-  --danger:#ff7b7b;
-  --warn:#ffd66e;
-  --ok:#7ee3a7;
-  --shadow:0 20px 50px rgba(0,0,0,.35);
-  --radius:22px;
+  --lime2:#d7ff7f;
+  --danger:#ff7e7e;
+  --warn:#ffd56f;
+  --ok:#7de0a8;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+  --radius:24px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:radial-gradient(circle at top left,#182218 0,#0b0f0c 42%,#090909 100%);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+html,body{margin:0;background:radial-gradient(circle at top left,#162018 0,#0b100d 45%,#080908 100%);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-a{color:inherit}
-.app{max-width:1600px;margin:0 auto;padding:18px}
-.topbar{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+img{max-width:100%;display:block}
+.app{max-width:1680px;margin:0 auto;padding:18px}
 .panel{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
-.brand{padding:18px 20px;display:flex;gap:18px;align-items:center;min-height:148px}
-.logoBox{width:260px;max-width:42vw;flex:0 0 auto}
-.logoBox svg{display:block;width:100%;height:auto}
-.brand h1{margin:0 0 8px;font-size:28px;letter-spacing:.02em}
-.brand p{margin:0;color:var(--muted);max-width:820px}
-.pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.pill{display:inline-flex;align-items:center;padding:7px 10px;border:1px solid var(--line2);color:var(--lime);background:rgba(199,245,93,.08);border-radius:999px;font-size:12px}
+.topbar{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:stretch}
+.brand{padding:20px;display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:center;min-height:170px;overflow:hidden}
+.brandLogo{background:#0b0f0c;border:1px solid var(--line);border-radius:26px;padding:10px;display:flex;align-items:center;justify-content:center;min-height:128px}
+.brandLogo img{width:100%;height:auto;object-fit:contain}
+.brand h1{margin:0 0 8px;font-size:30px;letter-spacing:.02em}
+.brand p{margin:0;color:var(--muted);max-width:900px}
+.pillRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pill{display:inline-flex;align-items:center;padding:7px 10px;border-radius:999px;border:1px solid var(--line2);background:rgba(199,245,93,.08);color:var(--lime);font-size:12px}
 .hero{padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.kpi{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:20px;padding:14px}
+.kpi{padding:14px;border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:18px}
 .kpi .label{font-size:12px;color:var(--muted);margin-bottom:8px}
 .kpi .value{font-size:28px;font-weight:800;letter-spacing:.02em}
 .kpi .sub{font-size:12px;color:var(--muted);margin-top:4px}
-.layout{display:grid;grid-template-columns:360px 1fr;gap:14px;margin-top:14px}
-.sidebar{padding:16px;position:sticky;top:10px;height:calc(100vh - 20px);overflow:auto}
-.main{padding:16px}
-h2{margin:0 0 12px;font-size:19px}
+.layout{display:grid;grid-template-columns:430px 1fr;gap:14px;margin-top:14px;align-items:start}
+.sidebar{padding:16px;position:sticky;top:10px;max-height:calc(100vh - 20px);overflow:auto}
+.main{padding:16px;min-width:0}
+.sectionTitle{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 12px}
+h2{margin:0;font-size:20px}
 h3{margin:0 0 10px;font-size:16px}
-.field{margin-bottom:12px}
+.field{margin-bottom:12px;min-width:0}
 .field label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
-.field input,.field select,.field textarea{
-  width:100%;background:#0b100d;color:var(--text);border:1px solid var(--line);border-radius:14px;
-  padding:11px 13px;outline:none;
-}
-.field textarea{min-height:90px;resize:vertical}
-.row2,.row3{display:grid;gap:10px}
-.row2{grid-template-columns:1fr 1fr}
-.row3{grid-template-columns:repeat(3,1fr)}
-.metricGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.metricCard{padding:12px;border:1px solid var(--line);background:#0b100d;border-radius:16px}
-.metricCard b{display:block;margin-bottom:6px}
-.metricCard small{color:var(--muted)}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.btn{
-  appearance:none;border:none;border-radius:16px;padding:12px 14px;font-weight:800;transition:.18s transform,.18s opacity,.18s background;
-}
-.btn:hover{transform:translateY(-1px)}
-.btn.primary{background:var(--lime);color:#0d120f}
-.btn.ghost{background:#121814;color:var(--text);border:1px solid var(--line)}
-.btn.warn{background:#241f10;color:#ffe59f;border:1px solid rgba(255,214,110,.18)}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.tab{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#0d120f;color:var(--muted);font-weight:800}
-.tab.active{background:var(--lime);color:#101410;border-color:transparent}
-.tabPane{display:none}
-.tabPane.active{display:block}
-.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
-.card{grid-column:span 12;padding:14px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.02)}
-.card.half{grid-column:span 6}
-.card.third{grid-column:span 4}
-.card.quarter{grid-column:span 3}
-.muted{color:var(--muted)}
+.field input,.field select,.field textarea{width:100%;background:#0b100d;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:11px 13px;outline:none}
+.field textarea{min-height:88px;resize:vertical}
+.row2,.row3,.row4{display:grid;gap:10px}
+.row2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.row3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.row4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.note{padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid var(--line);color:var(--muted)}
 .small{font-size:12px}
-.filterBar{display:grid;grid-template-columns:1.2fr 220px 220px;gap:10px;margin-bottom:12px}
-.library{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.item{border:1px solid var(--line);background:#0c110d;border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.btn{appearance:none;border:none;border-radius:16px;padding:12px 14px;font-weight:800;transition:.18s transform,.18s opacity,.18s background;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--lime);color:#0c110d}
+.btn.ghost{background:#121814;color:var(--text);border:1px solid var(--line)}
+.btn.warn{background:#231f12;color:#ffe199;border:1px solid rgba(255,213,111,.18)}
+.btn.danger{background:#2a1616;color:#ffb2b2;border:1px solid rgba(255,126,126,.18)}
+.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#0c110d;color:var(--muted);font-weight:800}
+.tab.active{background:var(--lime);color:#101410;border-color:transparent}
+.tabPane{display:none}.tabPane.active{display:block}
+.grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.card{grid-column:span 12;padding:14px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.02);min-width:0}
+.card.half{grid-column:span 6}.card.third{grid-column:span 4}.card.quarter{grid-column:span 3}
+.summaryGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.summaryBlock{padding:14px;border-radius:18px;border:1px solid var(--line);background:#0b100d}
+.summaryBlock .title{color:var(--muted);font-size:12px;margin-bottom:8px}.summaryBlock .num{font-size:22px;font-weight:800}
+.zoneList{display:grid;gap:12px}
+.zoneCard{border:1px solid var(--line);background:#0b100d;border-radius:20px;padding:14px}
+.zoneHead{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.zoneName{font-size:16px;font-weight:800}
+.chipRow{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.chip input{accent-color:var(--lime)}
+.mini{font-size:11px;color:var(--muted)}
+.filterBar{display:grid;grid-template-columns:minmax(0,1.35fr) 260px 240px 180px;gap:10px;margin-bottom:12px;padding:12px;border:1px solid rgba(199,245,93,.12);background:linear-gradient(180deg,rgba(199,245,93,.06),rgba(255,255,255,.015));border-radius:20px}
+.filterBar input,.filterBar select{width:100%;min-width:0;background:#0d120f;color:var(--text);border:1px solid rgba(199,245,93,.14);border-radius:14px;padding:12px 14px;outline:none}
+.library{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.item{border:1px solid var(--line);background:#0c110d;border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .itemTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
 .item h4{margin:0;font-size:15px;line-height:1.3}
+.item .price{font-size:22px;font-weight:800}
 .badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid var(--line)}
 .badge.lime{color:var(--lime);border-color:rgba(199,245,93,.25);background:rgba(199,245,93,.08)}
-.badge.ok{color:var(--ok);border-color:rgba(126,227,167,.25);background:rgba(126,227,167,.08)}
+.badge.ok{color:var(--ok);border-color:rgba(126,224,168,.25);background:rgba(126,224,168,.08)}
 .badge.warn{color:#ffd78f;border-color:rgba(255,215,143,.2);background:rgba(255,215,143,.08)}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:11px;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:var(--muted)}
-.price{font-size:22px;font-weight:800}
-.itemFooter{margin-top:auto;display:flex;gap:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{font-size:11px;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:var(--muted)}
+.itemFooter{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
 .tableWrap{overflow:auto;border:1px solid var(--line);border-radius:20px}
-table{width:100%;border-collapse:collapse;min-width:1120px}
+table{width:100%;border-collapse:collapse;min-width:1280px}
 th,td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{text-align:left;color:var(--muted);font-weight:700;background:#0c110d;position:sticky;top:0;z-index:1}
 tr:last-child td{border-bottom:none}
-td input, td select{width:100%;background:#0b100d;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 9px}
-.money{white-space:nowrap;font-variant-numeric:tabular-nums}
-.right{text-align:right}
+td input,td select{width:100%;background:#0b100d;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 9px}
+.money{white-space:nowrap;font-variant-numeric:tabular-nums}.right{text-align:right}
 .empty{padding:28px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);text-align:center}
-.summaryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.summaryBlock{padding:14px;border-radius:18px;border:1px solid var(--line);background:#0b100d}
-.summaryBlock .title{color:var(--muted);font-size:12px;margin-bottom:8px}
-.summaryBlock .num{font-size:22px;font-weight:800}
 .docPreview{background:#f7f8f5;color:#111;border-radius:24px;padding:28px;min-height:420px}
 .docHead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}
-.docLogo{width:170px}
-.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
-.docKpi{background:#eef2e5;padding:12px;border-radius:14px}
-.docKpi b{display:block;font-size:20px}
-.docSection{margin-top:18px}
-.docTable{width:100%;border-collapse:collapse;min-width:0}
-.docTable th,.docTable td{border:1px solid #dce3d1;padding:9px 8px;font-size:12px}
-.docTable th{background:#eef2e5;color:#283124;position:static}
+.docLogo{width:210px}.docKpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}
+.docTable{width:100%;border-collapse:collapse;min-width:0}.docTable th,.docTable td{border:1px solid #dce3d1;padding:9px 8px;font-size:12px}.docTable th{background:#eef2e5;color:#283124;position:static}
 .footerActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.note{padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid var(--line);color:var(--muted)}
 hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
-@media (max-width:1320px){
-  .topbar{grid-template-columns:1fr}
-  .layout{grid-template-columns:1fr}
-  .sidebar{position:static;height:auto}
-  .library{grid-template-columns:repeat(2,1fr)}
-}
-@media (max-width:960px){
-  .hero,.summaryGrid,.docKpis{grid-template-columns:repeat(2,1fr)}
-  .card.half,.card.third,.card.quarter{grid-column:span 12}
-  .filterBar{grid-template-columns:1fr}
-  .library{grid-template-columns:1fr}
-}
-@media (max-width:640px){
-  .app{padding:10px}
-  .brand{flex-direction:column;align-items:flex-start}
-  .logoBox{width:200px}
-  .hero,.summaryGrid,.docKpis,.row2,.row3,.metricGrid{grid-template-columns:1fr}
-}
-@media print{
-  body{background:#fff}
-  .app>*:not(.printOnly), .layout, .topbar{display:none !important}
-}
+.legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.helpGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:1460px){.topbar{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.library{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1080px){.hero,.summaryGrid,.docKpis,.legend,.helpGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.half,.card.third,.card.quarter{grid-column:span 12}.filterBar{grid-template-columns:1fr 1fr}.brand{grid-template-columns:1fr}}
+@media (max-width:760px){.app{padding:10px}.hero,.summaryGrid,.docKpis,.row2,.row3,.row4,.legend,.helpGrid{grid-template-columns:1fr}.filterBar{grid-template-columns:1fr}.library{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.brandLogo{min-height:100px}}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="topbar">
     <section class="panel brand">
-      <div class="logoBox">
-        <svg viewBox="0 0 665 189" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VIZHU">
-          <rect width="665" height="189" rx="24" fill="#111411"/>
-          <g fill="#c7f55d">
-            <path d="M39 40h67c43 0 64 18 64 51 0 19-8 33-23 41 22 8 33 24 33 48 0 38-28 58-79 58H39V40zm52 36v40h30c17 0 26-7 26-20 0-13-9-20-26-20H91zm0 74v49h38c20 0 31-8 31-24s-11-25-31-25H91z"/>
-            <path d="M204 40h57v198h-57z"/>
-            <path d="M304 40h58l58 103 58-103h58l-84 145v53h-57v-53L304 40z"/>
-            <path d="M420 75c42 0 77 34 77 76h-20c0-31-25-56-57-56-31 0-56 25-56 56h-20c0-42 34-76 76-76z"/>
-            <path d="M555 40h57v81c0 28 13 42 39 42 26 0 39-14 39-42V40h57v84c0 39-11 68-32 87-20 18-47 27-81 27-34 0-61-9-82-27-20-19-31-48-31-87V40z" transform="translate(-131 0)"/>
-          </g>
-        </svg>
-      </div>
+      <div class="brandLogo"><img alt="VIZHU" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAogAAADWCAYAAABSUnMUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAEPUSURBVHhe7d13WFVX1gbwV3oTFURABBSlGEvsBXsXS7ChSayZFI2maCbdJM5MmpPJWDKJiYlJbNGIvWKUYkFsiAWUJiooCCKISFPa90dkRvYnAvesc+85567f88wzMy+olAt33bX3XruBq6trJRhjjDHGGHvIRAwYY4wxxphx4wKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWDReIjDHGGGOsGi4QGWOMMcZYNVwgMsYYY4yxarhAZIwxxhhj1XCByBhjjDHGquECkTHGGGOMVcMFImOMMcYYq4YLRMYYY4wxVg0XiIwxxhhjrBouEBljjDHGWDVcIDLGGGOMsWq4QGSMMcYYY9VwgcgYY4wxxqrhApExxhhjjFXDBSJjjDHGGKuGC0TGGGOMMVYNF4iMMcYYY6waLhAZY4wxxlg1XCAyxhhjjLFquEBkjDHGGGPVcIHIGGOMMcaq4QKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWzf8BbBpEMs4AeLYAAAAASUVORK5CYII="></div>
       <div>
-        <h1>Presale Configurator Pro</h1>
-        <p>Внутренний конфигуратор ВИЖУ для быстрых пресейл-расчётов: оборудование, монтаж, ПНР, расходные материалы, логистика, маржа и красивая выгрузка коммерческой сметы.</p>
+        <h1>Presale Configurator</h1>
+        <p>Внутренний конфигуратор ВИЖУ для быстрых пресейл-расчётов: оборудование, монтаж, ПНР, контент, конструкции, логистика, маржа и красивая выгрузка сметы для клиента.</p>
         <div class="pillRow">
-          <span class="pill">HTML-only · GitHub Pages</span>
-          <span class="pill">Библиотека сегментов и брендов</span>
-          <span class="pill">Шаблоны под разные типы проектов</span>
-          <span class="pill">Редактируемые цены и состав</span>
+          <span class="pill">GitHub Pages · HTML-only</span>
+          <span class="pill">Проект → зоны → автоподбор → смета</span>
+          <span class="pill">Ручная корректировка позиций</span>
+          <span class="pill">Клиентская выгрузка</span>
         </div>
       </div>
     </section>
     <section class="panel hero">
-      <div class="kpi"><div class="label">Себестоимость закупки</div><div class="value" id="kpiCost">0 ₽</div><div class="sub">оборудование + монтаж + ПНР + расходники</div></div>
+      <div class="kpi"><div class="label">Себестоимость</div><div class="value" id="kpiCost">0 ₽</div><div class="sub">оборудование + монтаж + ПНР + сервисы</div></div>
       <div class="kpi"><div class="label">Маржа</div><div class="value" id="kpiMargin">0 ₽</div><div class="sub" id="kpiMarginPct">0%</div></div>
       <div class="kpi"><div class="label">Цена без НДС</div><div class="value" id="kpiNet">0 ₽</div><div class="sub">коммерческая цена</div></div>
       <div class="kpi"><div class="label">Цена с НДС</div><div class="value" id="kpiGross">0 ₽</div><div class="sub" id="kpiScenarioLabel">сценарий — базовый</div></div>
@@ -182,132 +143,100 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
 
   <div class="layout">
     <aside class="panel sidebar">
-      <h2>Параметры проекта</h2>
+      <div class="sectionTitle"><h2>Паспорт проекта</h2><span class="badge lime">v3</span></div>
       <div class="field"><label>Название проекта</label><input id="projectName" value="Новый пресейл / объект"></div>
       <div class="field"><label>Заказчик</label><input id="customerName" value="Новый заказчик"></div>
-
       <div class="row2">
-        <div class="field">
-          <label>Тип проекта</label>
-          <select id="projectType"></select>
-        </div>
-        <div class="field">
-          <label>Бюджетный сценарий</label>
-          <select id="scenario"></select>
-        </div>
+        <div class="field"><label>Тип проекта</label><select id="projectType"></select></div>
+        <div class="field"><label>Бюджетный сценарий</label><select id="scenario"></select></div>
       </div>
-
       <div class="row3">
-        <div class="field"><label>Курс USD→RUB</label><input id="usdRate" type="number" value="80" min="1" step="1"></div>
+        <div class="field"><label>Город / логистика</label><select id="cityTier"></select></div>
+        <div class="field"><label>Срок проекта</label><select id="urgency"></select></div>
+        <div class="field"><label>Валюта/курс USD→RUB</label><input id="usdRate" type="number" value="80" min="1" step="1"></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label>Площадь объекта, м²</label><input id="projectArea" type="number" value="350" min="0" step="1"></div>
+        <div class="field"><label>Средняя высота, м</label><input id="ceilingHeight" type="number" value="3.6" min="2" step="0.1"></div>
+        <div class="field"><label>Количество этажей</label><input id="floors" type="number" value="1" min="1" step="1"></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label>Целевая цена для клиента, ₽</label><input id="targetBudget" type="number" value="0" min="0" step="10000"></div>
         <div class="field"><label>Маржа, %</label><input id="marginPct" type="number" value="28" min="0" step="1"></div>
         <div class="field"><label>НДС, %</label><input id="vatPct" type="number" value="20" min="0" step="1"></div>
       </div>
 
-      <div class="row3">
-        <div class="field"><label>Монтаж, % от закупки</label><input id="installPct" type="number" value="20" min="0" step="1"></div>
-        <div class="field"><label>ПНР, % от закупки</label><input id="pnrPct" type="number" value="10" min="0" step="1"></div>
-        <div class="field"><label>Расходники, % от закупки</label><input id="consumablesPct" type="number" value="15" min="0" step="1"></div>
-      </div>
-
+      <hr class="sep">
+      <div class="sectionTitle"><h2>Коэффициенты</h2><button class="btn ghost small" type="button" id="recalcCoefsBtn">Пересчитать авто</button></div>
       <div class="row2">
-        <div class="field"><label>Коэфф. сложности</label><input id="complexity" type="number" value="1" min="0.5" step="0.05"></div>
-        <div class="field"><label>Коэфф. логистики</label><input id="logistics" type="number" value="1" min="0.5" step="0.05"></div>
+        <div class="field">
+          <label><input type="checkbox" id="complexityAuto" checked> Коэфф. сложности (авто)</label>
+          <input id="complexity" type="number" value="1" min="0.8" step="0.01">
+          <div class="mini" id="complexityHelp">1.00 — стандартный объект</div>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="logisticsAuto" checked> Коэфф. логистики (авто)</label>
+          <input id="logistics" type="number" value="1" min="0.8" step="0.01">
+          <div class="mini" id="logisticsHelp">1.00 — Москва/МО и простая доставка</div>
+        </div>
+      </div>
+      <div class="helpGrid small">
+        <div class="note"><b>Сложность</b><br>Влияет на монтаж, ПНР и часть сервисов. Растёт из-за высоты, количества зон, интерактива, VR, вау-сценариев, сжатых сроков и нестандарта.</div>
+        <div class="note"><b>Логистика</b><br>Влияет на поставку, кабельные/расходные и часть закупки. Растёт из-за удалённости региона, этажности, уличных работ и включённой доставки.</div>
       </div>
 
       <hr class="sep">
-      <h2>Быстрые входные данные</h2>
-      <div class="metricGrid">
-        <div class="metricCard">
-          <b>Наружный LED, м²</b>
-          <input id="metricOutdoorLed" type="number" value="0" min="0" step="0.1">
-          <small>медиафасады, фасадные экраны</small>
-        </div>
-        <div class="metricCard">
-          <b>Внутренний LED, м²</b>
-          <input id="metricIndoorLed" type="number" value="0" min="0" step="0.1">
-          <small>сцены, холлы, клубные зоны</small>
-        </div>
-        <div class="metricCard">
-          <b>Проекторы, шт.</b>
-          <input id="metricProjectors" type="number" value="0" min="0" step="1">
-          <small>инсталляционные лазерные</small>
-        </div>
-        <div class="metricCard">
-          <b>Киоски / тач-точки, шт.</b>
-          <input id="metricKiosks" type="number" value="0" min="0" step="1">
-          <small>навигация, интерактив, self-service</small>
-        </div>
-        <div class="metricCard">
-          <b>Проф. дисплеи, шт.</b>
-          <input id="metricDisplays" type="number" value="0" min="0" step="1">
-          <small>LCD signage / панели</small>
-        </div>
-        <div class="metricCard">
-          <b>VR станций, шт.</b>
-          <input id="metricVr" type="number" value="0" min="0" step="1">
-          <small>тренажеры, VR-обучение</small>
-        </div>
-        <div class="metricCard">
-          <b>Аудиозон, шт.</b>
-          <input id="metricAudioZones" type="number" value="0" min="0" step="1">
-          <small>фон, локальные сценарии</small>
-        </div>
-        <div class="metricCard">
-          <b>Переговорных, шт.</b>
-          <input id="metricRooms" type="number" value="0" min="0" step="1">
-          <small>конференц-связь / VC</small>
-        </div>
-      </div>
+      <div class="sectionTitle"><h2>Сервисы по умолчанию</h2></div>
+      <div class="chipRow" id="globalFlags"></div>
 
-      <div class="field" style="margin-top:12px;">
-        <label>Комментарий к расчёту</label>
-        <textarea id="projectNotes" placeholder="Например: проект срочный, сложный монтаж, много нестандарта, часть оборудования уже есть у заказчика..."></textarea>
-      </div>
+      <div class="field" style="margin-top:12px"><label>Комментарий к расчёту</label><textarea id="projectNotes" placeholder="Например: часть оборудования уже есть у заказчика, ночной монтаж, строгие сроки, нужен резерв, нестандартная металлоконструкция..."></textarea></div>
 
       <div class="actions">
-        <button class="btn primary" id="generateTemplateBtn">Сгенерировать стартовую смету</button>
+        <button class="btn primary" id="generateTemplateBtn">Сгенерировать смету</button>
         <button class="btn ghost" id="saveStateBtn">Сохранить локально</button>
         <button class="btn ghost" id="exportJsonBtn">Экспорт JSON</button>
         <button class="btn warn" id="resetBtn">Сбросить</button>
       </div>
-      <div class="note small" style="margin-top:12px;">
-        Библиотека ниже — это стартовая рыночная матрица. Любую цену, количество, модель или строку можно поменять прямо в смете. Для нестандартных кейсов есть ручное добавление позиций.
-      </div>
+      <div class="note small" style="margin-top:12px">Левая колонка больше не должна наезжать на контент: она ограничена по высоте и нормально скроллится. Для GitHub Pages всё работает как один файл.</div>
     </aside>
 
     <main class="panel main">
       <div class="tabs">
-        <button class="tab active" data-tab="templates">Сценарии</button>
+        <button class="tab active" data-tab="zones">Зоны</button>
         <button class="tab" data-tab="library">Библиотека</button>
         <button class="tab" data-tab="estimate">Смета</button>
         <button class="tab" data-tab="proposal">КП / выгрузка</button>
       </div>
 
-      <section class="tabPane active" id="tab-templates">
+      <section class="tabPane active" id="tab-zones">
         <div class="grid12">
           <div class="card half">
-            <h3>Как устроена логика</h3>
+            <div class="sectionTitle"><h3>Механика просчёта</h3><button class="btn primary" id="addZoneBtn" type="button">Добавить зону</button></div>
             <div class="note">
-              Сначала выбирается <b>тип проекта</b> и <b>сценарий бюджета</b>. Затем по быстрым входным данным можно одним кликом собрать стартовую смету. После этого состав дополняется вручную из библиотеки или кастомными строками.
+              Сначала заносится паспорт проекта и зоны. Для каждой зоны указываются назначение, площадь, основная задача и нужные сервисы. Генератор сам подбирает стартовый состав решений по бюджету, а затем смету можно вручную править по брендам, моделям и ценам.
             </div>
-            <div class="summaryGrid" style="margin-top:12px;">
-              <div class="summaryBlock"><div class="title">Бюджетный</div><div class="num">Value</div><div class="small muted">рабочие решения без излишеств</div></div>
-              <div class="summaryBlock"><div class="title">Базовый</div><div class="num">Core</div><div class="small muted">основной рабочий сценарий</div></div>
-              <div class="summaryBlock"><div class="title">Премиум</div><div class="num">Signature</div><div class="small muted">выше по яркости, брендам и резервам</div></div>
-              <div class="summaryBlock"><div class="title">Ручная сборка</div><div class="num">Mix</div><div class="small muted">любой микс сегментов и моделей</div></div>
+            <div class="legend" style="margin-top:12px">
+              <div class="summaryBlock"><div class="title">Шаг 1</div><div class="num">Паспорт</div><div class="small">тип объекта, регион, площадь, сроки</div></div>
+              <div class="summaryBlock"><div class="title">Шаг 2</div><div class="num">Зоны</div><div class="small">функция, задача, сервисы</div></div>
+              <div class="summaryBlock"><div class="title">Шаг 3</div><div class="num">Смета</div><div class="small">подбор, корректировка, выгрузка</div></div>
             </div>
           </div>
           <div class="card half">
-            <h3>Шаблон по типу проекта</h3>
-            <div id="templateDescription" class="note">Выбери тип проекта слева — здесь появится логика набора оборудования и рекомендуемые сегменты.</div>
+            <h3>Сводка по зонам</h3>
+            <div class="summaryGrid" style="margin-top:12px">
+              <div class="summaryBlock"><div class="title">Зон</div><div class="num" id="sumZones">0</div></div>
+              <div class="summaryBlock"><div class="title">Общая площадь зон</div><div class="num" id="sumZoneArea">0 м²</div></div>
+              <div class="summaryBlock"><div class="title">Зон с контентом</div><div class="num" id="sumContentZones">0</div></div>
+              <div class="summaryBlock"><div class="title">Зон с монтажом</div><div class="num" id="sumInstallZones">0</div></div>
+            </div>
             <div class="footerActions">
-              <button class="btn primary" id="applyRecommendedBtn">Применить рекомендованный набор</button>
+              <button class="btn primary" id="applyRecommendedBtn">Сгенерировать по зонам</button>
               <button class="btn ghost" id="openEstimateBtn">Открыть смету</button>
             </div>
           </div>
           <div class="card">
-            <h3>Рыночные сегменты, предусмотренные в коде</h3>
-            <div id="segmentSummary" class="library"></div>
+            <div class="sectionTitle"><h3>Зоны проекта</h3><span class="badge ok">каждая зона влияет на смету</span></div>
+            <div id="zoneList" class="zoneList"></div>
           </div>
         </div>
       </section>
@@ -317,6 +246,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
           <input id="searchInput" placeholder="Поиск по названию, модели, бренду, сегменту...">
           <select id="categoryFilter"></select>
           <select id="libraryScenarioFilter"></select>
+          <select id="zoneFilter"></select>
         </div>
         <div id="libraryList" class="library"></div>
       </section>
@@ -334,26 +264,31 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
               <div class="field"><label>Количество</label><input id="customQty" type="number" value="1" min="0" step="0.1"></div>
               <div class="field"><label>Закупка за ед., ₽</label><input id="customPrice" type="number" value="0" min="0" step="1"></div>
             </div>
+            <div class="field"><label>Привязка к зоне</label><select id="customZoneRef"></select></div>
             <div class="field"><label>Комментарий</label><textarea id="customNote" placeholder="Описание, поставщик, срок поставки..."></textarea></div>
             <button class="btn primary" id="addCustomBtn">Добавить строку</button>
           </div>
-
           <div class="card" style="grid-column: span 8;">
             <h3>Смета проекта</h3>
-            <div id="estimateEmpty" class="empty">Пока пусто. Сгенерируй стартовую смету или добавь позиции из библиотеки.</div>
+            <div id="estimateEmpty" class="empty">Пока пусто. Добавь зоны и сгенерируй стартовую смету или положи позиции вручную.</div>
             <div class="tableWrap" id="estimateWrap" style="display:none;">
               <table>
                 <thead>
                   <tr>
-                    <th style="min-width:230px;">Позиция</th>
+                    <th style="min-width:170px;">Зона</th>
+                    <th style="min-width:240px;">Позиция</th>
                     <th style="min-width:130px;">Категория</th>
-                    <th style="min-width:110px;">Сценарий</th>
+                    <th style="min-width:120px;">Бюджет</th>
                     <th style="min-width:90px;">Ед.</th>
                     <th style="min-width:90px;">Кол-во</th>
                     <th style="min-width:130px;">Закупка / ед.</th>
                     <th style="min-width:120px;">Сумма закупки</th>
                     <th style="min-width:110px;">Логистика</th>
-                    <th style="min-width:120px;">Комментарий</th>
+                    <th style="min-width:110px;">Монтаж</th>
+                    <th style="min-width:110px;">ПНР</th>
+                    <th style="min-width:110px;">Контент</th>
+                    <th style="min-width:110px;">Констр.</th>
+                    <th style="min-width:150px;">Комментарий</th>
                     <th style="min-width:80px;">—</th>
                   </tr>
                 </thead>
@@ -361,14 +296,14 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
               </table>
             </div>
           </div>
-
           <div class="card third">
             <h3>Сводка</h3>
             <div class="summaryGrid" style="grid-template-columns:1fr;gap:10px;">
               <div class="summaryBlock"><div class="title">Оборудование</div><div class="num" id="sumEquipment">0 ₽</div></div>
               <div class="summaryBlock"><div class="title">Монтаж</div><div class="num" id="sumInstall">0 ₽</div></div>
               <div class="summaryBlock"><div class="title">ПНР</div><div class="num" id="sumPnr">0 ₽</div></div>
-              <div class="summaryBlock"><div class="title">Расходники</div><div class="num" id="sumConsumables">0 ₽</div></div>
+              <div class="summaryBlock"><div class="title">Контент / ПО</div><div class="num" id="sumContent">0 ₽</div></div>
+              <div class="summaryBlock"><div class="title">Логистика / расходники</div><div class="num" id="sumConsumables">0 ₽</div></div>
               <div class="summaryBlock"><div class="title">Цена без НДС</div><div class="num" id="sumNet">0 ₽</div></div>
               <div class="summaryBlock"><div class="title">Цена с НДС</div><div class="num" id="sumGross">0 ₽</div></div>
             </div>
@@ -389,250 +324,344 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
 
 <script>
 const PROJECT_TYPES = [
-  {id:'museum', name:'Музей / выставка / visitor center', desc:'Сильный упор на LED, проекцию, медиасерверы, интерактивные киоски, направленный звук и контентные ПК.'},
-  {id:'education', name:'Образовательный центр / карьерный центр', desc:'Смешанный сценарий: LED или LCD в общих зонах, интерактивные панели, VR-тренажёры, киоски, аудиозоны.'},
-  {id:'corporate', name:'Корпоративный офис / demo-зона', desc:'Переговорные, видеобар/микрофоны, проф. панели, цифровая навигация, точечная интерактивность.'},
-  {id:'conference', name:'Конференц-зал / auditorium', desc:'Сцена, LED или проекторы, аудиосистема, конференц-связь, коммутация и резерв по управлению.'},
-  {id:'retail', name:'Retail / showroom / бренд-зона', desc:'LED/LCD signage, киоски, аудио, камеры, управление контентом, сценарии с акцентом на вау-эффект.'},
-  {id:'event', name:'Event / pop-up / временная инсталляция', desc:'LED, процессоры, медиасервер, мобильная конструкция, акустика, быстрый монтаж и ПНР.'},
-  {id:'public', name:'Общественное пространство / МФЦ / гос. объект', desc:'Надёжность, читаемость, навигация, проф. панели, киоски, мягкая мультимедийность.'},
-  {id:'vr', name:'VR / симуляторы / тренажёры', desc:'VR-гарнитуры, мощные ПК, дисплеи оператора, локальный звук, датчики, сети и сервисный запас.'}
+  {id:'museum', name:'Музей / выставка / visitor center'},
+  {id:'education', name:'Образовательный / карьерный центр'},
+  {id:'corporate', name:'Корпоративный офис / demo-зона'},
+  {id:'conference', name:'Конференц-зал / auditorium'},
+  {id:'retail', name:'Retail / showroom / бренд-зона'},
+  {id:'event', name:'Event / pop-up / временная инсталляция'},
+  {id:'public', name:'Общественное пространство / гос. объект'},
+  {id:'vr', name:'VR / симуляторы / тренажёры'}
 ];
-
 const SCENARIOS = [
   {id:'budget', name:'Бюджетный'},
   {id:'base', name:'Базовый'},
   {id:'premium', name:'Премиальный'}
 ];
+const CITY_TIERS = [
+  {id:'moscow', name:'Москва / МО', factor:1.00, text:'локальная поставка и простая логистика'},
+  {id:'regional', name:'Крупный региональный центр', factor:1.06, text:'межгород без экстремальной логистики'},
+  {id:'remote', name:'Удалённый регион / сложная логистика', factor:1.14, text:'дальняя доставка, выше риск и затраты'}
+];
+const URGENCY = [
+  {id:'normal', name:'Стандартный срок', factor:1.00},
+  {id:'tight', name:'Сжатый срок', factor:1.06},
+  {id:'rush', name:'Очень срочно', factor:1.12}
+];
+const ZONE_PURPOSES = [
+  {id:'entrance', name:'Входная группа / welcome'},
+  {id:'hall', name:'Холл / общее пространство'},
+  {id:'conference', name:'Конференц-зал / аудитория'},
+  {id:'meeting', name:'Переговорная / VC'},
+  {id:'museum', name:'Экспозиционная / музейная зона'},
+  {id:'classroom', name:'Учебная / разбор'},
+  {id:'retail', name:'Шоурум / retail'},
+  {id:'control', name:'Диспетчерская / операторская'},
+  {id:'vr', name:'VR / симулятор'},
+  {id:'outdoor', name:'Наружная зона / фасад'},
+  {id:'stage', name:'Сцена / ивент зона'}
+];
+const TASKS = [
+  {id:'content', name:'Показывать контент'},
+  {id:'vc', name:'Проводить ВКС'},
+  {id:'audio', name:'Озвучивать'},
+  {id:'control', name:'Управлять / мониторить'},
+  {id:'interactive', name:'Интерактив'},
+  {id:'wow', name:'Вау-эффект'}
+];
+const GLOBAL_FLAGS = [
+  {id:'install', name:'Монтаж'},
+  {id:'pnr', name:'ПНР'},
+  {id:'content', name:'Контент / ПО'},
+  {id:'metal', name:'Металлоконструкции'},
+  {id:'delivery', name:'Доставка'}
+];
 
 const ITEMS = [
   // LED
-  {id:'led_outdoor_budget', name:'LED экран уличный P4 / value', brand:'Generic / OEM', model:'Outdoor P4', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'budget', price:55000, types:['museum','education','retail','event','public'], note:'Стартовый outdoor LED сегмент. Для фасадов, входных групп, наружной рекламы.'},
-  {id:'led_outdoor_base', name:'LED экран уличный P4 / core', brand:'OEM + Novastar', model:'Outdoor P4 Core', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'base', price:75000, types:['museum','education','retail','event','public'], note:'Более надёжный уличный сегмент с комфортным балансом цена/яркость.'},
-  {id:'led_outdoor_premium', name:'LED экран уличный P3.9–P4 / signature', brand:'Premium OEM', model:'Outdoor Premium', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'premium', price:115000, types:['museum','education','retail','event','public'], note:'Повышенная яркость, лучшая картинка и ресурс.'},
-  {id:'led_indoor_budget', name:'LED экран внутренний P2.5–P3 / value', brand:'Generic / OEM', model:'Indoor Fine Pitch', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'budget', price:65000, types:['museum','education','conference','retail','event','public'], note:'Стартовый indoor LED для холлов и стен презентаций.'},
-  {id:'led_indoor_base', name:'LED экран внутренний P2–P2.5 / core', brand:'OEM + Novastar', model:'Indoor Core', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'base', price:95000, types:['museum','education','conference','retail','event','public'], note:'Основной сегмент indoor LED для большинства рабочих кейсов.'},
-  {id:'led_indoor_premium', name:'LED экран внутренний P1.5–P1.8 / signature', brand:'Premium OEM', model:'Indoor Premium', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'premium', price:150000, types:['museum','education','conference','retail','event','public'], note:'Премиальный fine-pitch для близкой дистанции просмотра.'},
+  {id:'led_indoor_p25_oem', name:'LED экран внутренний P2.5', brand:'OEM / Unilumin class', model:'Indoor P2.5', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'budget', price:72000, types:['museum','education','conference','retail','event','public','corporate'], note:'Стартовый indoor LED для холлов и рабочих презентаций.'},
+  {id:'led_indoor_p19_core', name:'LED экран внутренний P1.9', brand:'Absen / Leyard / AOTO class', model:'Fine Pitch P1.9', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'base', price:128000, types:['museum','education','conference','retail','event','public','corporate'], note:'Базовый fine-pitch для близкой дистанции просмотра.'},
+  {id:'led_indoor_p15_premium', name:'LED экран внутренний P1.5', brand:'Absen / Leyard premium', model:'Fine Pitch P1.5', category:'LED экраны', segment:'Внутренний LED', unit:'м²', scenario:'premium', price:186000, types:['museum','conference','retail','corporate','public','event'], note:'Премиальный fine-pitch для топовых клиентских зон.'},
+  {id:'led_outdoor_p4', name:'LED экран уличный P4', brand:'OEM / Unilumin class', model:'Outdoor P4', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'budget', price:68000, types:['museum','education','retail','event','public'], note:'Наружный LED для фасадов и входных групп.'},
+  {id:'led_outdoor_p39', name:'LED экран уличный P3.9', brand:'Unilumin / Absen class', model:'Outdoor P3.9', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'base', price:108000, types:['museum','retail','event','public'], note:'Основной outdoor сегмент с лучшей картинкой.'},
+  {id:'led_outdoor_p29', name:'LED экран уличный P2.9', brand:'Premium outdoor', model:'Outdoor P2.9', category:'LED экраны', segment:'Наружный LED', unit:'м²', scenario:'premium', price:158000, types:['retail','event','public'], note:'Премиальный outdoor для ярких рекламных и сценических задач.'},
 
   // Controllers / playback
-  {id:'novastar_vx1000', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX1000 Pro', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'budget', price:160000, types:['museum','education','conference','retail','event','public'], note:'Подходит для базовых и средних LED-инсталляций.'},
-  {id:'novastar_vx2000', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX2000 Pro', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'premium', price:256700, types:['museum','education','conference','retail','event','public'], note:'Более мощный контроллер для крупных стен и сложных конфигураций.'},
-  {id:'media_server_basic', name:'Контентный ПК / playback', brand:'Visuals build', model:'Basic Playback', category:'ПК и медиасерверы', segment:'Playback PC', unit:'шт.', scenario:'budget', price:120000, types:['museum','education','conference','retail','event','public','vr'], note:'ПК для проигрывания контента, signage и несложных интерактивов.'},
-  {id:'media_server_core', name:'Контентный ПК / playback', brand:'Visuals build', model:'Core Playback', category:'ПК и медиасерверы', segment:'Playback PC', unit:'шт.', scenario:'base', price:200000, types:['museum','education','conference','retail','event','public','vr'], note:'Сборка уровня core: playback, 4K, signage, средние по сложности сценарию.'},
-  {id:'media_server_premium', name:'Медиасервер / graphics', brand:'Visuals build', model:'RTX Media Server', category:'ПК и медиасерверы', segment:'Media Server', unit:'шт.', scenario:'premium', price:420000, types:['museum','education','conference','retail','event','public','vr'], note:'Под генеративный, realtime и тяжёлые мультимедийные сцены.'},
-  {id:'resolume_arena', name:'Лицензия медиа-сервера', brand:'Resolume', model:'Arena', category:'ПО и лицензии', segment:'Медиасервер ПО', unit:'шт.', scenario:'base', price:81000, types:['museum','education','conference','retail','event'], note:'Лицензия для управления мультимедийным контентом и playback-сценариями.'},
+  {id:'novastar_vx600', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX600', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'budget', price:98000, types:['museum','education','conference','retail','event','public'], note:'Компактный LED-контроллер для небольших стен.'},
+  {id:'novastar_vx1000', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX1000', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'base', price:158000, types:['museum','education','conference','retail','event','public'], note:'Базовый контроллер для большинства средних LED-инсталляций.'},
+  {id:'novastar_vx2000', name:'Видеопроцессор LED', brand:'NovaStar', model:'VX2000 Pro', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'premium', price:258000, types:['museum','education','conference','retail','event','public'], note:'Для крупных стен и более сложных конфигураций.'},
+  {id:'novastar_h2', name:'Сплайсер / видеопроцессор', brand:'NovaStar', model:'H2', category:'Управление и коммутация', segment:'LED процессоры', unit:'шт.', scenario:'premium', price:465000, types:['museum','conference','event','control'], note:'Для сложных многослойных и больших LED-сценариев.'},
+  {id:'mediaserver_basic', name:'Контентный ПК / playback', brand:'Visuals build', model:'Basic Playback', category:'ПК и медиасерверы', segment:'Playback PC', unit:'шт.', scenario:'budget', price:135000, types:['museum','education','conference','retail','event','public','vr','corporate'], note:'ПК для signage, playback и несложных интерактивов.'},
+  {id:'mediaserver_core', name:'Контентный ПК / graphics', brand:'Visuals build', model:'Core RTX', category:'ПК и медиасерверы', segment:'Playback PC', unit:'шт.', scenario:'base', price:235000, types:['museum','education','conference','retail','event','public','vr','corporate'], note:'Рабочий уровень для 4K playback и средних мультимедиа-задач.'},
+  {id:'mediaserver_premium', name:'Медиасервер', brand:'disguise / custom RTX', model:'Media Server Pro', category:'ПК и медиасерверы', segment:'Media Server', unit:'шт.', scenario:'premium', price:520000, types:['museum','conference','retail','event','vr'], note:'Премиум-сегмент для realtime, сложного мэппинга и синхронизации.'},
+  {id:'resolume_arena', name:'Лицензия медиасервера', brand:'Resolume', model:'Arena', category:'ПО и лицензии', segment:'Медиасервер ПО', unit:'шт.', scenario:'base', price:64000, types:['museum','conference','retail','event'], note:'Playback и live-компоновка сцен.'},
+  {id:'brightsign_hd', name:'Signage-плеер', brand:'BrightSign', model:'HD / LS series', category:'ПО и лицензии', segment:'Signage players', unit:'шт.', scenario:'budget', price:52000, types:['museum','retail','public','corporate','education'], note:'Надёжный digital signage player.'},
 
-  // Displays
-  {id:'lcd55', name:'Профессиональный дисплей 55"', brand:'Samsung/LG/Philips', model:'55" Signage', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:65000, types:['corporate','education','retail','public','museum'], note:'Для навигации, расписаний, цифровых стендов.'},
-  {id:'lcd75', name:'Профессиональный дисплей 75"', brand:'Samsung/LG/Philips', model:'75" Signage', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'base', price:145000, types:['corporate','education','retail','public','museum','conference'], note:'Основной сегмент для презентаций и информационных зон.'},
-  {id:'lcd98', name:'Профессиональный дисплей 98"', brand:'Samsung/LG/Philips', model:'98" Large Format', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'premium', price:340000, types:['corporate','education','retail','public','museum','conference'], note:'Для эффектных больших плоскостей без LED.'},
-  {id:'ifp65', name:'Интерактивная панель 65"', brand:'BenQ/Newline/Hisense', model:'IFP 65', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'budget', price:170000, types:['education','corporate','public'], note:'Переговорные, учебные аудитории, зоны разбора.'},
-  {id:'ifp86', name:'Интерактивная панель 86"', brand:'BenQ/Newline/Hisense', model:'IFP 86', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:290000, types:['education','corporate','public'], note:'Крупные учебные и презентационные пространства.'},
-  {id:'kiosk43', name:'Интерактивный киоск 43"', brand:'OEM / Digital Signage', model:'Touch Kiosk 43', category:'Интерактив', segment:'Киоски и терминалы', unit:'шт.', scenario:'budget', price:95000, types:['museum','education','retail','public'], note:'Стартовый киоск для навигации и сценариев self-service.'},
-  {id:'kiosk55', name:'Интерактивный киоск 55"', brand:'OEM / Digital Signage', model:'Touch Kiosk 55', category:'Интерактив', segment:'Киоски и терминалы', unit:'шт.', scenario:'base', price:145000, types:['museum','education','retail','public'], note:'Универсальный формат для интерактивных точек и бренд-зон.'},
+  // LCD / displays
+  {id:'samsung_qm43c', name:'Проф. дисплей 43"', brand:'Samsung', model:'QM43C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:69000, types:['museum','education','retail','public','corporate'], note:'24/7 signage для навигации и стендов.'},
+  {id:'samsung_qm55c', name:'Проф. дисплей 55"', brand:'Samsung', model:'QM55C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:102000, types:['museum','education','retail','public','corporate','conference'], note:'Стартовый крупный signage-дисплей.'},
+  {id:'samsung_qm75c', name:'Проф. дисплей 75"', brand:'Samsung', model:'QM75C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'base', price:256000, types:['museum','education','retail','public','corporate','conference'], note:'Базовый 75-дюймовый pro display.'},
+  {id:'samsung_qm98c', name:'Проф. дисплей 98"', brand:'Samsung', model:'QM98C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'premium', price:485000, types:['museum','corporate','conference','retail','public'], note:'Большой формат без перехода в LED.'},
+  {id:'lg_86uh5j', name:'Проф. дисплей 86"', brand:'LG', model:'86UH5J', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'base', price:295000, types:['museum','education','retail','public','corporate','conference'], note:'Универсальный формат под презентации и signage.'},
+
+  // Interactive
+  {id:'benq_re6504', name:'Интерактивная панель 65"', brand:'BenQ', model:'RE6504', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'budget', price:151000, types:['education','corporate','public'], note:'Бюджетная интерактивная панель под учебные и рабочие зоны.'},
+  {id:'benq_re7504', name:'Интерактивная панель 75"', brand:'BenQ', model:'RE7504', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'base', price:166000, types:['education','corporate','public'], note:'Базовый рабочий вариант 75".'},
+  {id:'benq_re8604', name:'Интерактивная панель 86"', brand:'BenQ', model:'RE8604', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:230000, types:['education','corporate','public'], note:'Крупная интерактивная панель для premium-сценариев.'},
+  {id:'newline_65', name:'Интерактивная панель 65"', brand:'Newline', model:'LYRA / Q', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'budget', price:175000, types:['education','corporate'], note:'Альтернатива BenQ в бюджете.'},
+  {id:'maxhub_86', name:'Интерактивная панель 86"', brand:'MAXHUB', model:'86"', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:315000, types:['education','corporate','conference'], note:'Премиальный 86" touch-сегмент.'},
+  {id:'kiosk43', name:'Интерактивный киоск 43"', brand:'OEM / Digital Signage', model:'Touch Kiosk 43', category:'Интерактив', segment:'Киоски и терминалы', unit:'шт.', scenario:'budget', price:118000, types:['museum','education','retail','public'], note:'Стартовый киоск для навигации и self-service.'},
+  {id:'kiosk55', name:'Интерактивный киоск 55"', brand:'OEM / Digital Signage', model:'Touch Kiosk 55', category:'Интерактив', segment:'Киоски и терминалы', unit:'шт.', scenario:'base', price:169000, types:['museum','education','retail','public'], note:'Универсальный формат для интерактива.'},
+  {id:'touch_table_55', name:'Интерактивный стол 55"', brand:'OEM / custom', model:'Touch Table 55', category:'Интерактив', segment:'Интерактивные столы', unit:'шт.', scenario:'premium', price:295000, types:['museum','education','public'], note:'Для музейных и образовательных сценариев.'},
 
   // Projection
-  {id:'proj_l530u', name:'Лазерный проектор 5200 lm', brand:'Epson', model:'EB/PowerLite L530U', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'budget', price:188000, types:['museum','education','conference','event'], note:'Базовый проектор для рабочих мультимедийных задач.'},
-  {id:'proj_7k', name:'Лазерный проектор 7000–8000 lm', brand:'Epson/Optoma/Panasonic', model:'Install 7K', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:320000, types:['museum','education','conference','event'], note:'Основной инсталляционный уровень для залов и сцен.'},
-  {id:'proj_12k', name:'Лазерный проектор 12000 lm', brand:'Panasonic/Barco/Christie', model:'Install 12K', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'premium', price:820000, types:['museum','conference','event'], note:'Крупные инсталляции, яркие сцены, сложный световой контур.'},
+  {id:'epson_l530u', name:'Лазерный проектор 5200 lm', brand:'Epson', model:'PowerLite L530U', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'budget', price:188000, types:['museum','education','conference','event'], note:'Базовый проектор для рабочих мультимедийных задач.'},
+  {id:'epson_l690u', name:'Лазерный проектор 6500 lm', brand:'Epson', model:'PowerLite L690U', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:282000, types:['museum','education','conference','event'], note:'Основной инсталляционный уровень для залов.'},
+  {id:'panasonic_vmz71', name:'Лазерный проектор 7000 lm', brand:'Panasonic', model:'PT-VMZ71', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:338000, types:['museum','education','conference','event'], note:'Надёжный mid-range проектор.'},
+  {id:'christie_13k', name:'Лазерный проектор 13000 lm', brand:'Christie', model:'13K class', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'premium', price:890000, types:['museum','conference','event'], note:'Для крупных инсталляций и ярких сцен.'},
+  {id:'ultra_short_throw', name:'Ультракороткофокусный проектор', brand:'Epson / Optoma', model:'UST Laser', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:255000, types:['education','museum','public'], note:'Для зон, где нельзя глубоко уводить проектор.'},
 
   // Audio
-  {id:'audio_pair_bose', name:'Пара настенной акустики', brand:'Bose Professional', model:'DesignMax DM3SE', category:'Аудио', segment:'Фоновая / локальная акустика', unit:'пара', scenario:'base', price:29500, types:['museum','education','retail','public','corporate','conference'], note:'Компактная акустика для локальных зон, навигации и фонового звука.'},
-  {id:'audio_pair_budget', name:'Пара настенной акустики / value', brand:'OEM / install', model:'2-way install', category:'Аудио', segment:'Фоновая / локальная акустика', unit:'пара', scenario:'budget', price:18000, types:['museum','education','retail','public','corporate','conference'], note:'Стартовый сегмент для бюджетных проектов.'},
-  {id:'audio_pair_premium', name:'Пара настенной акустики / signature', brand:'QSC/JBL/Bose', model:'Premium Install', category:'Аудио', segment:'Фоновая / локальная акустика', unit:'пара', scenario:'premium', price:65000, types:['museum','education','retail','public','corporate','conference'], note:'Более выразительный звук и запас по мощности.'},
-  {id:'wireless_mic_set', name:'Комплект радиомикрофонов', brand:'Shure/Sennheiser', model:'Dual wireless', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'base', price:130000, types:['conference','education','event','museum'], note:'Для сцены, лекций, презентаций и публичных мероприятий.'},
-  {id:'ceiling_mic_shure', name:'Потолочный микрофон массив', brand:'Shure', model:'MXA920', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'premium', price:378560, types:['corporate','conference'], note:'Премиальное конференц-решение для залов и крупных переговорных.'},
-  {id:'dsp_basic', name:'DSP / аудиопроцессор', brand:'QSC/Biamp/Yamaha', model:'DSP Core', category:'Аудио', segment:'DSP и управление звуком', unit:'шт.', scenario:'base', price:145000, types:['conference','corporate','museum','event'], note:'Сводит и управляет локальными аудиосценариями.'},
+  {id:'bose_dm3se', name:'Пара настенной акустики', brand:'Bose Professional', model:'DesignMax DM3SE', category:'Аудио', segment:'Локальная акустика', unit:'пара', scenario:'base', price:30000, types:['museum','education','retail','public','corporate','conference'], note:'Компактная install-акустика.'},
+  {id:'jbl_control', name:'Пара настенной акустики', brand:'JBL', model:'Control 25/28', category:'Аудио', segment:'Локальная акустика', unit:'пара', scenario:'budget', price:22000, types:['museum','education','retail','public','corporate','conference'], note:'Бюджетный install-сегмент.'},
+  {id:'qsc_pair', name:'Пара настенной акустики', brand:'QSC', model:'AD-S / AcousticDesign', category:'Аудио', segment:'Локальная акустика', unit:'пара', scenario:'premium', price:69000, types:['museum','education','retail','public','corporate','conference'], note:'Премиальная локальная акустика.'},
+  {id:'shure_ulxd_dual', name:'Комплект радиомикрофонов', brand:'Shure', model:'ULXD dual', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'premium', price:285000, types:['conference','education','event','museum'], note:'Премиальный беспроводной комплект для залов и сцен.'},
+  {id:'wireless_mic_dual', name:'Комплект радиомикрофонов', brand:'Shure / Sennheiser', model:'Dual wireless', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'base', price:145000, types:['conference','education','event','museum'], note:'Базовый рабочий комплект беспроводных микрофонов.'},
+  {id:'sennheiser_ewd', name:'Комплект радиомикрофонов', brand:'Sennheiser', model:'EW-D dual', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'base', price:165000, types:['conference','event','education'], note:'Цифровой беспроводной сегмент.'},
+  {id:'shure_mxa920', name:'Потолочный микрофон массив', brand:'Shure', model:'MXA920', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'premium', price:378000, types:['corporate','conference'], note:'Премиальный потолочный массив для ВКС и залов.'},
+  {id:'yealink_vcm', name:'Настольный/потолочный микрофон', brand:'Yealink', model:'VCM / CPW series', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'budget', price:48000, types:['corporate','conference'], note:'Бюджетное конференц-аудио.'},
+  {id:'qsc_core_nano', name:'DSP / аудиопроцессор', brand:'QSC', model:'Core Nano / 8 Flex', category:'Аудио', segment:'DSP и управление звуком', unit:'шт.', scenario:'premium', price:248000, types:['conference','corporate','museum','event'], note:'Премиальный DSP для гибридных залов.'},
+  {id:'dsp_basic', name:'DSP / аудиопроцессор', brand:'Biamp / QSC / Yamaha', model:'DSP Core', category:'Аудио', segment:'DSP и управление звуком', unit:'шт.', scenario:'base', price:148000, types:['conference','corporate','museum','event'], note:'Базовый DSP для звуковых сценариев.'},
+  {id:'audio_amp', name:'Усилитель / power amp', brand:'QSC / Bose / Yamaha', model:'Install amp', category:'Аудио', segment:'Усиление', unit:'шт.', scenario:'base', price:78000, types:['museum','conference','retail','public','corporate'], note:'Усиление для распределённых аудиосистем.'},
 
-  // VC
-  {id:'rally_bar_mini', name:'Видеобар для переговорной', brand:'Logitech', model:'Rally Bar Mini', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:264000, types:['corporate','conference','public'], note:'All-in-one видеобар для небольших и средних переговорных.'},
-  {id:'ptz_camera', name:'PTZ-камера конференц-зала', brand:'Aver/Logitech/Minrray', model:'PTZ 20x', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'premium', price:180000, types:['conference','corporate','education'], note:'Для залов, гибридных мероприятий и трансляций.'},
+  // VC / conferencing
+  {id:'rally_bar_mini', name:'Видеобар для переговорной', brand:'Logitech', model:'Rally Bar Mini', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:264000, types:['corporate','conference','public'], note:'All-in-one видеобар для small/medium room.'},
+  {id:'rally_bar', name:'Видеобар для переговорной', brand:'Logitech', model:'Rally Bar', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'premium', price:388000, types:['corporate','conference'], note:'Более мощный видеобар под larger rooms.'},
+  {id:'aver_ptz', name:'PTZ-камера', brand:'AVer', model:'20x/30x PTZ', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:168000, types:['conference','corporate','education'], note:'PTZ для залов и трансляций.'},
+  {id:'yealink_roomkit', name:'Room kit', brand:'Yealink', model:'MVC / MeetingBar', category:'Конференц-связь', segment:'VC', unit:'компл.', scenario:'budget', price:225000, types:['corporate','conference'], note:'Бюджетная альтернатива видеобару + room control.'},
+  {id:'logi_tap', name:'Панель управления переговорной', brand:'Logitech', model:'Tap IP', category:'Конференц-связь', segment:'VC control', unit:'шт.', scenario:'premium', price:132000, types:['corporate','conference'], note:'Touch controller для meeting room.'},
 
   // VR
-  {id:'pico4e', name:'VR/MR гарнитура', brand:'PICO', model:'4 Ultra Enterprise', category:'VR / AR', segment:'VR гарнитуры', unit:'шт.', scenario:'base', price:55920, types:['vr','education','museum'], note:'Базовая B2B гарнитура для тренажёров, MR и интерактивных сценариев.'},
-  {id:'vr_pc', name:'ПК для VR станции', brand:'Visuals build', model:'VR RTX', category:'VR / AR', segment:'VR компьютеры', unit:'шт.', scenario:'base', price:220000, types:['vr','education','museum'], note:'ПК под VR-станции и визуально тяжёлые интерактивы.'},
-  {id:'vr_sensor_pack', name:'Трекеры / датчики / аксессуары VR', brand:'Mixed', model:'Sensor Pack', category:'VR / AR', segment:'VR аксессуары', unit:'компл.', scenario:'base', price:45000, types:['vr','education','museum'], note:'Базовый набор аксессуаров для трекинга и эксплуатации VR-зон.'},
+  {id:'pico4e', name:'VR/MR гарнитура', brand:'PICO', model:'4 Ultra Enterprise', category:'VR / AR', segment:'VR гарнитуры', unit:'шт.', scenario:'base', price:55900, types:['vr','education','museum'], note:'B2B гарнитура для тренажёров и MR.'},
+  {id:'quest3_512', name:'VR/MR гарнитура', brand:'Meta', model:'Quest 3 512GB', category:'VR / AR', segment:'VR гарнитуры', unit:'шт.', scenario:'budget', price:39900, types:['vr','education','museum'], note:'Более доступный standalone MR/VR-сегмент.'},
+  {id:'htc_vive_focus', name:'VR/MR гарнитура', brand:'HTC', model:'VIVE Focus', category:'VR / AR', segment:'VR гарнитуры', unit:'шт.', scenario:'premium', price:128000, types:['vr','education','museum'], note:'Премиальный enterprise VR-сегмент.'},
+  {id:'vr_pc', name:'ПК для VR станции', brand:'Visuals build', model:'VR RTX', category:'VR / AR', segment:'VR компьютеры', unit:'шт.', scenario:'base', price:225000, types:['vr','education','museum'], note:'ПК для визуально тяжёлых VR-сценариев.'},
+  {id:'vr_sensor_pack', name:'Трекеры / аксессуары VR', brand:'Mixed', model:'Sensor Pack', category:'VR / AR', segment:'VR аксессуары', unit:'компл.', scenario:'base', price:48000, types:['vr','education','museum'], note:'Базовый набор аксессуаров и трекинга.'},
 
-  // infrastructure
-  {id:'mounting_struct', name:'Металлоконструкция / крепёжный контур', brand:'Local fabrication', model:'Custom', category:'Инфраструктура', segment:'Конструкции', unit:'м²', scenario:'base', price:25000, types:['museum','education','conference','retail','event','public'], note:'Для LED и крупных инсталляций; цена зависит от несущих решений.'},
-  {id:'signal_cabling', name:'Коммутация / кабельный комплект', brand:'Mixed', model:'Signal + Power', category:'Инфраструктура', segment:'Коммутация', unit:'компл.', scenario:'base', price:35000, types:['museum','education','conference','retail','event','public','corporate','vr'], note:'HDMI/SDI/CAT/силовая часть; ориентир для быстрого пресейла.'},
-  {id:'network_switch', name:'Сетевое оборудование', brand:'MikroTik/Ubiquiti/Cisco SMB', model:'Switch / access', category:'Инфраструктура', segment:'Сеть', unit:'шт.', scenario:'base', price:45000, types:['museum','education','conference','retail','public','corporate','vr'], note:'Под VR, киоски, медиасерверы, сетевые аудио/видео-сценарии.'}
+  // Infra / control
+  {id:'signal_cabling', name:'Коммутация / кабельный комплект', brand:'Mixed', model:'Signal + Power', category:'Инфраструктура', segment:'Коммутация', unit:'компл.', scenario:'base', price:38000, types:['museum','education','conference','retail','event','public','corporate','vr'], note:'HDMI/SDI/CAT/силовая часть; ориентир для пресейла.'},
+  {id:'mounting_struct', name:'Металлоконструкция / крепёжный контур', brand:'Local fabrication', model:'Custom', category:'Инфраструктура', segment:'Конструкции', unit:'м²', scenario:'base', price:27000, types:['museum','education','conference','retail','event','public','corporate'], note:'Под экраны и нестандартные инсталляции.'},
+  {id:'rack_infra', name:'Стойка / шкаф AV', brand:'Middle Atlantic / custom', model:'Rack 18–42U', category:'Инфраструктура', segment:'Racks', unit:'шт.', scenario:'base', price:92000, types:['conference','corporate','museum','control','event'], note:'Racks и базовая rack-инфраструктура.'},
+  {id:'network_switch', name:'Сетевой коммутатор', brand:'MikroTik / Ubiquiti', model:'Switch / access', category:'Инфраструктура', segment:'Сеть', unit:'шт.', scenario:'base', price:46000, types:['museum','education','conference','retail','public','corporate','vr','control'], note:'Сеть под AV-over-IP, signage, VR и сервисы.'},
+  {id:'ubnt_switch_pro', name:'Сетевой коммутатор', brand:'Ubiquiti', model:'Switch Pro', category:'Инфраструктура', segment:'Сеть', unit:'шт.', scenario:'premium', price:84000, types:['conference','corporate','control','vr'], note:'Более высокий сегмент сетевой инфраструктуры.'},
+  {id:'ups_3kva', name:'ИБП', brand:'APC / Eaton', model:'3 kVA', category:'Инфраструктура', segment:'Питание', unit:'шт.', scenario:'base', price:98000, types:['conference','corporate','museum','control','vr'], note:'Резерв питания для AV-ядра.'},
+  {id:'crestron_control', name:'Система управления', brand:'Crestron / Extron / Kramer', model:'Control processor + touch', category:'Управление и коммутация', segment:'Control systems', unit:'компл.', scenario:'premium', price:340000, types:['conference','corporate','museum','control'], note:'Система централизованного управления.'},
+  {id:'kramer_switcher', name:'Коммутатор / презентационный свитчер', brand:'Kramer / Extron / Atlona', model:'Presentation switcher', category:'Управление и коммутация', segment:'Switcher', unit:'шт.', scenario:'base', price:128000, types:['conference','corporate','education','museum'], note:'Коммутация в переговорных и залах.'},
+  {id:'nvr_camera', name:'Сервисная камера / NVR', brand:'Hikvision / Dahua', model:'NVR + camera', category:'Инфраструктура', segment:'Видео-наблюдение', unit:'компл.', scenario:'budget', price:65000, types:['public','retail','museum','event'], note:'Если проект включает сервисное видеонаблюдение.'}
 ];
 
-const RECOMMENDED = {
-  museum: {title:'Музей / visitor center', text:'Обычно нужен набор из входного LED или signage, внутренних LED/проекции, медиасервера, интерактива, аудиозон и управляющих контроллеров.', lines:(m,s)=>[
-    ['led_outdoor_'+s, m.outdoorLed || 0],
-    ['led_indoor_'+s, m.indoorLed || 0],
-    [s==='budget'?'kiosk43':'kiosk55', Math.max(1,m.kiosks||2)],
-    [s==='premium'?'proj_12k':(s==='base'?'proj_7k':'proj_l530u'), Math.max(0,m.projectors||1)],
-    [s==='premium'?'media_server_premium':(s==='base'?'media_server_core':'media_server_basic'), 1],
-    ['resolume_arena', 1],
-    [s==='premium'?'novastar_vx2000':'novastar_vx1000', (m.outdoorLed>0 || m.indoorLed>0) ? 1 : 0],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(1,m.audioZones||2)],
-    ['mounting_struct', (m.outdoorLed||0)+(m.indoorLed||0)],
-    ['signal_cabling', 1]
-  ]},
-  education: {title:'Образовательный / карьерный центр', text:'Чаще всего это смешанный сценарий: LCD/LED в общих зонах, панели, VR-точки, киоски, аудиозоны, проекторы в отдельных помещениях.', lines:(m,s)=>[
-    ['led_outdoor_'+s, m.outdoorLed || 0],
-    ['led_indoor_'+s, m.indoorLed || 0],
-    [s==='premium'?'ifp86':'ifp65', Math.max(1, Math.ceil((m.rooms||1)/2))],
-    [s==='budget'?'kiosk43':'kiosk55', Math.max(1,m.kiosks||2)],
-    [s==='premium'?'lcd98':'lcd75', Math.max(1,m.displays||3)],
-    [s==='premium'?'proj_12k':(s==='base'?'proj_7k':'proj_l530u'), Math.max(0,m.projectors||1)],
-    [s==='premium'?'pico4e':'pico4e', Math.max(0,m.vr||2)],
-    ['vr_pc', Math.max(0,m.vr||2)],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(1,m.audioZones||3)],
-    [s==='premium'?'media_server_premium':'media_server_core', 1],
-    ['signal_cabling', 1],
-    ['network_switch', 1]
-  ]},
-  corporate: {title:'Корпоративный офис / demo-зона', text:'Упор на переговорные, VC, профессиональные панели, интерактив и clean-инфраструктуру.', lines:(m,s)=>[
-    [s==='premium'?'lcd98':'lcd75', Math.max(1,m.displays||2)],
-    [s==='premium'?'ifp86':'ifp65', Math.max(1,Math.ceil((m.rooms||2)/2))],
-    ['rally_bar_mini', Math.max(1,m.rooms||2)],
-    [s==='premium'?'ceiling_mic_shure':'wireless_mic_set', s==='premium'?Math.max(1,Math.ceil((m.rooms||2)/2)):1],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(1,m.audioZones||2)],
-    ['dsp_basic', 1],
-    ['signal_cabling', 1],
-    ['network_switch', 1]
-  ]},
-  conference: {title:'Конференц-зал / auditorium', text:'Сценический экран, проекторы или LED, звук, микрофоны, PTZ и VC-инфраструктура.', lines:(m,s)=>[
-    ['led_indoor_'+s, m.indoorLed || 0],
-    [s==='premium'?'proj_12k':(s==='base'?'proj_7k':'proj_l530u'), Math.max(1,m.projectors||1)],
-    [s==='premium'?'novastar_vx2000':'novastar_vx1000', m.indoorLed>0?1:0],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(2,m.audioZones||4)],
-    ['wireless_mic_set', 1],
-    ['ptz_camera', 1],
-    [s==='premium'?'ceiling_mic_shure':'rally_bar_mini', 1],
-    ['dsp_basic', 1],
-    [s==='premium'?'media_server_premium':'media_server_core', 1],
-    ['signal_cabling', 1]
-  ]},
-  retail: {title:'Retail / showroom / бренд-зона', text:'Здесь важны LED/LCD, киоски, управляемый контент, звук и красивый фронтальный эффект.', lines:(m,s)=>[
-    ['led_outdoor_'+s, m.outdoorLed || 0],
-    ['led_indoor_'+s, m.indoorLed || 0],
-    [s==='budget'?'kiosk43':'kiosk55', Math.max(1,m.kiosks||1)],
-    [s==='premium'?'lcd98':'lcd75', Math.max(1,m.displays||2)],
-    [s==='premium'?'media_server_premium':'media_server_core', 1],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(1,m.audioZones||2)],
-    [s==='premium'?'novastar_vx2000':'novastar_vx1000', (m.outdoorLed>0 || m.indoorLed>0)?1:0],
-    ['mounting_struct', (m.outdoorLed||0)+(m.indoorLed||0)],
-    ['signal_cabling', 1]
-  ]},
-  event: {title:'Event / pop-up / временная инсталляция', text:'Важны скорость монтажа, мобильность, LED, контентный сервер и резерв на пусконаладку.', lines:(m,s)=>[
-    ['led_outdoor_'+s, m.outdoorLed || 0],
-    ['led_indoor_'+s, m.indoorLed || 0],
-    [s==='premium'?'novastar_vx2000':'novastar_vx1000', (m.outdoorLed>0 || m.indoorLed>0)?1:0],
-    [s==='premium'?'media_server_premium':'media_server_core', 1],
-    ['resolume_arena', 1],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(2,m.audioZones||2)],
-    ['wireless_mic_set', 1],
-    ['mounting_struct', (m.outdoorLed||0)+(m.indoorLed||0)],
-    ['signal_cabling', 1]
-  ]},
-  public: {title:'Общественное пространство / гос. объект', text:'Упор на надёжность, читаемость, киоски, навигацию, панели, иногда LED во входных зонах.', lines:(m,s)=>[
-    ['led_outdoor_'+s, m.outdoorLed || 0],
-    [s==='premium'?'lcd98':'lcd75', Math.max(1,m.displays||3)],
-    [s==='budget'?'kiosk43':'kiosk55', Math.max(1,m.kiosks||2)],
-    [s==='premium'?'ifp86':'ifp65', Math.max(0,Math.ceil((m.rooms||0)/2))],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(1,m.audioZones||2)],
-    ['signal_cabling', 1],
-    ['network_switch', 1]
-  ]},
-  vr: {title:'VR / тренажёры / симуляторы', text:'Ключевые позиции — гарнитуры, VR-PC, дисплеи оператора, локальный звук, сеть и сервисные аксессуары.', lines:(m,s)=>[
-    ['pico4e', Math.max(1,m.vr||2)],
-    ['vr_pc', Math.max(1,m.vr||2)],
-    ['vr_sensor_pack', Math.max(1,Math.ceil((m.vr||2)/2))],
-    [s==='premium'?'lcd98':'lcd75', Math.max(1,m.displays||2)],
-    [s==='premium'?'audio_pair_premium':(s==='base'?'audio_pair_bose':'audio_pair_budget'), Math.max(1,m.audioZones||1)],
-    [s==='premium'?'media_server_premium':'media_server_core', 1],
-    ['network_switch', 1],
-    ['signal_cabling', 1]
-  ]}
-};
-
 const state = {
+  zones: [],
   estimate: [],
-  lastId: 1
+  lastId: 1,
+  lastZoneId: 1,
+  flags: {install:true,pnr:true,content:false,metal:false,delivery:true}
 };
 
 const el = id => document.getElementById(id);
-const rub = v => new Intl.NumberFormat('ru-RU', {maximumFractionDigits:0}).format(Math.round(v || 0)) + ' ₽';
 const num = v => Number(v) || 0;
+const rub = v => new Intl.NumberFormat('ru-RU', {maximumFractionDigits:0}).format(Math.round(v || 0)) + ' ₽';
+const escapeHtml = str => String(str ?? '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
 
 function initSelectors(){
-  el('projectType').innerHTML = PROJECT_TYPES.map(x => `<option value="${x.id}">${x.name}</option>`).join('');
+  el('projectType').innerHTML = PROJECT_TYPES.map(x=>`<option value="${x.id}">${x.name}</option>`).join('');
   el('projectType').value = 'education';
-  el('scenario').innerHTML = SCENARIOS.map(x => `<option value="${x.id}">${x.name}</option>`).join('');
+  el('scenario').innerHTML = SCENARIOS.map(x=>`<option value="${x.id}">${x.name}</option>`).join('');
   el('scenario').value = 'base';
-
-  const categories = ['Все категории', ...new Set(ITEMS.map(x=>x.category))];
-  el('categoryFilter').innerHTML = categories.map(x => `<option value="${x==='Все категории'?'all':x}">${x}</option>`).join('');
-  el('libraryScenarioFilter').innerHTML = ['all','budget','base','premium'].map(x => `<option value="${x}">${x==='all'?'Все сценарии':SCENARIOS.find(s=>s.id===x).name}</option>`).join('');
+  el('cityTier').innerHTML = CITY_TIERS.map(x=>`<option value="${x.id}">${x.name}</option>`).join('');
+  el('urgency').innerHTML = URGENCY.map(x=>`<option value="${x.id}">${x.name}</option>`).join('');
+  el('categoryFilter').innerHTML = ['all', ...new Set(ITEMS.map(x=>x.category))].map(v => `<option value="${v}">${v==='all'?'Все категории':v}</option>`).join('');
+  el('libraryScenarioFilter').innerHTML = ['all','budget','base','premium'].map(v => `<option value="${v}">${v==='all'?'Все сценарии':SCENARIOS.find(s=>s.id===v)?.name}</option>`).join('');
+  renderZoneFilter();
+  renderCustomZoneSelect();
+  el('globalFlags').innerHTML = GLOBAL_FLAGS.map(f=>`<label class="chip"><input type="checkbox" data-flag="${f.id}" ${state.flags[f.id]?'checked':''}> ${f.name}</label>`).join('');
 }
 
-function currentScenario(){ return el('scenario').value; }
 function currentType(){ return el('projectType').value; }
-function metrics(){
+function currentScenario(){ return el('scenario').value; }
+
+function makeZone(seed={}){
   return {
-    outdoorLed: num(el('metricOutdoorLed').value),
-    indoorLed: num(el('metricIndoorLed').value),
-    projectors: num(el('metricProjectors').value),
-    kiosks: num(el('metricKiosks').value),
-    displays: num(el('metricDisplays').value),
-    vr: num(el('metricVr').value),
-    audioZones: num(el('metricAudioZones').value),
-    rooms: num(el('metricRooms').value)
+    id:'z'+(state.lastZoneId++),
+    name: seed.name || 'Новая зона',
+    purpose: seed.purpose || 'hall',
+    area: seed.area ?? 40,
+    capacity: seed.capacity ?? 10,
+    primaryTask: seed.primaryTask || 'content',
+    scenario: seed.scenario || currentScenario(),
+    flags: {...state.flags, ...(seed.flags||{})}
   };
 }
-function scenarioRank(id){ return id==='budget'?1:id==='base'?2:3; }
 
-function itemMatchesProject(item){
-  return item.types.includes(currentType());
-}
-function recommendedForCurrent(item){
-  return item.scenario === currentScenario();
+function addZone(seed){ state.zones.push(makeZone(seed)); renderZones(); saveState(); }
+
+function addDefaultZones(){
+  const type = currentType();
+  state.zones = [];
+  if(type==='education'){
+    addZone({name:'Входная зона', purpose:'entrance', area:45, capacity:40, primaryTask:'content'});
+    addZone({name:'Учебная аудитория', purpose:'classroom', area:65, capacity:25, primaryTask:'interactive'});
+    addZone({name:'VR зона', purpose:'vr', area:55, capacity:6, primaryTask:'wow'});
+  } else if(type==='conference'){
+    addZone({name:'Основной зал', purpose:'conference', area:180, capacity:120, primaryTask:'content'});
+    addZone({name:'Фойе', purpose:'hall', area:70, capacity:60, primaryTask:'content'});
+    addZone({name:'Режиссёрская', purpose:'control', area:18, capacity:3, primaryTask:'control'});
+  } else if(type==='corporate'){
+    addZone({name:'Переговорная S', purpose:'meeting', area:24, capacity:8, primaryTask:'vc'});
+    addZone({name:'Переговорная L', purpose:'meeting', area:42, capacity:14, primaryTask:'vc'});
+    addZone({name:'Demo-зона', purpose:'hall', area:55, capacity:20, primaryTask:'wow'});
+  } else if(type==='museum'){
+    addZone({name:'Входная welcome-зона', purpose:'entrance', area:35, capacity:30, primaryTask:'content'});
+    addZone({name:'Экспозиция 1', purpose:'museum', area:90, capacity:25, primaryTask:'interactive'});
+    addZone({name:'Экспозиция 2', purpose:'museum', area:80, capacity:20, primaryTask:'wow'});
+  } else if(type==='event'){
+    addZone({name:'Сцена', purpose:'stage', area:120, capacity:200, primaryTask:'wow'});
+    addZone({name:'Входная зона', purpose:'entrance', area:45, capacity:70, primaryTask:'content'});
+  } else if(type==='retail'){
+    addZone({name:'Витрина / фасад', purpose:'outdoor', area:35, capacity:0, primaryTask:'wow'});
+    addZone({name:'Основной зал', purpose:'retail', area:95, capacity:50, primaryTask:'content'});
+  } else if(type==='public'){
+    addZone({name:'Холл', purpose:'hall', area:70, capacity:60, primaryTask:'content'});
+    addZone({name:'Стойка обслуживания', purpose:'retail', area:28, capacity:12, primaryTask:'interactive'});
+  } else if(type==='vr'){
+    addZone({name:'VR тренажёр 1', purpose:'vr', area:35, capacity:2, primaryTask:'wow'});
+    addZone({name:'VR тренажёр 2', purpose:'vr', area:35, capacity:2, primaryTask:'interactive'});
+    addZone({name:'Зона оператора', purpose:'control', area:16, capacity:2, primaryTask:'control'});
+  }
 }
 
-function renderTemplateInfo(){
-  const rec = RECOMMENDED[currentType()];
-  el('templateDescription').innerHTML = `<b>${rec.title}</b><br>${rec.text}<div class="small muted" style="margin-top:8px;">Логика генератора учитывает быстрые входные данные слева: площади LED, число киосков, переговорных, VR-точек, дисплеев и аудиозон.</div>`;
+function purposeName(id){ return ZONE_PURPOSES.find(x=>x.id===id)?.name || id; }
+function scenarioName(id){ return SCENARIOS.find(x=>x.id===id)?.name || id; }
+
+function renderZoneFilter(){
+  const opts = ['all', ...state.zones.map(z=>z.id)];
+  el('zoneFilter').innerHTML = opts.map(v=>`<option value="${v}">${v==='all'?'Все зоны':(state.zones.find(z=>z.id===v)?.name || v)}</option>`).join('');
+}
+function renderCustomZoneSelect(){
+  const opts = [{id:'',name:'Без привязки'}].concat(state.zones.map(z=>({id:z.id,name:z.name})));
+  el('customZoneRef').innerHTML = opts.map(o=>`<option value="${o.id}">${o.name}</option>`).join('');
 }
 
-function renderSegmentSummary(){
-  const segments = [...new Set(ITEMS.map(i => i.segment))].slice(0,12);
-  el('segmentSummary').innerHTML = segments.map(seg => {
-    const items = ITEMS.filter(i => i.segment===seg);
-    const scenarios = [...new Set(items.map(i => i.scenario))].map(s => SCENARIOS.find(x=>x.id===s)?.name).filter(Boolean).join(' / ');
-    return `<div class="item">
-      <div class="itemTop"><h4>${seg}</h4><span class="badge lime">${items.length} поз.</span></div>
-      <div class="small muted">${items[0].category}</div>
-      <div class="small">Сценарии: ${scenarios || 'ручной микс'}</div>
-    </div>`;
-  }).join('');
+function zoneFlagHtml(zone){
+  return GLOBAL_FLAGS.map(f=>`<label class="chip"><input type="checkbox" ${zone.flags[f.id]?'checked':''} onchange="toggleZoneFlag('${zone.id}','${f.id}',this.checked)"> ${f.name}</label>`).join('');
+}
+window.toggleZoneFlag = (zoneId, flag, checked) => { const z = state.zones.find(x=>x.id===zoneId); if(!z) return; z.flags[flag]=checked; renderZones(); recalc(); saveState(); };
+
+function renderZones(){
+  renderZoneFilter(); renderCustomZoneSelect();
+  if(!state.zones.length){
+    el('zoneList').innerHTML = `<div class="empty">Зон пока нет. Добавь вручную или используй шаблон по типу проекта.</div>`;
+  } else {
+    el('zoneList').innerHTML = state.zones.map((zone,idx)=>`
+      <div class="zoneCard">
+        <div class="zoneHead"><div class="zoneName">${idx+1}. ${escapeHtml(zone.name)}</div><button class="btn danger" type="button" onclick="removeZone('${zone.id}')">Удалить</button></div>
+        <div class="row4">
+          <div class="field"><label>Название зоны</label><input value="${escapeHtml(zone.name)}" oninput="updateZone('${zone.id}','name',this.value)"></div>
+          <div class="field"><label>Назначение</label><select onchange="updateZone('${zone.id}','purpose',this.value)">${ZONE_PURPOSES.map(p=>`<option value="${p.id}" ${p.id===zone.purpose?'selected':''}>${p.name}</option>`).join('')}</select></div>
+          <div class="field"><label>Площадь, м²</label><input type="number" min="0" step="1" value="${zone.area}" oninput="updateZone('${zone.id}','area',this.value)"></div>
+          <div class="field"><label>Вместимость / поток</label><input type="number" min="0" step="1" value="${zone.capacity}" oninput="updateZone('${zone.id}','capacity',this.value)"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>Ключевая задача зоны</label><select onchange="updateZone('${zone.id}','primaryTask',this.value)">${TASKS.map(t=>`<option value="${t.id}" ${t.id===zone.primaryTask?'selected':''}>${t.name}</option>`).join('')}</select></div>
+          <div class="field"><label>Уровень решения по зоне</label><select onchange="updateZone('${zone.id}','scenario',this.value)">${SCENARIOS.map(s=>`<option value="${s.id}" ${s.id===zone.scenario?'selected':''}>${s.name}</option>`).join('')}</select></div>
+        </div>
+        <div class="mini" style="margin-bottom:8px">Сервисы зоны</div>
+        <div class="chipRow">${zoneFlagHtml(zone)}</div>
+      </div>
+    `).join('');
+  }
+  updateZoneSummary();
+}
+window.updateZone = (zoneId, key, value) => { const z=state.zones.find(x=>x.id===zoneId); if(!z) return; z[key]=['area','capacity'].includes(key)?num(value):value; renderZones(); updateAutoCoefficients(); recalc(); saveState(); };
+window.removeZone = zoneId => { state.zones = state.zones.filter(z=>z.id!==zoneId); renderZones(); updateAutoCoefficients(); recalc(); saveState(); };
+
+function updateZoneSummary(){
+  const sumArea = state.zones.reduce((a,z)=>a+num(z.area),0);
+  const contentZones = state.zones.filter(z=>z.primaryTask==='content' || z.flags.content).length;
+  const installZones = state.zones.filter(z=>z.flags.install).length;
+  el('sumZones').textContent = state.zones.length;
+  el('sumZoneArea').textContent = `${Math.round(sumArea)} м²`;
+  el('sumContentZones').textContent = contentZones;
+  el('sumInstallZones').textContent = installZones;
+}
+
+function updateAutoCoefficients(){
+  const zones = state.zones;
+  const totalArea = zones.reduce((a,z)=>a+num(z.area),0) || num(el('projectArea').value);
+  const tall = num(el('ceilingHeight').value) > 4 ? 0.05 : num(el('ceilingHeight').value) > 6 ? 0.09 : 0;
+  const zoneComplexity = zones.reduce((acc,z)=>{
+    let k = 0;
+    if(z.primaryTask==='interactive') k += 0.08;
+    if(z.primaryTask==='wow') k += 0.10;
+    if(z.primaryTask==='vc') k += 0.05;
+    if(z.primaryTask==='control') k += 0.04;
+    if(z.purpose==='vr') k += 0.12;
+    if(z.purpose==='outdoor' || z.purpose==='stage') k += 0.06;
+    if(z.flags.metal) k += 0.05;
+    if(z.flags.content) k += 0.03;
+    return acc + k;
+  }, 0);
+  const areaFactor = Math.min(0.18, totalArea / 1000 * 0.08);
+  const zoneCountFactor = Math.max(0, (zones.length - 2) * 0.025);
+  const urgencyFactor = URGENCY.find(x=>x.id===el('urgency').value)?.factor || 1;
+  const complexity = Math.min(1.75, Math.max(1, 1 + tall + zoneComplexity + areaFactor + zoneCountFactor + (urgencyFactor - 1)));
+
+  const cityFactor = CITY_TIERS.find(x=>x.id===el('cityTier').value)?.factor || 1;
+  const floorsFactor = Math.max(0, (num(el('floors').value)-1) * 0.015);
+  const outdoorFactor = zones.some(z=>z.purpose==='outdoor' || z.purpose==='stage') ? 0.03 : 0;
+  const deliveryFactor = zones.some(z=>z.flags.delivery) ? 0.02 : 0;
+  const logistics = Math.min(1.45, Math.max(1, cityFactor + floorsFactor + outdoorFactor + deliveryFactor - 1));
+
+  if(el('complexityAuto').checked) el('complexity').value = complexity.toFixed(2);
+  if(el('logisticsAuto').checked) el('logistics').value = logistics.toFixed(2);
+
+  el('complexityHelp').textContent = `${complexity.toFixed(2)} = высота ${num(el('ceilingHeight').value)} м + ${zones.length} зон + задачи/сервисы + срок ${URGENCY.find(u=>u.id===el('urgency').value)?.name.toLowerCase()}`;
+  const city = CITY_TIERS.find(c=>c.id===el('cityTier').value);
+  el('logisticsHelp').textContent = `${logistics.toFixed(2)} = ${city?.name || ''}, этажей ${num(el('floors').value)}, доставка ${zones.some(z=>z.flags.delivery)?'включена':'не включена'}`;
+}
+
+function itemMatchesProject(item){ return item.types.includes(currentType()) || item.types.includes('control'); }
+function itemMatchesZone(item, zone){
+  if(!zone) return true;
+  const purpose = zone.purpose;
+  const task = zone.primaryTask;
+  if(item.category==='VR / AR' && purpose!=='vr') return false;
+  if(item.category==='Конференц-связь' && !['meeting','conference','classroom'].includes(purpose) && task!=='vc') return false;
+  return true;
 }
 
 function renderLibrary(){
   const q = el('searchInput').value.trim().toLowerCase();
   const cat = el('categoryFilter').value;
   const scenarioFilter = el('libraryScenarioFilter').value;
+  const zoneFilter = el('zoneFilter').value;
+  const zone = zoneFilter==='all' ? null : state.zones.find(z=>z.id===zoneFilter);
   const list = ITEMS.filter(item => {
     if(!itemMatchesProject(item)) return false;
+    if(zone && !itemMatchesZone(item, zone)) return false;
     if(cat !== 'all' && item.category !== cat) return false;
     if(scenarioFilter !== 'all' && item.scenario !== scenarioFilter) return false;
     const hay = [item.name,item.brand,item.model,item.category,item.segment,item.note].join(' ').toLowerCase();
-    if(q && !hay.includes(q)) return false;
-    return true;
+    return !q || hay.includes(q);
   });
-  el('libraryList').innerHTML = list.map(item => {
-    const isRecommended = recommendedForCurrent(item);
-    return `<div class="item">
+  el('libraryList').innerHTML = list.map(item => `
+    <div class="item">
       <div class="itemTop">
         <div>
           <h4>${item.name}</h4>
-          <div class="small muted">${item.brand} · ${item.model}</div>
+          <div class="small" style="color:var(--muted)">${item.brand} · ${item.model}</div>
         </div>
-        <span class="badge ${isRecommended?'lime':'ok'}">${SCENARIOS.find(s=>s.id===item.scenario)?.name}</span>
+        <span class="badge ${item.scenario===currentScenario()?'lime':'ok'}">${scenarioName(item.scenario)}</span>
       </div>
       <div class="tags">
         <span class="tag">${item.category}</span>
@@ -640,62 +669,151 @@ function renderLibrary(){
         <span class="tag">${item.unit}</span>
       </div>
       <div class="price">${rub(item.price)}</div>
-      <div class="small muted">${item.note}</div>
+      <div class="small" style="color:var(--muted)">${item.note}</div>
       <div class="itemFooter">
-        <button class="btn primary" onclick="addItem('${item.id}')">Добавить</button>
-        <button class="btn ghost" onclick="addItem('${item.id}', true)">+2</button>
+        <button class="btn primary" onclick="addItem('${item.id}',1)">Добавить</button>
+        <button class="btn ghost" onclick="addItem('${item.id}',2)">Добавить ×2</button>
       </div>
-    </div>`;
-  }).join('') || `<div class="empty">Ничего не найдено. Сними фильтр или поменяй тип проекта.</div>`;
+    </div>
+  `).join('') || `<div class="empty">Ничего не найдено. Сними фильтр или поменяй тип проекта.</div>`;
 }
 
-function cloneItemAsLine(item, qty=1){
+function cloneItemAsLine(item, qty=1, zoneRef=''){
+  const z = state.zones.find(x=>x.id===zoneRef);
   return {
-    lineId: 'l' + (state.lastId++),
-    sourceId: item.id,
-    name: item.name + (item.brand ? ` — ${item.brand} ${item.model}` : ''),
-    category: item.category,
-    scenario: item.scenario,
-    unit: item.unit,
-    qty: qty,
-    price: item.price,
-    logistics: 1,
-    note: item.note
+    lineId:'l'+(state.lastId++),
+    sourceId:item.id,
+    zoneRef: zoneRef || '',
+    zoneName: z?.name || '',
+    name:`${item.name} — ${item.brand} ${item.model}`,
+    category:item.category,
+    scenario:item.scenario,
+    unit:item.unit,
+    qty:qty,
+    price:item.price,
+    logistics:num(el('logistics').value),
+    install: z ? !!z.flags.install : !!state.flags.install,
+    pnr: z ? !!z.flags.pnr : !!state.flags.pnr,
+    content: z ? !!z.flags.content : !!state.flags.content,
+    metal: z ? !!z.flags.metal : !!state.flags.metal,
+    note:item.note
   };
 }
 
-function addItem(itemId, double=false){
-  const item = ITEMS.find(x => x.id === itemId);
-  if(!item) return;
-  state.estimate.push(cloneItemAsLine(item, double ? 2 : 1));
-  renderEstimate();
-  switchTab('estimate');
+function zoneDefaultForManual(item){
+  const zoneFilter = el('zoneFilter').value;
+  if(zoneFilter !== 'all') return zoneFilter;
+  const zone = state.zones.find(z=>itemMatchesZone(item,z));
+  return zone?.id || '';
 }
-window.addItem = addItem;
 
-function findGeneratedItemId(prefix, scenario){
-  return ITEMS.find(i => i.id === prefix)?.id || ITEMS.find(i => i.id === (prefix.replace(/_(budget|base|premium)$/,'')+'_'+scenario))?.id || prefix;
+window.addItem = (itemId, qty=1) => {
+  const item = ITEMS.find(x=>x.id===itemId); if(!item) return;
+  const zoneRef = zoneDefaultForManual(item);
+  state.estimate.push(cloneItemAsLine(item, qty, zoneRef));
+  renderEstimate(); switchTab('estimate'); saveState();
+};
+
+function zoneLines(zone){
+  const s = zone.scenario || currentScenario();
+  const lines = [];
+  const add = (id, qty) => { if(qty>0) lines.push([id, qty]); };
+  const a = num(zone.area); const cap = num(zone.capacity);
+  const isBig = a >= 120 || cap >= 80;
+  const isMid = a >= 50 || cap >= 20;
+
+  switch(zone.purpose){
+    case 'entrance':
+      add(s==='budget'?'samsung_qm55c':'samsung_qm75c', isBig?2:1);
+      if(zone.primaryTask==='wow') add(s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core', Math.max(4, Math.ceil(a*0.12)));
+      if(zone.primaryTask==='interactive') add(s==='budget'?'kiosk43':'kiosk55', 1);
+      break;
+    case 'hall':
+      add(s==='premium'?'samsung_qm98c':'samsung_qm75c', isBig?2:1);
+      if(zone.primaryTask==='audio') add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(1, Math.ceil(a/45)));
+      if(zone.primaryTask==='interactive') add('kiosk55', 1);
+      break;
+    case 'conference':
+      if(zone.primaryTask==='content') add(s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core', Math.max(8, Math.ceil(a*0.16)));
+      else add(s==='premium'?'christie_13k':'epson_l690u', isBig?2:1);
+      add(s==='premium'?'shure_ulxd_dual':'wireless_mic_dual', 1);
+      add(s==='premium'?'qsc_core_nano':'dsp_basic', 1);
+      add(s==='premium'?'rally_bar':'rally_bar_mini', 1);
+      add('aver_ptz', isBig?2:1);
+      add('audio_amp', 1);
+      add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(2, Math.ceil(a/60)));
+      break;
+    case 'meeting':
+      add(s==='premium'?'samsung_qm98c':'samsung_qm75c', 1);
+      add(zone.primaryTask==='vc' ? (s==='premium'?'rally_bar':'rally_bar_mini') : 'yealink_roomkit', 1);
+      add(s==='premium'?'shure_mxa920':'yealink_vcm', 1);
+      if(s==='premium') add('logi_tap',1);
+      break;
+    case 'museum':
+      if(zone.primaryTask==='interactive') add(s==='premium'?'touch_table_55':'kiosk55', Math.max(1, Math.ceil(a/50)));
+      if(zone.primaryTask==='wow') add(s==='premium'?'led_indoor_p15_premium':'epson_l690u', s==='premium'?Math.max(6,Math.ceil(a*0.12)):Math.max(1,Math.ceil(a/70)));
+      add(s==='premium'?'mediaserver_premium':'mediaserver_core', 1);
+      if(zone.flags.content) add('resolume_arena', 1);
+      add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(1,Math.ceil(a/45)));
+      break;
+    case 'classroom':
+      add(s==='premium'?'benq_re8604':'benq_re7504', 1);
+      if(zone.primaryTask==='vc') add('rally_bar_mini', 1);
+      if(zone.primaryTask==='interactive') add('yealink_vcm', 1);
+      if(zone.primaryTask==='content' && a>60) add('epson_l530u', 1);
+      break;
+    case 'retail':
+      add(zone.primaryTask==='wow' ? (s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core') : 'samsung_qm75c', zone.primaryTask==='wow'?Math.max(5,Math.ceil(a*0.1)):Math.max(1,Math.ceil(a/60)));
+      add(s==='budget'?'kiosk43':'kiosk55', Math.max(1,Math.ceil(a/80)));
+      add(s==='premium'?'mediaserver_premium':'brightsign_hd', Math.max(1,Math.ceil(a/120)));
+      break;
+    case 'control':
+      add('samsung_qm43c', Math.max(2, Math.ceil(a/12)));
+      add(s==='premium'?'crestron_control':'kramer_switcher',1);
+      add(s==='premium'?'ubnt_switch_pro':'network_switch',1);
+      add('rack_infra',1);
+      add('ups_3kva',1);
+      break;
+    case 'vr':
+      add(s==='premium'?'htc_vive_focus':(s==='budget'?'quest3_512':'pico4e'), Math.max(1,Math.ceil(a/18)));
+      add('vr_pc', Math.max(1,Math.ceil(a/20)));
+      add('vr_sensor_pack', Math.max(1,Math.ceil(a/35)));
+      add('samsung_qm55c', 1);
+      break;
+    case 'outdoor':
+      add(s==='premium'?'led_outdoor_p29':(s==='base'?'led_outdoor_p39':'led_outdoor_p4'), Math.max(4,Math.ceil(a*0.12)));
+      add(s==='premium'?'novastar_vx2000':'novastar_vx1000',1);
+      break;
+    case 'stage':
+      add(s==='premium'?'led_indoor_p15_premium':'led_indoor_p19_core', Math.max(10,Math.ceil(a*0.18)));
+      add(s==='premium'?'novastar_h2':'novastar_vx2000',1);
+      add(s==='premium'?'mediaserver_premium':'mediaserver_core',1);
+      if(zone.flags.content) add('resolume_arena',1);
+      add(s==='premium'?'shure_ulxd_dual':'wireless_mic_dual',1);
+      add(s==='premium'?'qsc_pair':'bose_dm3se', Math.max(2,Math.ceil(a/60)));
+      break;
+  }
+  add('signal_cabling', Math.max(1, Math.ceil(a/80)));
+  if(zone.flags.metal && ['outdoor','stage','museum','retail','entrance','conference'].includes(zone.purpose)) add('mounting_struct', Math.max(1, Math.ceil(a*0.12)));
+  if(zone.flags.delivery) add('network_switch', zone.purpose==='control'?0:0); // no-op placeholder
+  return lines;
 }
 
 function generateTemplate(clearBefore=true){
   if(clearBefore) state.estimate = [];
-  const rec = RECOMMENDED[currentType()];
-  const m = metrics();
-  const scenario = currentScenario();
-  const lines = rec.lines(m, scenario).filter(([id, qty]) => qty > 0);
-  lines.forEach(([id, qty]) => {
-    const item = ITEMS.find(x => x.id === id);
-    if(item) state.estimate.push(cloneItemAsLine(item, qty));
+  state.zones.forEach(zone => {
+    zoneLines(zone).forEach(([id, qty]) => {
+      const item = ITEMS.find(x=>x.id===id);
+      if(item) state.estimate.push(cloneItemAsLine(item, qty, zone.id));
+    });
   });
-  dedupeLines();
-  renderEstimate();
-  switchTab('estimate');
+  dedupeLines(); renderEstimate(); switchTab('estimate'); saveState();
 }
 
 function dedupeLines(){
   const map = new Map();
   state.estimate.forEach(line => {
-    const key = [line.sourceId, line.price, line.category, line.unit].join('|');
+    const key = [line.zoneRef,line.sourceId,line.price,line.install,line.pnr,line.content,line.metal].join('|');
     if(map.has(key)) map.get(key).qty += num(line.qty);
     else map.set(key, {...line});
   });
@@ -703,25 +821,18 @@ function dedupeLines(){
 }
 
 function addCustomLine(){
-  const name = el('customName').value.trim();
-  if(!name) return alert('Укажи название позиции.');
+  const name = el('customName').value.trim(); if(!name) return alert('Укажи название позиции.');
+  const zoneRef = el('customZoneRef').value;
+  const z = state.zones.find(x=>x.id===zoneRef);
   state.estimate.push({
-    lineId: 'l' + (state.lastId++),
-    sourceId: null,
-    name,
-    category: el('customCategory').value.trim() || 'Прочее',
-    scenario: currentScenario(),
-    unit: el('customUnit').value.trim() || 'шт.',
-    qty: num(el('customQty').value) || 1,
-    price: num(el('customPrice').value),
-    logistics: 1,
-    note: el('customNote').value.trim()
+    lineId:'l'+(state.lastId++), sourceId:null, zoneRef:zoneRef||'', zoneName:z?.name||'',
+    name, category:el('customCategory').value.trim()||'Прочее', scenario:currentScenario(), unit:el('customUnit').value.trim()||'шт.',
+    qty:num(el('customQty').value)||1, price:num(el('customPrice').value), logistics:num(el('logistics').value),
+    install:z?!!z.flags.install:!!state.flags.install, pnr:z?!!z.flags.pnr:!!state.flags.pnr, content:z?!!z.flags.content:!!state.flags.content, metal:z?!!z.flags.metal:!!state.flags.metal,
+    note:el('customNote').value.trim()
   });
-  ['customName','customCategory','customNote'].forEach(id => el(id).value='');
-  el('customUnit').value = 'шт.';
-  el('customQty').value = 1;
-  el('customPrice').value = 0;
-  renderEstimate();
+  ['customName','customCategory','customNote'].forEach(id=>el(id).value=''); el('customUnit').value='шт.'; el('customQty').value=1; el('customPrice').value=0;
+  renderEstimate(); saveState();
 }
 
 function renderEstimate(){
@@ -729,252 +840,200 @@ function renderEstimate(){
   const hasRows = state.estimate.length > 0;
   el('estimateEmpty').style.display = hasRows ? 'none' : 'block';
   el('estimateWrap').style.display = hasRows ? 'block' : 'none';
-
   body.innerHTML = state.estimate.map(line => `
     <tr>
+      <td><select onchange="updateLine('${line.lineId}','zoneRef',this.value)"><option value="">—</option>${state.zones.map(z=>`<option value="${z.id}" ${z.id===line.zoneRef?'selected':''}>${z.name}</option>`).join('')}</select></td>
       <td><input value="${escapeHtml(line.name)}" oninput="updateLine('${line.lineId}','name',this.value)"></td>
       <td><input value="${escapeHtml(line.category)}" oninput="updateLine('${line.lineId}','category',this.value)"></td>
-      <td>
-        <select onchange="updateLine('${line.lineId}','scenario',this.value)">
-          ${SCENARIOS.map(s => `<option value="${s.id}" ${s.id===line.scenario?'selected':''}>${s.name}</option>`).join('')}
-        </select>
-      </td>
+      <td><select onchange="updateLine('${line.lineId}','scenario',this.value)">${SCENARIOS.map(s=>`<option value="${s.id}" ${s.id===line.scenario?'selected':''}>${s.name}</option>`).join('')}</select></td>
       <td><input value="${escapeHtml(line.unit)}" oninput="updateLine('${line.lineId}','unit',this.value)"></td>
       <td><input type="number" min="0" step="0.1" value="${line.qty}" oninput="updateLine('${line.lineId}','qty',this.value)"></td>
       <td><input type="number" min="0" step="1" value="${line.price}" oninput="updateLine('${line.lineId}','price',this.value)"></td>
       <td class="money right">${rub(num(line.qty)*num(line.price))}</td>
-      <td><input type="number" min="0" step="0.05" value="${line.logistics||1}" oninput="updateLine('${line.lineId}','logistics',this.value)"></td>
+      <td><input type="number" min="0.8" step="0.01" value="${line.logistics||1}" oninput="updateLine('${line.lineId}','logistics',this.value)"></td>
+      <td><select onchange="updateLine('${line.lineId}','install',this.value)"><option value="1" ${line.install?'selected':''}>Да</option><option value="0" ${!line.install?'selected':''}>Нет</option></select></td>
+      <td><select onchange="updateLine('${line.lineId}','pnr',this.value)"><option value="1" ${line.pnr?'selected':''}>Да</option><option value="0" ${!line.pnr?'selected':''}>Нет</option></select></td>
+      <td><select onchange="updateLine('${line.lineId}','content',this.value)"><option value="1" ${line.content?'selected':''}>Да</option><option value="0" ${!line.content?'selected':''}>Нет</option></select></td>
+      <td><select onchange="updateLine('${line.lineId}','metal',this.value)"><option value="1" ${line.metal?'selected':''}>Да</option><option value="0" ${!line.metal?'selected':''}>Нет</option></select></td>
       <td><input value="${escapeHtml(line.note||'')}" oninput="updateLine('${line.lineId}','note',this.value)"></td>
-      <td><button class="btn ghost" onclick="removeLine('${line.lineId}')">Удалить</button></td>
+      <td><button class="btn danger" type="button" onclick="removeLine('${line.lineId}')">Удалить</button></td>
     </tr>
   `).join('');
-  recalc();
-  renderProposal();
+  recalc(); renderProposal();
 }
-function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
-function updateLine(id, key, value){
-  const line = state.estimate.find(x => x.lineId === id);
-  if(!line) return;
-  line[key] = ['qty','price','logistics'].includes(key) ? num(value) : value;
-  recalc();
-  renderProposal();
-}
-window.updateLine = updateLine;
-function removeLine(id){
-  state.estimate = state.estimate.filter(x => x.lineId !== id);
-  renderEstimate();
-}
-window.removeLine = removeLine;
+window.updateLine = (lineId, key, value) => {
+  const line = state.estimate.find(x=>x.lineId===lineId); if(!line) return;
+  if(['qty','price','logistics'].includes(key)) line[key]=num(value);
+  else if(['install','pnr','content','metal'].includes(key)) line[key]=value==='1' || value===true;
+  else if(key==='zoneRef') { line.zoneRef=value; line.zoneName=state.zones.find(z=>z.id===value)?.name || ''; }
+  else line[key]=value;
+  recalc(); renderProposal(); saveState();
+};
+window.removeLine = lineId => { state.estimate = state.estimate.filter(x=>x.lineId!==lineId); renderEstimate(); saveState(); };
 
 function totals(){
-  const equipment = state.estimate.reduce((s,l)=> s + num(l.qty)*num(l.price)*num(l.logistics||1), 0);
-  const coeff = num(el('complexity').value) * num(el('logistics').value);
-  const equipmentAdj = equipment * coeff;
-  const install = equipmentAdj * num(el('installPct').value)/100;
-  const pnr = equipmentAdj * num(el('pnrPct').value)/100;
-  const consumables = equipmentAdj * num(el('consumablesPct').value)/100;
-  const cost = equipmentAdj + install + pnr + consumables;
-  const margin = cost * num(el('marginPct').value)/100;
+  const complexity = num(el('complexity').value) || 1;
+  const logisticsBase = num(el('logistics').value) || 1;
+  const installBasePct = 0.18;
+  const pnrBasePct = 0.10;
+  const contentBasePct = 0.08;
+  const consumablesBasePct = 0.06;
+  let equipment = 0, install = 0, pnr = 0, content = 0, consumables = 0;
+  state.estimate.forEach(l => {
+    const lineEquip = num(l.qty) * num(l.price) * (num(l.logistics)||logisticsBase);
+    equipment += lineEquip;
+    if(l.install) install += lineEquip * installBasePct * complexity;
+    if(l.pnr) pnr += lineEquip * pnrBasePct * complexity;
+    if(l.content) content += lineEquip * contentBasePct * (1 + Math.max(0, complexity-1)*0.5);
+    if(l.metal || l.category==='Инфраструктура') consumables += lineEquip * consumablesBasePct * logisticsBase;
+    else consumables += lineEquip * 0.02 * logisticsBase;
+  });
+  const cost = equipment + install + pnr + content + consumables;
+  const margin = cost * (num(el('marginPct').value)/100);
   const net = cost + margin;
   const gross = net * (1 + num(el('vatPct').value)/100);
-  return {equipment, equipmentAdj, install, pnr, consumables, cost, margin, net, gross};
+  return {equipment, install, pnr, content, consumables, cost, margin, net, gross};
 }
 
 function recalc(){
+  updateAutoCoefficients();
   const t = totals();
-  el('sumEquipment').textContent = rub(t.equipmentAdj);
+  el('kpiCost').textContent = rub(t.cost);
+  el('kpiMargin').textContent = rub(t.margin);
+  el('kpiMarginPct').textContent = `${num(el('marginPct').value)}%`;
+  el('kpiNet').textContent = rub(t.net);
+  el('kpiGross').textContent = rub(t.gross);
+  el('kpiScenarioLabel').textContent = `сценарий — ${scenarioName(currentScenario()).toLowerCase()}`;
+  el('sumEquipment').textContent = rub(t.equipment);
   el('sumInstall').textContent = rub(t.install);
   el('sumPnr').textContent = rub(t.pnr);
+  el('sumContent').textContent = rub(t.content);
   el('sumConsumables').textContent = rub(t.consumables);
   el('sumNet').textContent = rub(t.net);
   el('sumGross').textContent = rub(t.gross);
-
-  el('kpiCost').textContent = rub(t.cost);
-  el('kpiMargin').textContent = rub(t.margin);
-  el('kpiMarginPct').textContent = num(el('marginPct').value) + '%';
-  el('kpiNet').textContent = rub(t.net);
-  el('kpiGross').textContent = rub(t.gross);
-  const s = SCENARIOS.find(x=>x.id===currentScenario())?.name.toLowerCase();
-  el('kpiScenarioLabel').textContent = 'сценарий — ' + s;
 }
 
 function proposalHtml(){
   const t = totals();
-  const grouped = {};
-  state.estimate.forEach(l => {
-    if(!grouped[l.category]) grouped[l.category] = [];
-    grouped[l.category].push(l);
-  });
   const rows = state.estimate.map((l,i)=>`
     <tr>
       <td>${i+1}</td>
+      <td>${escapeHtml(l.zoneName || '—')}</td>
       <td>${escapeHtml(l.name)}</td>
       <td>${escapeHtml(l.category)}</td>
       <td>${escapeHtml(l.unit)}</td>
       <td class="right">${l.qty}</td>
       <td class="right">${rub(l.price)}</td>
-      <td class="right">${rub(num(l.qty)*num(l.price)*num(l.logistics||1))}</td>
-    </tr>
-  `).join('');
+      <td class="right">${rub(num(l.qty)*num(l.price)*(num(l.logistics)||1))}</td>
+    </tr>`).join('');
   return `
     <div class="docHead">
       <div>
-        <div class="docLogo">${document.querySelector('.logoBox').innerHTML}</div>
+        <div class="docLogo"><img alt="VIZHU" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAogAAADWCAYAAABSUnMUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAEPUSURBVHhe7d13WFVX1gbwV3oTFURABBSlGEvsBXsXS7ChSayZFI2maCbdJM5MmpPJWDKJiYlJbNGIvWKUYkFsiAWUJiooCCKISFPa90dkRvYnAvesc+85567f88wzMy+olAt33bX3XruBq6trJRhjjDHGGHvIRAwYY4wxxphx4wKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWDReIjDHGGGOsGi4QGWOMMcZYNVwgMsYYY4yxarhAZIwxxhhj1XCByBhjjDHGquECkTHGGGOMVcMFImOMMcYYq4YLRMYYY4wxVg0XiIwxxhhjrBouEBljjDHGWDVcIDLGGGOMsWq4QGSMMcYYY9VwgcgYY4wxxqrhApExxhhjjFXDBSJjjDHGGKuGC0TGGGOMMVYNF4iMMcYYY6waLhAZY4wxxlg1XCAyxhhjjLFquEBkjDHGGGPVcIHIGGOMMcaq4QKRMcYYY4xVwwUiY4wxxhirhgtExhhjjDFWzf8BbBpEMs4AeLYAAAAASUVORK5CYII="></div>
         <div style="margin-top:12px;font-size:24px;font-weight:800;">Предварительная смета / пресейл</div>
-        <div class="small" style="color:#546153;margin-top:4px;">${escapeHtml(el('projectName').value)} · ${escapeHtml(el('customerName').value)}</div>
+        <div style="font-size:12px;color:#546153;margin-top:4px;">${escapeHtml(el('projectName').value)} · ${escapeHtml(el('customerName').value)}</div>
       </div>
-      <div class="small" style="color:#546153;text-align:right;">
+      <div style="font-size:12px;color:#546153;text-align:right;">
         <div><b>Тип проекта:</b> ${PROJECT_TYPES.find(x=>x.id===currentType())?.name || ''}</div>
-        <div><b>Сценарий:</b> ${SCENARIOS.find(x=>x.id===currentScenario())?.name || ''}</div>
+        <div><b>Сценарий:</b> ${scenarioName(currentScenario())}</div>
+        <div><b>Зон:</b> ${state.zones.length}</div>
         <div><b>Дата:</b> ${new Date().toLocaleDateString('ru-RU')}</div>
       </div>
     </div>
-
     <div class="docKpis">
-      <div class="docKpi"><div class="small" style="color:#546153;">Закупка + работы</div><b>${rub(t.cost)}</b></div>
-      <div class="docKpi"><div class="small" style="color:#546153;">Маржа</div><b>${rub(t.margin)}</b></div>
-      <div class="docKpi"><div class="small" style="color:#546153;">Цена без НДС</div><b>${rub(t.net)}</b></div>
-      <div class="docKpi"><div class="small" style="color:#546153;">Цена с НДС</div><b>${rub(t.gross)}</b></div>
+      <div class="docKpi"><div style="font-size:12px;color:#546153;">Себестоимость</div><b>${rub(t.cost)}</b></div>
+      <div class="docKpi"><div style="font-size:12px;color:#546153;">Маржа</div><b>${rub(t.margin)}</b></div>
+      <div class="docKpi"><div style="font-size:12px;color:#546153;">Цена без НДС</div><b>${rub(t.net)}</b></div>
+      <div class="docKpi"><div style="font-size:12px;color:#546153;">Цена с НДС</div><b>${rub(t.gross)}</b></div>
     </div>
-
-    <div class="docSection">
+    <div style="margin-top:18px;">
       <div style="font-weight:800;margin-bottom:8px;">Состав предварительной сметы</div>
       <table class="docTable">
-        <thead>
-          <tr><th>№</th><th>Позиция</th><th>Категория</th><th>Ед.</th><th>Кол-во</th><th>Закупка / ед.</th><th>Сумма</th></tr>
-        </thead>
-        <tbody>${rows || '<tr><td colspan="7">Позиции не добавлены.</td></tr>'}</tbody>
+        <thead><tr><th>№</th><th>Зона</th><th>Позиция</th><th>Категория</th><th>Ед.</th><th>Кол-во</th><th>Закупка/ед.</th><th>Сумма</th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="8">Позиции не добавлены.</td></tr>'}</tbody>
       </table>
     </div>
-
-    <div class="docSection">
+    <div style="margin-top:18px;">
       <div style="font-weight:800;margin-bottom:8px;">Финансовая модель</div>
-      <table class="docTable">
-        <tbody>
-          <tr><td>Оборудование с учётом коэффициентов</td><td class="right">${rub(t.equipmentAdj)}</td></tr>
-          <tr><td>Монтаж (${num(el('installPct').value)}%)</td><td class="right">${rub(t.install)}</td></tr>
-          <tr><td>ПНР (${num(el('pnrPct').value)}%)</td><td class="right">${rub(t.pnr)}</td></tr>
-          <tr><td>Расходные материалы (${num(el('consumablesPct').value)}%)</td><td class="right">${rub(t.consumables)}</td></tr>
-          <tr><td>Себестоимость</td><td class="right">${rub(t.cost)}</td></tr>
-          <tr><td>Маржа (${num(el('marginPct').value)}%)</td><td class="right">${rub(t.margin)}</td></tr>
-          <tr><td>Цена без НДС</td><td class="right">${rub(t.net)}</td></tr>
-          <tr><td>Цена с НДС (${num(el('vatPct').value)}%)</td><td class="right">${rub(t.gross)}</td></tr>
-        </tbody>
-      </table>
+      <table class="docTable"><tbody>
+        <tr><td>Оборудование с логистикой</td><td class="right">${rub(t.equipment)}</td></tr>
+        <tr><td>Монтаж</td><td class="right">${rub(t.install)}</td></tr>
+        <tr><td>ПНР</td><td class="right">${rub(t.pnr)}</td></tr>
+        <tr><td>Контент / ПО</td><td class="right">${rub(t.content)}</td></tr>
+        <tr><td>Логистика / расходники</td><td class="right">${rub(t.consumables)}</td></tr>
+        <tr><td>Себестоимость</td><td class="right">${rub(t.cost)}</td></tr>
+        <tr><td>Маржа (${num(el('marginPct').value)}%)</td><td class="right">${rub(t.margin)}</td></tr>
+        <tr><td>Цена без НДС</td><td class="right">${rub(t.net)}</td></tr>
+        <tr><td>Цена с НДС (${num(el('vatPct').value)}%)</td><td class="right">${rub(t.gross)}</td></tr>
+      </tbody></table>
     </div>
-
-    <div class="docSection small" style="color:#546153;">
+    <div style="margin-top:18px;font-size:12px;color:#546153;">
       <div><b>Комментарий:</b> ${escapeHtml(el('projectNotes').value || '—')}</div>
       <div style="margin-top:8px;">Смета предварительная и предназначена для быстрого пресейл-расчёта. Все цены и состав могут быть уточнены по КП поставщиков, обследованию объекта и финальному ТЗ.</div>
-    </div>
-  `;
+    </div>`;
 }
-
-function renderProposal(){
-  el('proposalPreview').innerHTML = proposalHtml();
-}
-
-function switchTab(name){
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab===name));
-  document.querySelectorAll('.tabPane').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
-}
-document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+function renderProposal(){ el('proposalPreview').innerHTML = proposalHtml(); }
 
 function saveState(){
-  localStorage.setItem('vizhu-presale-pro-state', JSON.stringify({
+  localStorage.setItem('vizhu-presale-v3', JSON.stringify({
     fields: {
-      projectName: el('projectName').value,
-      customerName: el('customerName').value,
-      projectType: el('projectType').value,
-      scenario: el('scenario').value,
-      usdRate: el('usdRate').value,
-      marginPct: el('marginPct').value,
-      vatPct: el('vatPct').value,
-      installPct: el('installPct').value,
-      pnrPct: el('pnrPct').value,
-      consumablesPct: el('consumablesPct').value,
-      complexity: el('complexity').value,
-      logistics: el('logistics').value,
-      metricOutdoorLed: el('metricOutdoorLed').value,
-      metricIndoorLed: el('metricIndoorLed').value,
-      metricProjectors: el('metricProjectors').value,
-      metricKiosks: el('metricKiosks').value,
-      metricDisplays: el('metricDisplays').value,
-      metricVr: el('metricVr').value,
-      metricAudioZones: el('metricAudioZones').value,
-      metricRooms: el('metricRooms').value,
-      projectNotes: el('projectNotes').value
+      projectName: el('projectName').value, customerName: el('customerName').value, projectType: el('projectType').value, scenario: el('scenario').value,
+      cityTier: el('cityTier').value, urgency: el('urgency').value, usdRate: el('usdRate').value, projectArea: el('projectArea').value,
+      ceilingHeight: el('ceilingHeight').value, floors: el('floors').value, targetBudget: el('targetBudget').value, marginPct: el('marginPct').value,
+      vatPct: el('vatPct').value, complexity: el('complexity').value, logistics: el('logistics').value, complexityAuto: el('complexityAuto').checked,
+      logisticsAuto: el('logisticsAuto').checked, projectNotes: el('projectNotes').value, searchInput: el('searchInput').value, categoryFilter: el('categoryFilter').value,
+      libraryScenarioFilter: el('libraryScenarioFilter').value, zoneFilter: el('zoneFilter').value
     },
-    estimate: state.estimate,
-    lastId: state.lastId
+    zones: state.zones, estimate: state.estimate, flags: state.flags, lastId: state.lastId, lastZoneId: state.lastZoneId
   }));
 }
 function restoreState(){
-  const raw = localStorage.getItem('vizhu-presale-pro-state');
+  const raw = localStorage.getItem('vizhu-presale-v3');
   if(!raw) return;
   try{
     const data = JSON.parse(raw);
-    Object.entries(data.fields || {}).forEach(([k,v]) => { if(el(k)) el(k).value = v; });
+    if(data.flags) state.flags = {...state.flags, ...data.flags};
+    state.zones = Array.isArray(data.zones) ? data.zones : [];
     state.estimate = Array.isArray(data.estimate) ? data.estimate : [];
     state.lastId = data.lastId || 1;
+    state.lastZoneId = data.lastZoneId || 1;
+    Object.entries(data.fields || {}).forEach(([k,v]) => { if(el(k)) { if(el(k).type==='checkbox') el(k).checked=!!v; else el(k).value=v; } });
   }catch(e){}
 }
 
 function download(filename, content, type='text/plain'){
-  const blob = new Blob([content], {type});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.click();
-  setTimeout(()=>URL.revokeObjectURL(url), 500);
+  const blob = new Blob([content], {type}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download=filename; a.click(); setTimeout(()=>URL.revokeObjectURL(url),500);
 }
+function exportJSON(){ saveState(); download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.json', localStorage.getItem('vizhu-presale-v3'), 'application/json'); }
+function downloadHtmlProposal(){ const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${escapeHtml(el('projectName').value)}</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style></head><body><div class="docPreview">${proposalHtml()}</div></body></html>`; download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.html', html, 'text/html;charset=utf-8'); }
+function printProposal(){ const w = window.open('', '_blank'); w.document.write(`<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Печать сметы</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style></head><body><div class="docPreview">${proposalHtml()}</div><script>window.onload=()=>window.print();<\/script></body></html>`); w.document.close(); }
 
-function exportJSON(){
-  saveState();
-  const raw = localStorage.getItem('vizhu-presale-pro-state');
-  download((el('projectName').value || 'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_') + '.json', raw, 'application/json');
-}
-
-function downloadHtmlProposal(){
-  const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${escapeHtml(el('projectName').value)}</title>
-  <style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111} .docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2} table{width:100%;border-collapse:collapse} th,td{border:1px solid #dce3d1;padding:8px;font-size:12px} th{background:#eef2e5} .small{font-size:12px;color:#556253} .docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px} .docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px} .docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style>
-  </head><body><div class="docPreview">${proposalHtml()}</div></body></html>`;
-  download((el('projectName').value || 'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_') + '.html', html, 'text/html;charset=utf-8');
-}
-
-function printProposal(){
-  const w = window.open('', '_blank');
-  w.document.write(`<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Печать сметы</title>
-  <style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111} .docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2} table{width:100%;border-collapse:collapse} th,td{border:1px solid #dce3d1;padding:8px;font-size:12px} th{background:#eef2e5} .small{font-size:12px;color:#556253} .docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px} .docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px} .docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style>
-  </head><body><div class="docPreview">${proposalHtml()}</div><script>window.onload=()=>window.print();<\/script></body></html>`);
-  w.document.close();
-}
+function switchTab(name){ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name)); document.querySelectorAll('.tabPane').forEach(p=>p.classList.toggle('active',p.id==='tab-'+name)); }
 
 function bindEvents(){
-  ['projectType','scenario','searchInput','categoryFilter','libraryScenarioFilter','projectName','customerName','projectNotes','marginPct','vatPct','installPct','pnrPct','consumablesPct','complexity','logistics']
-    .forEach(id => el(id).addEventListener('input', () => { renderTemplateInfo(); renderLibrary(); recalc(); renderProposal(); saveState(); }));
-  ['metricOutdoorLed','metricIndoorLed','metricProjectors','metricKiosks','metricDisplays','metricVr','metricAudioZones','metricRooms']
-    .forEach(id => el(id).addEventListener('input', () => { renderTemplateInfo(); saveState(); }));
-  el('generateTemplateBtn').addEventListener('click', () => { generateTemplate(true); saveState(); });
-  el('applyRecommendedBtn').addEventListener('click', () => { generateTemplate(true); saveState(); });
-  el('openEstimateBtn').addEventListener('click', () => switchTab('estimate'));
-  el('addCustomBtn').addEventListener('click', () => { addCustomLine(); saveState(); });
-  el('saveStateBtn').addEventListener('click', () => { saveState(); alert('Локально сохранено в браузере.'); });
-  el('exportJsonBtn').addEventListener('click', exportJSON);
-  el('downloadHtmlBtn').addEventListener('click', downloadHtmlProposal);
-  el('printBtn').addEventListener('click', printProposal);
-  el('resetBtn').addEventListener('click', () => {
-    if(confirm('Сбросить всё состояние?')) {
-      localStorage.removeItem('vizhu-presale-pro-state');
-      location.reload();
-    }
-  });
+  document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
+  ['projectType','scenario','cityTier','urgency','usdRate','projectArea','ceilingHeight','floors','targetBudget','marginPct','vatPct','complexity','logistics','projectName','customerName','projectNotes','searchInput','categoryFilter','libraryScenarioFilter','zoneFilter'].forEach(id => el(id).addEventListener('input',()=>{ if(id==='projectType' && !state.zones.length) addDefaultZones(); renderZones(); renderLibrary(); recalc(); renderProposal(); saveState(); }));
+  ['complexityAuto','logisticsAuto'].forEach(id => el(id).addEventListener('change',()=>{ updateAutoCoefficients(); recalc(); saveState(); }));
+  el('recalcCoefsBtn').addEventListener('click',()=>{ updateAutoCoefficients(); recalc(); saveState(); });
+  el('addZoneBtn').addEventListener('click',()=>{ addZone({name:`Зона ${state.zones.length+1}`}); renderLibrary(); });
+  el('generateTemplateBtn').addEventListener('click',()=>generateTemplate(true));
+  el('applyRecommendedBtn').addEventListener('click',()=>generateTemplate(true));
+  el('openEstimateBtn').addEventListener('click',()=>switchTab('estimate'));
+  el('addCustomBtn').addEventListener('click',()=>addCustomLine());
+  el('saveStateBtn').addEventListener('click',()=>{ saveState(); alert('Локально сохранено в браузере.'); });
+  el('exportJsonBtn').addEventListener('click',exportJSON);
+  el('downloadHtmlBtn').addEventListener('click',downloadHtmlProposal);
+  el('printBtn').addEventListener('click',printProposal);
+  el('resetBtn').addEventListener('click',()=>{ if(confirm('Сбросить всё состояние?')) { localStorage.removeItem('vizhu-presale-v3'); location.reload(); } });
+  document.getElementById('globalFlags').addEventListener('change',e=>{ if(e.target.dataset.flag){ state.flags[e.target.dataset.flag] = e.target.checked; state.zones.forEach(z=>{ if(z.flags[e.target.dataset.flag]===undefined) z.flags[e.target.dataset.flag]=e.target.checked; }); renderZones(); updateAutoCoefficients(); saveState(); }});
 }
 
 initSelectors();
 restoreState();
+if(!state.zones.length) addDefaultZones();
+renderZones();
+updateAutoCoefficients();
 bindEvents();
-renderTemplateInfo();
-renderSegmentSummary();
 renderLibrary();
 renderEstimate();
 renderProposal();
