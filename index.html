@@ -129,7 +129,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
           <span class="pill">GitHub Pages · HTML-only</span>
           <span class="pill">Проект → зоны → автоподбор → смета</span>
           <span class="pill">Ручная корректировка позиций</span>
-          <span class="pill">Клиентская выгрузка</span>
+          <span class="pill">HTML / Excel / PDF</span>
         </div>
       </div>
     </section>
@@ -143,7 +143,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
 
   <div class="layout">
     <aside class="panel sidebar">
-      <div class="sectionTitle"><h2>Паспорт проекта</h2><span class="badge lime">v3</span></div>
+      <div class="sectionTitle"><h2>Паспорт проекта</h2><span class="badge lime">v4</span></div>
       <div class="field"><label>Название проекта</label><input id="projectName" value="Новый пресейл / объект"></div>
       <div class="field"><label>Заказчик</label><input id="customerName" value="Новый заказчик"></div>
       <div class="row2">
@@ -315,6 +315,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
         <div class="footerActions" style="margin-bottom:12px;">
           <button class="btn primary" id="printBtn">Печать / PDF</button>
           <button class="btn ghost" id="downloadHtmlBtn">Скачать HTML-смету</button>
+          <button class="btn ghost" id="exportExcelBtn">Скачать Excel-смету</button>
         </div>
         <div class="docPreview" id="proposalPreview"></div>
       </section>
@@ -458,6 +459,48 @@ const ITEMS = [
   {id:'crestron_control', name:'Система управления', brand:'Crestron / Extron / Kramer', model:'Control processor + touch', category:'Управление и коммутация', segment:'Control systems', unit:'компл.', scenario:'premium', price:340000, types:['conference','corporate','museum','control'], note:'Система централизованного управления.'},
   {id:'kramer_switcher', name:'Коммутатор / презентационный свитчер', brand:'Kramer / Extron / Atlona', model:'Presentation switcher', category:'Управление и коммутация', segment:'Switcher', unit:'шт.', scenario:'base', price:128000, types:['conference','corporate','education','museum'], note:'Коммутация в переговорных и залах.'},
   {id:'nvr_camera', name:'Сервисная камера / NVR', brand:'Hikvision / Dahua', model:'NVR + camera', category:'Инфраструктура', segment:'Видео-наблюдение', unit:'компл.', scenario:'budget', price:65000, types:['public','retail','museum','event'], note:'Если проект включает сервисное видеонаблюдение.'}
+  ,{id:'samsung_qm50c', name:'Проф. дисплей 50"', brand:'Samsung', model:'QM50C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:66000, types:['museum','education','retail','public','corporate','conference'], note:'Реальная серия Samsung QMC, компактный signage-формат.'}
+  ,{id:'samsung_qm65c', name:'Проф. дисплей 65"', brand:'Samsung', model:'QM65C', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'base', price:148000, types:['museum','education','retail','public','corporate','conference'], note:'Средний коммерческий формат для переговорных и общественных зон.'}
+  ,{id:'sony_fw65ez20l', name:'Проф. дисплей 65"', brand:'Sony', model:'FW-65EZ20L', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:73200, types:['museum','education','retail','public','corporate','conference'], note:'Коммерческий 4K-дисплей Sony для базовых инсталляций.'}
+  ,{id:'hisense_65gm50d', name:'Проф. дисплей 65"', brand:'Hisense', model:'65GM50D', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'budget', price:79600, types:['museum','education','retail','public','corporate'], note:'Доступный коммерческий 65" signage-дисплей.'}
+  ,{id:'sony_bz40l_75', name:'Проф. дисплей 75"', brand:'Sony', model:'BZ40L 75', category:'Панели и LCD', segment:'Digital Signage', unit:'шт.', scenario:'premium', price:318000, types:['museum','corporate','conference','retail','public'], note:'Премиальный signage/meeting display сегмент.'}
+
+  ,{id:'yealink_meetingboard_65', name:'Интерактивная панель 65"', brand:'Yealink', model:'MeetingBoard Pro 65', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:439920, types:['education','corporate','conference','public'], note:'All-in-one meetingboard: touch, камера, микрофоны, спикеры.'}
+  ,{id:'samsung_flip_pro_65', name:'Интерактивная панель 65"', brand:'Samsung', model:'Flip Pro 65', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'base', price:224000, types:['education','corporate','conference'], note:'Популярный интерактивный формат для переговорных и учебных классов.'}
+  ,{id:'neat_board_65', name:'Интерактивная VC-панель 65"', brand:'Neat', model:'Board 65', category:'Интерактив', segment:'Интерактивные панели', unit:'шт.', scenario:'premium', price:498000, types:['corporate','conference'], note:'Премиальная all-in-one доска для видеосвязи.'}
+
+  ,{id:'epson_775f', name:'Лазерный проектор 4100 lm', brand:'Epson', model:'PowerLite 775F', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'budget', price:179760, types:['museum','education','conference','event','public'], note:'Экономичный лазерный проектор для классов и небольших залов.'}
+  ,{id:'epson_810e', name:'UST лазерный проектор', brand:'Epson', model:'PowerLite 810E', category:'Проекция', segment:'Ultra Short Throw', unit:'шт.', scenario:'premium', price:292960, types:['education','corporate','museum','public'], note:'UST-решение для учебных и интерактивных пространств.'}
+  ,{id:'epson_815e', name:'UST лазерный проектор', brand:'Epson', model:'PowerLite 815E', category:'Проекция', segment:'Ultra Short Throw', unit:'шт.', scenario:'premium', price:292960, types:['education','corporate','museum','public'], note:'Короткофокусная альтернатива для плотных помещений.'}
+  ,{id:'panasonic_vmz51', name:'Лазерный проектор 5200 lm', brand:'Panasonic', model:'PT-VMZ51', category:'Проекция', segment:'Инсталляционные проекторы', unit:'шт.', scenario:'base', price:236000, types:['museum','education','conference','event'], note:'Популярный инсталляционный Panasonic для AV-проектов.'}
+  ,{id:'projector_screen_150', name:'Проекционный экран 150"', brand:'Projecta / Draper / Lumien', model:'150 inch', category:'Проекция', segment:'Экраны', unit:'шт.', scenario:'base', price:68000, types:['education','conference','museum','public'], note:'Отдельная позиция для залов, где нужен экран, а не проекция на стену.'}
+
+  ,{id:'bose_dm3se_real', name:'Акустика настенная, пара', brand:'Bose Professional', model:'DesignMax DM3SE', category:'Аудио', segment:'Распределённая акустика', unit:'пара', scenario:'budget', price:29520, types:['museum','conference','retail','public','corporate','education'], note:'Компактная распределённая акустика для фонового и речевого звука.'}
+  ,{id:'bose_dm5se', name:'Акустика настенная, пара', brand:'Bose Professional', model:'DesignMax DM5SE', category:'Аудио', segment:'Распределённая акустика', unit:'пара', scenario:'base', price:55920, types:['museum','conference','retail','public','corporate','education'], note:'Более мощный Bose-сегмент под залы и retail.'}
+  ,{id:'qsc_ac_s6t', name:'Потолочная акустика, пара', brand:'QSC', model:'AC-S6T', category:'Аудио', segment:'Распределённая акустика', unit:'пара', scenario:'base', price:64800, types:['conference','corporate','education','public'], note:'Потолочная акустика для переговорных и учебных зон.'}
+  ,{id:'shure_mxa920_sq', name:'Потолочный микрофон массив', brand:'Shure', model:'MXA920-S', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'premium', price:472000, types:['corporate','conference','education'], note:'Потолочный массив под гибридные залы и премиальные переговорные.'}
+  ,{id:'shure_ulxd4q', name:'Беспроводная микрофонная система 4ch', brand:'Shure', model:'ULXD4Q', category:'Аудио', segment:'Микрофонные системы', unit:'компл.', scenario:'premium', price:426000, types:['conference','event','public'], note:'Премиум-система для залов, сцен и важных мероприятий.'}
+  ,{id:'sennheiser_tcc2', name:'Потолочный микрофон массив', brand:'Sennheiser', model:'TeamConnect Ceiling 2', category:'Аудио', segment:'Конференц-аудио', unit:'шт.', scenario:'premium', price:298000, types:['corporate','conference'], note:'Альтернатива Shure для premium VC-проектов.'}
+  ,{id:'yamaha_rm_cr', name:'Конференц-DSP', brand:'Yamaha', model:'RM-CR', category:'Аудио', segment:'DSP и управление звуком', unit:'шт.', scenario:'base', price:154000, types:['corporate','conference','education'], note:'Конференц-процессор для room audio.'}
+
+  ,{id:'rally_bar_huddle', name:'Видеобар для малой переговорной', brand:'Logitech', model:'Rally Bar Huddle', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'budget', price:135920, types:['corporate','conference','public'], note:'Компактный videobar для huddle rooms и маленьких переговорных.'}
+  ,{id:'logitech_sight', name:'Камера обзора стола', brand:'Logitech', model:'Sight', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'premium', price:183000, types:['corporate','conference'], note:'Дополнительная AI-камера для крупных переговорных.'}
+  ,{id:'yealink_a30', name:'Видеобар', brand:'Yealink', model:'MeetingBar A30', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:208000, types:['corporate','conference','public'], note:'Средний сегмент all-in-one видеобара.'}
+  ,{id:'poly_studio_x52', name:'Видеобар', brand:'HP Poly', model:'Studio X52', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'premium', price:276000, types:['corporate','conference'], note:'Премиальная альтернатива Logitech / Yealink.'}
+  ,{id:'ptzoptics_move4k', name:'PTZ-камера 4K', brand:'PTZOptics', model:'Move 4K', category:'Конференц-связь', segment:'VC', unit:'шт.', scenario:'base', price:172000, types:['conference','corporate','education','event'], note:'PTZ-камера для трансляций и залов.'}
+  ,{id:'conference_pc', name:'Мини-ПК для ВКС', brand:'Intel NUC / Lenovo Tiny', model:'Room PC', category:'Конференц-связь', segment:'VC infra', unit:'шт.', scenario:'base', price:98000, types:['corporate','conference','education'], note:'Выделенный room PC для Teams/Zoom-решений.'}
+
+  ,{id:'atem_mini_extreme_iso_g2', name:'Видеомикшер / стриминг', brand:'Blackmagic Design', model:'ATEM Mini Extreme ISO G2', category:'Управление и коммутация', segment:'Switcher / streaming', unit:'шт.', scenario:'premium', price:175600, types:['event','conference','corporate','education'], note:'Компактный продакшн-свитчер для стриминга и записи.'}
+  ,{id:'atem_television_hd8', name:'Видеомикшер', brand:'Blackmagic Design', model:'ATEM Television Studio HD8', category:'Управление и коммутация', segment:'Switcher / streaming', unit:'шт.', scenario:'premium', price:286000, types:['event','conference','corporate'], note:'Более серьёзный live-production сегмент.'}
+  ,{id:'presentation_matrix_4x4', name:'HDMI / AV матрица 4x4', brand:'Kramer / Extron / Atlona', model:'4x4 Matrix', category:'Управление и коммутация', segment:'Switcher', unit:'шт.', scenario:'base', price:146000, types:['conference','corporate','education','museum'], note:'Базовая матричная коммутация для залов и переговорных.'}
+  ,{id:'presentation_matrix_8x8', name:'HDMI / AV матрица 8x8', brand:'Kramer / Extron / Atlona', model:'8x8 Matrix', category:'Управление и коммутация', segment:'Switcher', unit:'шт.', scenario:'premium', price:268000, types:['conference','corporate','education','museum','event'], note:'Расширенная матричная коммутация.'}
+
+  ,{id:'pdu_metered', name:'PDU / силовая инфраструктура', brand:'APC / Aten', model:'Metered PDU', category:'Инфраструктура', segment:'Питание', unit:'шт.', scenario:'base', price:34000, types:['conference','corporate','museum','control','vr','event'], note:'Силовая часть rack/AV-систем.'}
+  ,{id:'fiber_hdmi_set', name:'Оптический HDMI комплект', brand:'Kramer / PureLink / Aten', model:'AOC / extender set', category:'Инфраструктура', segment:'Коммутация', unit:'компл.', scenario:'base', price:28000, types:['museum','conference','corporate','event','public'], note:'Для длинных трасс и презентационных линий.'}
+  ,{id:'cat_extender_set', name:'HDBaseT комплект', brand:'Kramer / Extron / Aten', model:'Tx/Rx set', category:'Инфраструктура', segment:'Коммутация', unit:'компл.', scenario:'base', price:54000, types:['conference','corporate','education','museum','public'], note:'Передача HDMI/USB/управления по витой паре.'}
+  ,{id:'floorbox_av', name:'Напольный AV-люк', brand:'Legrand / OBO / custom', model:'Floor box AV', category:'Инфраструктура', segment:'Инженерия', unit:'шт.', scenario:'base', price:18000, types:['conference','corporate','education','public'], note:'Для столов, залов и переговорных.'}
+  ,{id:'mount_cart_86', name:'Мобильная стойка для панели 75-86"', brand:'Chief / Vogel\'s / Wize', model:'Mobile cart', category:'Инфраструктура', segment:'Крепления', unit:'шт.', scenario:'base', price:52000, types:['education','corporate','conference','public'], note:'Мобильное размещение интерактивных панелей.'}
+
 ];
 
 const state = {
@@ -871,6 +914,25 @@ window.updateLine = (lineId, key, value) => {
 };
 window.removeLine = lineId => { state.estimate = state.estimate.filter(x=>x.lineId!==lineId); renderEstimate(); saveState(); };
 
+function zoneImpact(line){
+  const z = state.zones.find(x=>x.id===line.zoneRef);
+  if(!z) return {install:1,pnr:1,content:1,consumables:1};
+  const area = num(z.area);
+  const cap = num(z.capacity);
+  let install = 1 + Math.min(0.18, area/400*0.08 + cap/200*0.04);
+  let pnr = 1 + Math.min(0.20, area/500*0.06 + cap/250*0.03);
+  let content = 1 + Math.min(0.25, area/300*0.08);
+  let consumables = 1 + Math.min(0.15, area/400*0.06);
+  if(['outdoor','stage','museum'].includes(z.purpose)) { install += 0.06; consumables += 0.05; }
+  if(z.primaryTask==='vc') pnr += 0.05;
+  if(z.primaryTask==='interactive') { pnr += 0.06; content += 0.08; }
+  if(z.primaryTask==='wow') { install += 0.05; content += 0.07; }
+  if(z.primaryTask==='control') pnr += 0.04;
+  if(z.flags.metal) { install += 0.06; consumables += 0.08; }
+  if(z.flags.content) content += 0.05;
+  return {install, pnr, content, consumables};
+}
+
 function totals(){
   const complexity = num(el('complexity').value) || 1;
   const logisticsBase = num(el('logistics').value) || 1;
@@ -881,12 +943,13 @@ function totals(){
   let equipment = 0, install = 0, pnr = 0, content = 0, consumables = 0;
   state.estimate.forEach(l => {
     const lineEquip = num(l.qty) * num(l.price) * (num(l.logistics)||logisticsBase);
+    const impact = zoneImpact(l);
     equipment += lineEquip;
-    if(l.install) install += lineEquip * installBasePct * complexity;
-    if(l.pnr) pnr += lineEquip * pnrBasePct * complexity;
-    if(l.content) content += lineEquip * contentBasePct * (1 + Math.max(0, complexity-1)*0.5);
-    if(l.metal || l.category==='Инфраструктура') consumables += lineEquip * consumablesBasePct * logisticsBase;
-    else consumables += lineEquip * 0.02 * logisticsBase;
+    if(l.install) install += lineEquip * installBasePct * complexity * impact.install;
+    if(l.pnr) pnr += lineEquip * pnrBasePct * complexity * impact.pnr;
+    if(l.content) content += lineEquip * contentBasePct * (1 + Math.max(0, complexity-1)*0.5) * impact.content;
+    if(l.metal || l.category==='Инфраструктура') consumables += lineEquip * consumablesBasePct * logisticsBase * impact.consumables;
+    else consumables += lineEquip * 0.02 * logisticsBase * Math.min(1.2, impact.consumables);
   });
   const cost = equipment + install + pnr + content + consumables;
   const margin = cost * (num(el('marginPct').value)/100);
@@ -975,7 +1038,7 @@ function proposalHtml(){
 function renderProposal(){ el('proposalPreview').innerHTML = proposalHtml(); }
 
 function saveState(){
-  localStorage.setItem('vizhu-presale-v3', JSON.stringify({
+  localStorage.setItem('vizhu-presale-v4', JSON.stringify({
     fields: {
       projectName: el('projectName').value, customerName: el('customerName').value, projectType: el('projectType').value, scenario: el('scenario').value,
       cityTier: el('cityTier').value, urgency: el('urgency').value, usdRate: el('usdRate').value, projectArea: el('projectArea').value,
@@ -988,7 +1051,7 @@ function saveState(){
   }));
 }
 function restoreState(){
-  const raw = localStorage.getItem('vizhu-presale-v3');
+  const raw = localStorage.getItem('vizhu-presale-v4');
   if(!raw) return;
   try{
     const data = JSON.parse(raw);
@@ -1004,7 +1067,71 @@ function restoreState(){
 function download(filename, content, type='text/plain'){
   const blob = new Blob([content], {type}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download=filename; a.click(); setTimeout(()=>URL.revokeObjectURL(url),500);
 }
-function exportJSON(){ saveState(); download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.json', localStorage.getItem('vizhu-presale-v3'), 'application/json'); }
+function exportJSON(){ saveState(); download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.json', localStorage.getItem('vizhu-presale-v4'), 'application/json'); }
+
+function excelXmlCell(value, type='String', style=''){
+  const styleAttr = style ? ` ss:StyleID="${style}"` : '';
+  if(type==='Number') return `<Cell${styleAttr}><Data ss:Type="Number">${Number(value)||0}</Data></Cell>`;
+  return `<Cell${styleAttr}><Data ss:Type="String">${escapeHtml(value ?? '')}</Data></Cell>`;
+}
+function exportExcelProposal(){
+  const t = totals();
+  const rows = state.estimate.map((l,i)=>[
+    i+1,
+    l.zoneName || '—',
+    l.name,
+    l.category,
+    l.unit,
+    num(l.qty),
+    num(l.price),
+    Math.round(num(l.qty)*num(l.price)*(num(l.logistics)||1)),
+    l.note || ''
+  ]);
+  const zoneRows = state.zones.map((z,i)=>[
+    i+1, z.name, purposeName(z.purpose), TASKS.find(t=>t.id===z.primaryTask)?.name || z.primaryTask,
+    num(z.area), num(z.capacity), scenarioName(z.scenario),
+    [z.flags.install?'Монтаж':'', z.flags.pnr?'ПНР':'', z.flags.content?'Контент':'', z.flags.metal?'Металл':'', z.flags.delivery?'Доставка':''].filter(Boolean).join(', ')
+  ]);
+  const xml = `<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+<Styles>
+<Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Center"/></Style>
+<Style ss:ID="head"><Font ss:Bold="1" ss:Size="14"/><Interior ss:Color="#D7FF7F" ss:Pattern="Solid"/></Style>
+<Style ss:ID="sub"><Font ss:Bold="1"/><Interior ss:Color="#EEF2E5" ss:Pattern="Solid"/></Style>
+<Style ss:ID="money"><NumberFormat ss:Format="# ##0"/></Style>
+</Styles>
+<Worksheet ss:Name="Смета">
+<Table>
+<Row>${excelXmlCell('VIZHU — предварительная смета / пресейл','String','head')}</Row>
+<Row>${excelXmlCell('Проект')} ${excelXmlCell(el('projectName').value)} ${excelXmlCell('Заказчик')} ${excelXmlCell(el('customerName').value)}</Row>
+<Row>${excelXmlCell('Тип проекта')} ${excelXmlCell(PROJECT_TYPES.find(x=>x.id===currentType())?.name || '')} ${excelXmlCell('Сценарий')} ${excelXmlCell(scenarioName(currentScenario()))}</Row>
+<Row>${excelXmlCell('Зон')} ${excelXmlCell(state.zones.length,'Number')} ${excelXmlCell('Дата')} ${excelXmlCell(new Date().toLocaleDateString('ru-RU'))}</Row>
+<Row/>
+<Row>${excelXmlCell('№','String','sub')}${excelXmlCell('Зона','String','sub')}${excelXmlCell('Позиция','String','sub')}${excelXmlCell('Категория','String','sub')}${excelXmlCell('Ед.','String','sub')}${excelXmlCell('Кол-во','String','sub')}${excelXmlCell('Цена/ед.','String','sub')}${excelXmlCell('Сумма','String','sub')}${excelXmlCell('Комментарий','String','sub')}</Row>
+${rows.map(r=>`<Row>${excelXmlCell(r[0],'Number')}${excelXmlCell(r[1])}${excelXmlCell(r[2])}${excelXmlCell(r[3])}${excelXmlCell(r[4])}${excelXmlCell(r[5],'Number')}${excelXmlCell(r[6],'Number','money')}${excelXmlCell(r[7],'Number','money')}${excelXmlCell(r[8])}</Row>`).join('')}
+<Row/>
+<Row>${excelXmlCell('Оборудование','String','sub')}${excelXmlCell(Math.round(t.equipment),'Number','money')}</Row>
+<Row>${excelXmlCell('Монтаж','String','sub')}${excelXmlCell(Math.round(t.install),'Number','money')}</Row>
+<Row>${excelXmlCell('ПНР','String','sub')}${excelXmlCell(Math.round(t.pnr),'Number','money')}</Row>
+<Row>${excelXmlCell('Контент / ПО','String','sub')}${excelXmlCell(Math.round(t.content),'Number','money')}</Row>
+<Row>${excelXmlCell('Логистика / расходники','String','sub')}${excelXmlCell(Math.round(t.consumables),'Number','money')}</Row>
+<Row>${excelXmlCell('Себестоимость','String','sub')}${excelXmlCell(Math.round(t.cost),'Number','money')}</Row>
+<Row>${excelXmlCell('Маржа','String','sub')}${excelXmlCell(Math.round(t.margin),'Number','money')}</Row>
+<Row>${excelXmlCell('Цена без НДС','String','sub')}${excelXmlCell(Math.round(t.net),'Number','money')}</Row>
+<Row>${excelXmlCell('Цена с НДС','String','sub')}${excelXmlCell(Math.round(t.gross),'Number','money')}</Row>
+</Table>
+</Worksheet>
+<Worksheet ss:Name="Зоны">
+<Table>
+<Row>${excelXmlCell('№','String','sub')}${excelXmlCell('Зона','String','sub')}${excelXmlCell('Назначение','String','sub')}${excelXmlCell('Ключевая задача','String','sub')}${excelXmlCell('Площадь, м²','String','sub')}${excelXmlCell('Вместимость','String','sub')}${excelXmlCell('Сценарий','String','sub')}${excelXmlCell('Сервисы','String','sub')}</Row>
+${zoneRows.map(r=>`<Row>${excelXmlCell(r[0],'Number')}${excelXmlCell(r[1])}${excelXmlCell(r[2])}${excelXmlCell(r[3])}${excelXmlCell(r[4],'Number')}${excelXmlCell(r[5],'Number')}${excelXmlCell(r[6])}${excelXmlCell(r[7])}</Row>`).join('')}
+</Table>
+</Worksheet>
+</Workbook>`;
+  const filename = (el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_') + '.xls';
+  download(filename, xml, 'application/vnd.ms-excel');
+}
 function downloadHtmlProposal(){ const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>${escapeHtml(el('projectName').value)}</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style></head><body><div class="docPreview">${proposalHtml()}</div></body></html>`; download((el('projectName').value||'vizhu-presale').replace(/[^\wа-яё\- ]/gi,'').trim().replace(/\s+/g,'_')+'.html', html, 'text/html;charset=utf-8'); }
 function printProposal(){ const w = window.open('', '_blank'); w.document.write(`<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Печать сметы</title><style>body{font-family:Inter,Arial,sans-serif;margin:24px;background:#f6f8f3;color:#111}.docPreview{max-width:1180px;margin:0 auto;background:#fff;padding:24px;border-radius:18px;border:1px solid #dde4d2}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dce3d1;padding:8px;font-size:12px}th{background:#eef2e5}.docHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}.docKpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}@media print{body{margin:0;background:#fff}.docPreview{border:none;padding:0}}</style></head><body><div class="docPreview">${proposalHtml()}</div><script>window.onload=()=>window.print();<\/script></body></html>`); w.document.close(); }
 
@@ -1023,8 +1150,9 @@ function bindEvents(){
   el('saveStateBtn').addEventListener('click',()=>{ saveState(); alert('Локально сохранено в браузере.'); });
   el('exportJsonBtn').addEventListener('click',exportJSON);
   el('downloadHtmlBtn').addEventListener('click',downloadHtmlProposal);
+  el('exportExcelBtn').addEventListener('click',exportExcelProposal);
   el('printBtn').addEventListener('click',printProposal);
-  el('resetBtn').addEventListener('click',()=>{ if(confirm('Сбросить всё состояние?')) { localStorage.removeItem('vizhu-presale-v3'); location.reload(); } });
+  el('resetBtn').addEventListener('click',()=>{ if(confirm('Сбросить всё состояние?')) { localStorage.removeItem('vizhu-presale-v4'); location.reload(); } });
   document.getElementById('globalFlags').addEventListener('change',e=>{ if(e.target.dataset.flag){ state.flags[e.target.dataset.flag] = e.target.checked; state.zones.forEach(z=>{ if(z.flags[e.target.dataset.flag]===undefined) z.flags[e.target.dataset.flag]=e.target.checked; }); renderZones(); updateAutoCoefficients(); saveState(); }});
 }
 
