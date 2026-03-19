@@ -31,8 +31,8 @@ img{max-width:100%;display:block}
 .panel{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
 .topbar{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:stretch}
 .brand{padding:20px;display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:center;min-height:170px;overflow:hidden}
-.brandLogo{background:#0b0f0c;border:1px solid var(--line);border-radius:26px;padding:18px 22px;display:flex;align-items:center;justify-content:center;min-height:128px;overflow:hidden}
-.brandLogo img{width:100%;max-width:100%;max-height:92px;height:auto;object-fit:contain;object-position:center}
+.brandLogo{background:#0b0f0c;border:1px solid var(--line);border-radius:26px;padding:18px 22px;display:flex;align-items:center;justify-content:center;min-height:128px;overflow:visible}
+.brandLogo img{display:block;max-width:100%;max-height:120px;width:auto;height:auto;object-fit:contain;object-position:center;image-rendering:auto;flex:0 0 auto}
 .brand h1{margin:0 0 8px;font-size:30px;letter-spacing:.02em}
 .brand p{margin:0;color:var(--muted);max-width:900px}
 .pillRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
@@ -110,7 +110,7 @@ td input,td select{width:100%;background:#0b100d;color:var(--text);border:1px so
 .empty{padding:28px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);text-align:center}
 .docPreview{background:#f7f8f5;color:#111;border-radius:24px;padding:28px;min-height:420px}
 .docHead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;border-bottom:2px solid #d9dfd0;padding-bottom:16px;margin-bottom:20px}
-.docLogo{width:260px}.docKpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}
+.docLogo{width:260px;display:flex;align-items:center}.docKpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}.docKpi{background:#eef2e5;padding:12px;border-radius:14px}.docKpi b{display:block;font-size:20px}
 .docTable{width:100%;border-collapse:collapse;min-width:0}.docTable th,.docTable td{border:1px solid #dce3d1;padding:9px 8px;font-size:12px}.docTable th{background:#eef2e5;color:#283124;position:static}
 .footerActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 hr.sep{border:none;border-top:1px solid var(--line);margin:14px 0}
